@@ -2,3 +2,5 @@
 node_modules
 blog.md
 *.log
+oauth.js
+newApp.js
