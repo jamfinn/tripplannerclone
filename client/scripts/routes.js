@@ -3,7 +3,8 @@ app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: './partials/home.html',
-      access: {restricted: false}
+      controller: 'homeController',
+      access: {restricted: true}
     })
     .when('/login', {
       templateUrl: './partials/login.html',
@@ -27,9 +28,12 @@ app.config(function ($routeProvider) {
       template: '<h1>This is page two!</h1>',
       access: {restricted: false}
     })
-    .otherwise({
-      redirectTo: '/',
+    .when('/activities/new', {
+      templateUrl: './partials/activities/new.html',
       access: {restricted: false}
+    })
+    .otherwise({
+      redirectTo: '/'
     });
 
 });

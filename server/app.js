@@ -11,15 +11,15 @@ var express = require('express'),
     hash = require('bcrypt-nodejs'),
     path = require('path'),
     passport = require('passport'),
-    config = require('./oauth.js'),
-    localStrategy = require('passport-local' ).Strategy,
+    config = require('../oauth.js'),
+    localStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
     GoogleStrategy = require('passport-google').Strategy;
 
 
 // mongoose
-mongoose.connect(process.env.MONGOLAB_URI);
+mongoose.connect('mongodb://' + process.env.MONGOLAB_URI);
 
 // user schema/model
 var User = require('./models/user.js');
@@ -29,6 +29,7 @@ var app = express();
 
 // require routes
 var routes = require('./routes/api.js');
+var activities = require('./routes/activities.js')
 
 // define middleware
 // app.set('views', __dirname + '/views');
@@ -38,16 +39,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.methodOverride());
-app.use(require('express-session')({
+// app.use(express.methodOverride());
+app.use(require('express-session')({//try substituting expressSession
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false
 }));
+console.log('after keyboard cat');
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // serialize and deserialize
 passport.serializeUser(function(user, done) {
@@ -58,7 +60,7 @@ done(null, obj);
 });
 
 // configure passport
-passport.use(new localStrategy(User.authenticate()));
+passport.use(new localStrategy(User.authenticate()));//try User.createStrategy()
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -76,36 +78,43 @@ function(accessToken, refreshToken, profile, done) {
 
 // routes
 app.use('/user/', routes);
+app.use('/activities/', activities);
 
-app.get('/', routes.index);
-app.get('/ping', routes.ping);
+// app.get('/', routes.index);
+// app.get('/ping', routes.ping);
 app.get('/', ensureAuthenticated, function(req, res){
-res.render('../client.partials.home', { user: req.user });
-});
+  User.findById(req.session.passport.user, function(err, user) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.render('account', { user: user});
+    }
+  })
+})
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../client', 'index.html'));
-  // res.render('login', { user: req.user });
-});
+// app.get('/', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../client', 'index.html'));
+//   // res.render('login', { user: req.user });
+// });
 
 app.get('/auth/facebook',
 passport.authenticate('facebook'),
 function(req, res){
 });
 app.get('/auth/facebook/callback',
-passport.authenticate('facebook', { failureRedirect: '/' }),
+passport.authenticate('facebook', { failureRedirect: '/login' }),
 function(req, res) {
  res.redirect('/');
 });
-app.get('/logout', function(req, res){
+app.get('/logout', function(req, res){//this is redundant with routes/api.js
 req.logout();
-res.redirect('/');
+res.redirect('/login');
 });
 
 // test authentication
 function ensureAuthenticated(req, res, next) {
 if (req.isAuthenticated()) { return next(); }
-res.redirect('/')
+res.redirect('/login')
 }
 
 // error handlers

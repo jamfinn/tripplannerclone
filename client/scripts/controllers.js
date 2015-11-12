@@ -1,6 +1,6 @@
 app.controller('loginController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
 
-    console.log(authservice.getUserStatus());
+    console.log('user status: ', authservice.getUserStatus());
 
     $scope.login = function () {
       console.log('hi from login');
@@ -23,8 +23,14 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
           $scope.disabled = false;
           $scope.loginForm = {};
         });
-
+      console.log('after login: ', authservice.getUserStatus());
     };
+
+}]);
+
+app.controller('homeController', ['$scope', 'AuthService', function ($scope, AuthService) {
+  console.log($scope);
+
 
 }]);
 
@@ -73,5 +79,15 @@ app.controller('registerController',
         });
 
     };
+
+}]);
+
+app.controller('activityController',
+  ['$scope', '$location',
+  function ($scope, $location) {
+
+    $scope.addActivity = function () {
+
+    }
 
 }]);
