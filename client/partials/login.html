@@ -1,9 +1,11 @@
 <div class="col-md-4">
   <h1>Login</h2>
-    <a href="/auth/facebook">Login via Facebook</a>
+    <a href="/auth/facebook">Login via Facebook</a><br>
+    <a href="/auth/twitter">Login via Twitter</a><br>
+    <a href="/auth/google">Login via Google</a><br>
   <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
   <form class="form" ng-submit="login()">
-    
+
     <div class="form-group">
       <label>Email</label>
       <input type="email" class="form-control" name="username" ng-model="loginForm.username" required>
