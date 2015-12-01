@@ -1,6 +1,224 @@
 
 
-<h1>Yo! {{user.firstname}}</h1>
+<header>
+  <img class="logo" src="../assets/images/gca-logo.jpeg" alt="">
+  <i class="fa fa-bars"></i>
+</header>
+<div>
+  <img src="../assets/images/gc-img-1.png" alt="">
+  <h3>
+    Plan your trip and get the most out of your Grand Canyon visit
+  </h3>
+</div>
+<nav class="nav">
+
+  <article class="info plan">
+    <h2 ng-click="plan.open = !plan.open">Plan your trip <i class="fa fa-chevron-right"></i></h2>
+    <div class="accordian" ng-show="plan.open" ng-init="plan.open = false">
+      <p>
+        go to login/register then...
+      </p>
+      <p>
+        array/index of activities appears here
+      </p>
+    </div>
+  </article>
+
+  <article class="info about">
+    <h2 ng-click="about.open = !about.open">About the Park <i class="fa fa-chevron-right"></i></h2>
+    <div class="accordian" ng-show="about.open" ng-init="about.open = false">
+      <p>
+        Grand Canyon National Park spans 277 miles of the Colorado river and adjacent uplands.
+        It is located entirely in northern Arizona.
+      </p>
+      <p>
+        Most visitors (90%) choose to see Grand Canyon National
+        Park from the overlooks along the South Rim.
+        The South Rim, which is the most accessible part of the park,
+        includes historic Grand Canyon Village, Hermit Road, and Desert View Drive.
+        The South Rim is open all year long, even on holidays.
+      </p>
+      <p>
+        A much smaller number of people (10%) see the canyon from the North Rim of the park.
+        The North Rim lies just 10 miles across the canyon from the South Rim,
+        but it is a 220 mile, or approximately 4.5 hour drive by car, all the way around the canyon.
+        It has a shorter season, with lodging and restaurants that are open from May 15 through
+        October 15 each year.
+      </p>
+      <h3>Fees</h3>
+      <p>Private Vehicle: $25</p>
+      <p>Pedestrian, Motorcyclist, Bicyclist: $12</p>
+      <p>
+        Admission is for seven days and includes entrance to both
+        South Rim and North Rim.
+      </p>
+      <h3>Free Entrance Days</h3>
+      <p>
+        The National Park Service offers free entrance days several days a year.
+        Typically, days with free entrance are holidays like
+        Martin Luther King Jr. Day, Presidents Day Weekend, Veterans
+        Day, and several others. For more information, visit:
+        <a href="www.nps.gov/findapark/feefreeparks.htm">www.nps.gov/findapark/feefreeparks.htm</a>
+      </p>
+      <p>
+        For more information on Annual, Active Military, Senior and
+        Access passes and fees:
+        <a href="www.nps.gov/grca/planyourvisit/fees.htm">www.nps.gov/grca/planyourvisit/fees.htm</a>
+      </p>
+      <p>
+        Other fees such as reservation, camping, lodging, tours,
+        concession and fees collected by third parties are not included
+        unless stated otherwise.
+      </p>
+      <h3>Park Hours and Seasonality</h3>
+      <p>
+        Park Entrances: Open 24 hours a day
+      </p>
+      <p>
+        North Rim Facilities: Open mid-May and close in mid-October
+      </p>
+      <p>
+        Desert View Campground: May 1st through mid-October
+      </p>
+      <p>
+        South Rim Facilities and Grand Canyon Village: Open all year
+      </p>
+      <small>
+        While park entrances are open 24 hours a day, stations are not always manned.
+      </small>
+      <h3>Pets</h3>
+      <p>
+        Pets are permitted in the park if leashed, but not below the rim, in park lodging, inside
+        buildings or on buses, with the exception of service animals. People who want to take a
+        service animal below the rim must check in at the Backcountry Information Center.
+      </p>
+      <p>
+        There is a kennel for dogs and cats at the South Rim, open 7:30 a.m.-5:00 p.m. daily.
+        <a href="www.nps.gov/grca/planyourvisit/pets.htm">www.nps.gov/grca/planyourvisit/pets.htm</a>
+      </p>
+    </div>
+  </article>
+
+  <article class="info transport">
+    <h2 ng-click="transport.open = !transport.open">Getting to the Park <i class="fa fa-chevron-right"></i></h2>
+    <div class="accordian" ng-show="transport.open" ng-init="transport.open = false">
+      <h3>Airports and Drive Times</h3>
+      <p>
+        There are several ways to arrive at Grand Canyon National Park.
+        Many visitors fly into Phoenix, Arizona, and Las Vegas, Nevada.
+        There are also limited flights arriving in Flagstaff, Arizona.
+        You will need to rent a car from these airports or reserve a shuttle to the park from Phoenix or Flagstaff.
+      </p>
+      <h4>Drive time to South Rim</h4>
+      <table>
+        <th>City</th>
+        <th>Distance</th>
+        <th>Approximate driving time</th>
+        <tr>
+          <td>
+            Phoenix, AZ
+          </td>
+          <td>
+            213 miles
+          </td>
+          <td>
+            3.5 hours
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Las Vegas, NZ
+          </td>
+          <td>
+            278 miles
+          </td>
+          <td>
+            4 hours
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Flagstaff, AZ
+          </td>
+          <td>
+            81 miles
+          </td>
+          <td>
+            1.5 hours
+          </td>
+        </tr>
+      </table>
+      <p>
+        <strong>
+          Directions:
+        </strong>
+        <a href="www.nps.gov/grca/planyourvisit/directions_s_rim.htm">www.nps.gov/grca/planyourvisit/directions_s_rim.htm</a>
+      </p>
+      <h3>Free Shuttle Bus Service</h3>
+      <h4>From Outside the Canyon</h4>
+      <p>
+        The Tusayan Route provides free direct shuttle bus service,
+        between the gateway community of Tusayan and the Grand
+        Canyon Visitor Center from mid May to early September. Tusayan,
+        Arizona, is located 7 miles south of Grand Canyon Village on the
+        South Rim and free shuttle buses operate on several routes.
+      </p>
+      <p>
+        When boarding the bus, you do not need a ticket but you
+        must present a valid park entrance pass. Entrance passes may be
+        purchased at park entrances or at various businesses in Tusayan.
+      </p>
+      <h4>Within the Canyon</h4>
+      <p>
+        There are several free shuttle routes within Grand Canyon
+        National Park connecting lodges, campgrounds, restaurants and
+        shops with Market Plaza, the Visitors Center and Grand Canyon
+        Association Park Store.
+      </p>
+      <h4>Shuttle Bus Maps</h4>
+      <p>
+        For maps of shuttle bus routes and more information about
+        specific routes, availability, or how to effectively combine hiking
+        with shuttle bus stops, visit:
+        <a href="www.nps.gov/grca/planyourvisit/shuttle-buses.htm">www.nps.gov/grca/planyourvisit/shuttle-buses.htm</a>
+      </p>
+    </div>
+  </article>
+
+  <article class="info lodging">
+    <h2 ng-click="lodging.open = !lodging.open">Where to Stay <i class="fa fa-chevron-right"></i></h2>
+    <div class="accordian" ng-show="lodging.open" ng-init="lodging.open = false">
+      <h3>South Rim Lodging</h3>
+      <p>
+        A variety of historic lodges, motels and hotels are located
+        right inside Grand Canyon National Park. From the historic
+        El Tovar Hotel and Bright Angel Lodge to the more
+        modern Maswick, Thunderbird and Yavapai Lodges, the
+        park offers a perfect place from which to base your time at
+        the canyon.
+      </p>
+    </div>
+  </article>
+
+  <article class="info seasons">
+    <h2 ng-click="seasons.open = !seasons.open">Seasonal Information <i class="fa fa-chevron-right"></i></h2>
+    <div class="accordian" ng-show="seasons.open" ng-init="seasons.open = false">
+      <p>
+        When it comes to weather at the Grand Canyon, we recommend that
+        you expect the unexpected! Weather conditions vary greatly at the
+        Grand Canyon, so be prepared for all conditions in all seasons.
+      </p>
+    </div>
+  </article>
+
+  <article class="info misc">
+    <h2 ng-click="misc.open = !misc.open">More Resources <i class="fa fa-chevron-right"></i></h2>
+    <div class="accordian" ng-show="misc.open" ng-init="misc.open = false">
+      <h3>GCA and other planning resources</h3>
+    </div>
+  </article>
+
+</nav>
 
 <div ng-controller="logoutController">
   <a ng-click='logout()' class="btn btn-default">Logout</a>
@@ -9,3 +227,13 @@
 <a href="#/activities/new">add activity</a><br>
 <a href="#/plan">show my plan</a><br>
 <a href="#/login">login</a><br>
+
+<footer>
+  <section class="green">
+    <img src="" alt="">
+
+  </section>
+  <section class="copyright">
+
+  </section>
+</footer>

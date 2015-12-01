@@ -30,8 +30,6 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 
 app.controller('homeController', ['$scope', 'AuthService', function ($scope, AuthService) {
   console.log($scope);
-
-
 }]);
 
 app.controller('logoutController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
