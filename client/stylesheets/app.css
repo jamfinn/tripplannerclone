@@ -1,0 +1,299 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.green {
+  color: #64DD17; }
+
+.pink {
+  color: hotpink; }
+
+.blue {
+  color: #00B8D4; }
+
+.red {
+  color: #FF1744; }
+
+.purple {
+  color: #D500F9; }
+
+.yellow {
+  color: #FFD600; }
+
+.indigo {
+  color: #651FFF; }
+
+.orange {
+  color: #FF6D00; }
+
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+html {
+  background: linear-gradient(gray, rgba(99, 99, 99, 0.5)) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+body {
+  width: 100%;
+  color: black; }
+
+nav h3 {
+  line-height: 1.6em; }
+
+header {
+  padding: 2vh;
+  display: block;
+  width: 100%;
+  background-color: white; }
+  header .logo {
+    height: 7vh; }
+
+.hero {
+  margin: 10vh 0 5vh 0;
+  position: relative;
+  width: 100%;
+  /* for IE 6 */
+  height: 40vh;
+  overflow: hidden; }
+  .hero .dark {
+    background-color: rgba(99, 99, 99, 0.5); }
+  .hero img {
+    width: 100%; }
+  .hero .title {
+    padding: 5vw;
+    position: absolute;
+    top: 10vh;
+    left: 2vw;
+    right: 5vw;
+    width: 100%;
+    color: white; }
+  .hero button {
+    background-color: #D500F9;
+    padding: 1em;
+    position: absolute;
+    top: 28vh;
+    left: 65vw;
+    border: none;
+    box-shadow: none;
+    border-radius: 6px; }
+
+.gif {
+  margin-top: 8em;
+  margin-left: 5em; }
+
+article {
+  margin-left: 100px;
+  width: 65%; }
+  article form {
+    text-align: right; }
+  article .student {
+    clear: right;
+    margin: 1em; }
+  article .login {
+    display: block; }
+    article .login input {
+      align: right;
+      display: block;
+      margin: .3em; }
+  article .add {
+    text-align: right;
+    float: right; }
+  article .stacked {
+    height: 60vh;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px; }
+  article .show {
+    margin-left: 0;
+    padding: 3em;
+    color: black;
+    width: 700px;
+    background-color: white; }
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh; }
+  .container .calendar {
+    width: 98vw;
+    margin: 0 auto;
+    margin: .5vw;
+    position: absolute;
+    top: 0;
+    left: 0; }
+    .container .calendar .day {
+      padding: .5em;
+      border-radius: 9px;
+      font-size: 11px;
+      display: block;
+      float: left;
+      height: 14vw;
+      width: 14vw;
+      background-color: rgba(99, 99, 99, 0.5);
+      border: 1px solid white; }
+      .container .calendar .day input {
+        border: 1px solid white;
+        box-shadow: none; }
+    .container .calendar .trip-type {
+      vertical-align: top;
+      width: 45%;
+      display: inline-block; }
+  .container .background {
+    background-color: white;
+    border-radius: 9px; }
+
+.right {
+  float: right; }
+
+.left {
+  float: left; }
+
+.clear {
+  clear: both; }
+
+html {
+  font-size: 1em; }
+
+body {
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+  line-height: 1.45; }
+
+a {
+  color: lightgray;
+  text-decoration: none; }
+
+p {
+  margin-bottom: 1em; }
+
+h1, h2, h4 {
+  margin-bottom: 0.5em;
+  font-weight: inherit;
+  line-height: 1.2; }
+
+h1 {
+  font-size: 2.074em; }
+
+header h1 {
+  top: 85px;
+  position: relative;
+  font-size: 2.074em; }
+
+.backArrow {
+  font-size: 2em; }
+
+.alignLeft {
+  text-align: left; }
+
+h2 {
+  font-size: 1.728em; }
+
+h3 {
+  font-size: 1.44em;
+  margin-bottom: 0; }
+
+h4 {
+  font-size: 1.2em; }
+
+small, .font_small {
+  font-size: 0.833em;
+  margin-left: .1em;
+  display: block;
+  width: 178px;
+  text-align: left; }
+
+form {
+  text-align: left; }
+
+.login input {
+  font-size: 14px;
+  padding: .3em;
+  margin-bottom: .2em; }
+
+.choose {
+  margin: 2em; }
+  .choose select {
+    font-size: 22px;
+    font-weight: 300;
+    border: none;
+    color: white;
+    background-color: transparent; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: hotpink;
+  shape-rendering: crispEdges; }
+
+.bar {
+  fill: steelblue; }
+
+.x.axis path {
+  display: none; }
+
+svg rect.bordered {
+  stroke: white;
+  stroke-width: 2px; }
+
+text.mono {
+  font-size: 8pt;
+  font-family: sans-serif;
+  fill: darkgray; }
+
+text.axis-workweek {
+  fill: white; }
+
+text.axis-week {
+  fill: white; }
+
+.tick {
+  fill: white; }
+
+.legend {
+  fill: white; }

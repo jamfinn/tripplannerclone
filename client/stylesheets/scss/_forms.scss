@@ -1,0 +1,22 @@
+form {
+  text-align: left;
+}
+
+.login {
+  input {
+    font-size: 14px;
+    padding: .3em;
+    margin-bottom: .2em;
+  }
+}
+
+.choose {
+  margin: 2em;
+  select {
+    font-size: 22px;
+    font-weight: 300;
+    border: none;
+    color: white;
+    background-color: transparent;
+  }
+}

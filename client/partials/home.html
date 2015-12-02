@@ -1,31 +1,37 @@
 
 
 <header>
-  <img class="logo" src="../assets/images/gca-logo.jpeg" alt="">
-  <i class="fa fa-bars"></i>
+  <img class="logo" src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
+  <i class="fa fa-bars right"></i>
 </header>
-<div>
-  <img src="../assets/images/gc-img-1.png" alt="">
-  <h3>
+
+<div class="hero">
+  <div class="dark">
+    <img class="test" src="http://cdn.lightgalleries.net/4bd5ec12b739d/images/Grand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg" alt="">
+  </div>
+  <h3 class="title">
     Plan your trip and get the most out of your Grand Canyon visit
   </h3>
+  <button>Call to action</button>
 </div>
+
 <nav class="nav">
 
   <article class="info plan">
-    <h2 ng-click="plan.open = !plan.open">Plan your trip <i class="fa fa-chevron-right"></i></h2>
+    <h2 ng-click="plan.open = !plan.open">Plan your Trip <i ng-hide="plan.open" class="fa fa-chevron-right"></i><i ng-show="plan.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="plan.open" ng-init="plan.open = false">
-      <p>
-        go to login/register then...
-      </p>
+
       <p>
         array/index of activities appears here
+      </p>
+      <p>
+        when click on add button, go to login/register, then add...
       </p>
     </div>
   </article>
 
   <article class="info about">
-    <h2 ng-click="about.open = !about.open">About the Park <i class="fa fa-chevron-right"></i></h2>
+    <h2 ng-click="about.open = !about.open">About the Park <i ng-hide="about.open" class="fa fa-chevron-right"></i><i ng-show="about.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="about.open" ng-init="about.open = false">
       <p>
         Grand Canyon National Park spans 277 miles of the Colorado river and adjacent uplands.
@@ -100,7 +106,7 @@
   </article>
 
   <article class="info transport">
-    <h2 ng-click="transport.open = !transport.open">Getting to the Park <i class="fa fa-chevron-right"></i></h2>
+    <h2 ng-click="transport.open = !transport.open">Getting to the Park <i ng-hide="transport.open" class="fa fa-chevron-right"></i><i ng-show="transport.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="transport.open" ng-init="transport.open = false">
       <h3>Airports and Drive Times</h3>
       <p>
@@ -186,7 +192,7 @@
   </article>
 
   <article class="info lodging">
-    <h2 ng-click="lodging.open = !lodging.open">Where to Stay <i class="fa fa-chevron-right"></i></h2>
+    <h2 ng-click="lodging.open = !lodging.open">Where to Stay <i ng-hide="lodging.open" class="fa fa-chevron-right"></i><i ng-show="lodging.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="lodging.open" ng-init="lodging.open = false">
       <h3>South Rim Lodging</h3>
       <p>
@@ -201,7 +207,7 @@
   </article>
 
   <article class="info seasons">
-    <h2 ng-click="seasons.open = !seasons.open">Seasonal Information <i class="fa fa-chevron-right"></i></h2>
+    <h2 ng-click="seasons.open = !seasons.open">Seasonal Information <i ng-hide="seasons.open" class="fa fa-chevron-right"></i><i ng-show="seasons.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="seasons.open" ng-init="seasons.open = false">
       <p>
         When it comes to weather at the Grand Canyon, we recommend that
@@ -212,7 +218,7 @@
   </article>
 
   <article class="info misc">
-    <h2 ng-click="misc.open = !misc.open">More Resources <i class="fa fa-chevron-right"></i></h2>
+    <h2 ng-click="misc.open = !misc.open">More Resources <i ng-hide="misc.open" class="fa fa-chevron-right"></i><i ng-show="misc.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="misc.open" ng-init="misc.open = false">
       <h3>GCA and other planning resources</h3>
     </div>
