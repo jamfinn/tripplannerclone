@@ -29,6 +29,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 }]);
 
 app.controller('homeController', ['$scope', 'AuthService', function ($scope, AuthService) {
+  $scope.activity = 'magpie mimic'
   console.log($scope);
 }]);
 
@@ -80,12 +81,14 @@ app.controller('registerController',
 
 }]);
 
-app.controller('activityController',
-  ['$scope', '$location',
-  function ($scope, $location) {
+app.controller('activitiesController',
+  ['$scope', '$location', '$http', function ($scope, $location, $http) {
 
-    $scope.addActivity = function () {
-
+    $scope.addActivity = function (activity) {
+      console.log('activity in activitiesController', activity);
+      //send form data to database here? or from /activities route?
+      $http.post('/activities', activity);
+      $scope.activity = {};
     }
 
 }]);

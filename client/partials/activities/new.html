@@ -1,9 +1,9 @@
 <h2>Add an Activity</h2>
-<form action="" ng-submit="addActivity()">
+<form ng-submit="addActivity(activity)">
 <label for="title">Title</label>
 <input id="title" type="text" ng-model="activity.title">
 <label for="description">Description</label>
-<textarea name="" id="description" cols="30" rows="10"></textarea>
+<textarea name="" id="description" cols="30" rows="10" ng-model="activity.description"></textarea>
 <label for="age">Age</label>
 <input id="age" type="text" ng-model="activity.age">
 <label for="duration">Duration</label>

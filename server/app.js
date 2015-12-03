@@ -25,6 +25,7 @@ mongoose.connect('mongodb://' + process.env.MONGOLAB_URI);
 
 // user schema/model
 var User = require('./models/user.js');
+var Activity = require('./models/activity.js');
 
 // create instance of express
 var app = express();

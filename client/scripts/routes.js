@@ -20,8 +20,9 @@ app.config(function ($routeProvider) {
       controller: 'registerController',
       access: {restricted: false}
     })
-    .when('/one', {
-      template: '<h1>This is page one!</h1>',
+    .when('/activities', {
+      templateURL: '.partials/home.html',
+      controller: 'homeController',
       access: {restricted: false}
     })
     .when('/two', {
@@ -34,6 +35,7 @@ app.config(function ($routeProvider) {
     })
     .when('/activities/new', {
       templateUrl: './partials/activities/new.html',
+      controller: 'activitiesController',
       access: {restricted: false}
     })
     .otherwise({

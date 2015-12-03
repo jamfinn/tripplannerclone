@@ -6,8 +6,8 @@ app.run(function ($rootScope, $location, $route, AuthService) {
     // console.log('event ', event)
     // console.log('next', next);
     // console.log('current', current);
-    if (next.access.restricted && authservice.isLoggedIn() === false) {
-      $location.path('/login');
-    }
+    // if (next.access.restricted && authservice.isLoggedIn() === false) {
+    //   $location.path('/login');
+    // }
   });
 });
