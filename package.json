@@ -1,7 +1,7 @@
 {
   "name": "tripPlanner",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node server/server.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
