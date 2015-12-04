@@ -236,6 +236,9 @@ h5 {
   font-size: .8em;
   text-transform: uppercase; }
 
+h6 {
+  margin-bottom: 1em; }
+
 small, .font_small {
   font-size: 0.833em;
   margin-left: .1em;
@@ -244,7 +247,14 @@ small, .font_small {
   text-align: left; }
 
 form {
-  text-align: left; }
+  text-align: left;
+  padding: 2em; }
+
+input {
+  display: block; }
+
+textarea {
+  display: block; }
 
 .login input {
   font-size: 14px;
@@ -260,35 +270,5 @@ form {
     color: white;
     background-color: transparent; }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: hotpink;
-  shape-rendering: crispEdges; }
-
-.bar {
-  fill: steelblue; }
-
-.x.axis path {
-  display: none; }
-
-svg rect.bordered {
-  stroke: white;
-  stroke-width: 2px; }
-
-text.mono {
-  font-size: 8pt;
-  font-family: sans-serif;
-  fill: darkgray; }
-
-text.axis-workweek {
-  fill: white; }
-
-text.axis-week {
-  fill: white; }
-
-.tick {
-  fill: white; }
-
-.legend {
-  fill: white; }
+ul {
+  padding-left: 2em; }

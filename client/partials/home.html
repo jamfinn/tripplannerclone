@@ -20,16 +20,19 @@
     <div class="accordian" ng-show="plan.open" ng-init="plan.open = false">
 
       <div class="filter">
-        <h6>Filters</h6>
-        <h6>Activity</h6>
+        <h6 ng-click="filters.open = !filters.open" ng-init="filters.open = false">Filters <i ng-hide="filters.open" class="fa fa-chevron-down"></i><i ng-show="filters.open" class="fa fa-times"></i></h6>
+        <p>
+          open and close filters
+        </p>
+        <h6>Activity {{type}}</h6>
         <ul>
-          <li>All</li>
-          <li>Museums</li>
-          <li>Shopping</li>
-          <li>Active</li>
-          <li>Tours</li>
-          <li>Classes</li>
-          <li>Nearby</li>
+          <!-- <li ng-click="all = !all"><i ng-show="all" ng-init="all = false" class="fa fa-check"></i>All</li> -->
+          <li ng-click="type.museum = !type.museum"><i ng-show="type.museum" ng-init="type.museum = false" class="fa fa-check"></i>Museums</li>
+          <li ng-click="type.shopping = !type.shopping"><i ng-show="type.shopping" ng-init="type.shopping = false" class="fa fa-check"></i>Shopping</li>
+          <li ng-click="type.active = !type.active"><i ng-show="type.active" ng-init="type.active = false" class="fa fa-check"></i>Active</li>
+          <li ng-click="type.tour = !type.tour"><i ng-show="type.tour" ng-init="type.tour = false" class="fa fa-check"></i>Tours</li>
+          <li ng-click="type.class = !type.class"><i ng-show="type.class" ng-init="type.class = false" class="fa fa-check"></i>Classes</li>
+          <li ng-click="type.nearby = !type.nearby"><i ng-show="type.nearby" ng-init="type.nearby = false" class="fa fa-check"></i>Nearby</li>
         </ul>
 
       </div>
@@ -66,7 +69,7 @@
 
   <article class="info about">
     <h2 ng-click="about.open = !about.open">About the Park  <i ng-hide="about.open" class="fa fa-chevron-right"></i><i ng-show="about.open" class="fa fa-chevron-down"></i></h2>
-    <div class="accordian" ng-show="about.open" ng-init="about.open = false">
+    <div ng-click="about.open = !about.open" class="accordian" ng-show="about.open" ng-init="about.open = false">
       <p>
         Grand Canyon National Park spans 277 miles of the Colorado river and adjacent uplands.
         It is located entirely in northern Arizona.
