@@ -13,7 +13,7 @@ var Activity = new Schema({
   museum: Boolean,
   shopping: Boolean,
   age: String,
-  accessibility: String,
+  access: String,
   cost: String,
   hours: String,
   fitness: String,
