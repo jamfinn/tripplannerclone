@@ -28,9 +28,14 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 
 }]);
 
-app.controller('homeController', ['$scope', 'AuthService', function ($scope, AuthService) {
-  $scope.activity = 'magpie mimic'
-  console.log($scope);
+app.controller('homeController', ['$scope', '$http', 'AuthService', function ($scope, $http, AuthService) {
+  $http.get('/activities')
+  $http.get('/activities').success(function (data) {
+    $scope.activities = data;
+    // deferred.resolve(data);
+  }).error(function () {
+    // deferred.reject("Error!");
+  });
 }]);
 
 app.controller('logoutController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {

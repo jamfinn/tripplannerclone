@@ -24,14 +24,14 @@ var express = require('express'),
 mongoose.connect('mongodb://' + process.env.MONGOLAB_URI);
 
 // user schema/model
-var User = require('./models/user.js');
-var Activity = require('./models/activity.js');
+var User = require('./models/user.js');//need this, because used later
+// var Activity = require('./models/activity.js');
 
 // create instance of express
 var app = express();
 
 // require routes
-var routes = require('./routes/api.js');
+var users = require('./routes/api.js');
 var activities = require('./routes/activities.js')
 
 // define middleware
@@ -127,7 +127,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 // routes
-app.use('/user/', routes);
+app.use('/user/', users);
 app.use('/activities/', activities);
 
 // app.get('/', routes.index);

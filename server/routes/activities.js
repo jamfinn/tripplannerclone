@@ -2,18 +2,15 @@ var express = require('express'),
     router = express.Router(),
     passport = require('passport');
 
-var mongoose = require('mongoose');
-// var Activity = mongoose.model('activities');
-
 var  Activity = require('../models/activity.js');
 
-
-
 router.get('/', function(req, res) {
-    console.log('hello from /actities route', req.body);
-    // activities.insert(new Activity(req.body)).then(function (doc) {
-    res.send({ activity: 'My funky activity' });
-  // })
+  console.log('get!');
+  Activity.find(function(err, docs){
+    if (err) throw err;
+    console.log(docs)
+    res.send(docs);
+  });
 });
 
 router.post('/', function(req, res) {

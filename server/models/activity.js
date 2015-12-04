@@ -17,7 +17,7 @@ var Activity = new Schema({
   hours: String,
   fitness: String,
   reserve: String
-});
+}, { collection: 'activities'});
 
 // mongoose.model('activities', Activity); // link to a collection called activities
 

@@ -39,10 +39,6 @@ header {
   height: 40vh;
   overflow: hidden;
   background-color: darken($gray, 60%);
-  // .dark {
-  //   background-color: darken($gray, 60%);
-  //   color: $white;
-  // }
   img {
    width: 100%;
   }
@@ -54,17 +50,17 @@ header {
     right: 5vw;
     width: 100%;
     color: white;
-   }
-   button {
-     background-color: $purple;
-     padding: 1em;
-     position: absolute;
-     top: 28vh;
-     left: 65vw;
-     border: none;
-     box-shadow: none;
-     border-radius: 6px;
-   }
+  }
+  button {
+    background-color: $purple;
+    padding: 1em;
+    position: absolute;
+    top: 28vh;
+    left: 65vw;
+    border: none;
+    box-shadow: none;
+    border-radius: 6px;
+  }
 }
 
 article {
@@ -88,6 +84,48 @@ article.seasons {
 }
 article.misc {
   background-color: $gray;
+}
+
+.activity {
+  margin-top: 2em;
+  position: relative;
+  color: black;
+  display: block;
+  img {
+    background-color: transparent;
+    width: 300px;
+    height: 150px;
+  }
+  .fa-plus{
+    padding-right: 30px;
+    position: absolute;
+    top: 23px;
+    left: 270px;
+    z-index: 1;
+   }
+   .title {
+     padding-right: 30px;
+     position: absolute;
+     top: 20px;
+     left: 20px;
+   }
+   .subtitle {
+     position: absolute;
+     top: 5px;
+     left: 20px;
+   }
+   .more {
+     width: 300px;
+     height: 100%;
+     background-color: white;
+     padding: 30px;
+     .close{
+       padding-right: 30px;
+       position: absolute;
+       left: 270px;
+       z-index: 1;
+      }
+   }
 }
 
 .right {
