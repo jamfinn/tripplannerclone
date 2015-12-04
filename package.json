@@ -1,5 +1,5 @@
 {
-  "name": "mean-auth",
+  "name": "tripPlanner",
   "scripts": {
     "start": "node server/server.js"
   },
