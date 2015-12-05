@@ -24,7 +24,7 @@ var express = require('express'),
 mongoose.connect('mongodb://' + process.env.MONGOLAB_URI);
 
 // user schema/model
-var User = require('./models/user.js');//need this, because used later
+var User = require('./models/user.js');//need this, because used later in app.js
 // var Activity = require('./models/activity.js');
 
 // create instance of express
@@ -33,6 +33,7 @@ var app = express();
 // require routes
 var users = require('./routes/api.js');
 var activities = require('./routes/activities.js')
+var plans = require('./routes/plans.js')
 
 // define middleware
 // app.set('views', __dirname + '/views');
@@ -129,6 +130,7 @@ passport.deserializeUser(function(id, done) {
 // routes
 app.use('/user/', users);
 app.use('/activities/', activities);
+app.use('/plans/', plans)
 
 // app.get('/', routes.index);
 // app.get('/ping', routes.ping);

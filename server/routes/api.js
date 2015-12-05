@@ -3,7 +3,6 @@ var express = require('express'),
     passport = require('passport');
     User = require('../models/user.js');
 
-
 router.post('/register', function(req, res) {
   console.log('hello from /register route', req.body.username);
   User.register(new User({ username: req.body.username}), req.body.password, function(err, account) {

@@ -1,7 +1,6 @@
-// user model
+// activity model
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    passportLocalMongoose = require('passport-local-mongoose');
+    Schema = mongoose.Schema;
 
 var Activity = new Schema({
   title: String,
@@ -20,10 +19,4 @@ var Activity = new Schema({
   reserve: String
 }, { collection: 'activities'});
 
-// mongoose.model('activities', Activity); // link to a collection called activities
-
-// User.plugin(passportLocalMongoose);
-
-// mongoose.connect('mongodb://' + process.env.MONGOLAB_URI);
-
-module.exports = mongoose.model('activities', Activity);
+module.exports = mongoose.model('activities', Activity); // compile Activity schema to a model called activities
