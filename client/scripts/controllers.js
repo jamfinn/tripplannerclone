@@ -11,10 +11,14 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
       // call login from service
       authservice.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
-        .then(function () {
+        .then(function (data) {
+          console.log('data from login function', data);
+          // $scope.user_id = authservice.setUser($scope.loginForm.username);
+          // console.log('find user id: ', $scope);
           $location.path('/');
           $scope.disabled = false;
           $scope.loginForm = {};
+          console.log('user status after login: ', authservice.getUserStatus());
         })
         // handle error
         .catch(function () {
@@ -23,12 +27,13 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
           $scope.disabled = false;
           $scope.loginForm = {};
         });
-      console.log('after login: ', authservice.getUserStatus());
     };
 
 }]);
 
 app.controller('homeController', ['$scope', '$http', 'AuthService', function ($scope, $http, AuthService) {
+  console.log($scope);
+  console.log("from homeController: ", authservice.getUserStatus());
   $http.get('/activities')
   $http.get('/activities').success(function (data) {
     $scope.activities = data;
@@ -42,11 +47,11 @@ app.controller('logoutController', ['$scope', '$location', 'AuthService', functi
 
     $scope.logout = function () {
 
-      console.log(authservice.getUserStatus());
 
       // call logout from service
       authservice.logout()
         .then(function () {
+          console.log('user status from logout', authservice.getUserStatus());
           $location.path('/login');
         });
 

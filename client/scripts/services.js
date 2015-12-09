@@ -4,6 +4,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     // create user variable
     var user = null;
+    var user_id = null;
 
     authservice.isLoggedIn = function() {
       if(user) {
@@ -14,11 +15,22 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
     }
 
     authservice.getUserStatus = function() {
-      return user;
+      return user_id;
     }
+
+    // authservice.setUser = function(id) {
+    //   console.log(id);
+    //   if (user) {
+    //     $http.get('/user', username).then(function(data) {
+    //       console.log(data);
+    //     })
+    //     // $scope.user_id = id
+    //   }
+    // }
 
     authservice.login = function (username, password) {
       console.log('authservice.login');
+
 
       // create a new instance of deferred
       var deferred = $q.defer();
@@ -27,9 +39,12 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       $http.post('/user/login', {username: username, password: password})
       // handle success // test for success
       .success(function (data, status) { // note to mherman: angular docs say .success method has been deprecated and to use .then https://docs.angularjs.org/api/ng/service/$http
-        console.log('data', data);
+        console.log('data from authservice.login', data);
+        console.log('is this the id?', data.user_id);
+
         if(status === 200 && data.status){
           user = true;
+          user_id=data.user_id;
           deferred.resolve();
         } else {
           user = false;
@@ -57,6 +72,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       // handle success
       .success(function (data) {
         user = false;
+        user_id = null;
         deferred.resolve();
       })
       // handle error

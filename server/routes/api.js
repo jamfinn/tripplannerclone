@@ -3,6 +3,18 @@ var express = require('express'),
     passport = require('passport');
     User = require('../models/user.js');
 
+router.get('/', function (req, res) {
+  console.log('req.body', req.body);
+  User.findOne({username: req.body.username}, function (err, doc) {
+    console.log('doc', doc);
+    if (err) {
+      // console.log(err);
+      return res.status(500).json({err: err})
+    }
+    return res.status(200).json(doc)
+  })
+})
+
 router.post('/register', function(req, res) {
   console.log('hello from /register route', req.body.username);
   User.register(new User({ username: req.body.username}), req.body.password, function(err, account) {
@@ -26,7 +38,7 @@ router.post('/login', function(req, res, next) {
       if (err) {
         return res.status(500).json({err: 'Could not log in user'})
       }
-      res.status(200).json({status: 'Login successful!'})
+      res.status(200).json({status: 'Login successful!', user_id: user._id})
     });
   })(req, res, next);
 });

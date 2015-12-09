@@ -13,11 +13,11 @@ var express = require('express'),
     passport = require('passport'),
     auth = require('./authentication.js');
 
-    // config = require('./oauth.js'),
-    // localStrategy = require('passport-local').Strategy,
-    // FacebookStrategy = require('passport-facebook').Strategy,
-    // TwitterStrategy = require('passport-twitter').Strategy,
-    // GoogleStrategy = require('passport-google').Strategy;
+    config = require('./oauth.js'),
+    localStrategy = require('passport-local').Strategy,
+    FacebookStrategy = require('passport-facebook').Strategy,
+    TwitterStrategy = require('passport-twitter').Strategy,
+    GoogleStrategy = require('passport-google').Strategy;
 
 
 // mongoose
@@ -25,7 +25,6 @@ mongoose.connect('mongodb://' + process.env.MONGOLAB_URI);
 
 // user schema/model
 var User = require('./models/user.js');//need this, because used later in app.js
-// var Activity = require('./models/activity.js');
 
 // create instance of express
 var app = express();
@@ -36,8 +35,6 @@ var activities = require('./routes/activities.js')
 var plans = require('./routes/plans.js')
 
 // define middleware
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -52,8 +49,6 @@ app.use(expressSession({
 console.log('after keyboard cat');
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(app.router);
-// app.use(express.static(path.join(__dirname, 'public')));
 
 // configure passport
 // passport.use(new localStrategy(User.authenticate()));//try User.createStrategy()
