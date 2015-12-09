@@ -38,8 +38,9 @@
       <div class="activity" ng-repeat="activity in activities" ng-click="details.open=!details.open" ng-init="details.open = false">
           <img ng-src={{activity.image}} alt="{{activity.title}}">
           <i ng-click="addToPlan(user); $event.stopPropagation();" class="fa fa-plus"></i>
-          <h5 class="subtitle">{{activity.rim}} rim</h5>
+          <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
           <h4 class="title">{{activity.title}}</h4>
+
 
           <div class="more" ng-show="details.open" >
             <i class="fa fa-times close"></i>

@@ -1,14 +1,31 @@
 form {
-  text-align: left;
-  padding: 2em;
+  margin: 0 auto;
+  text-align: center;
+  // padding: 2em;
 }
 
 input {
+  font-size: 20px;
+  width: 300px;
+  padding: 1em;
+  margin: 1em auto;
   display: block;
 }
 
 textarea {
   display: block;
+}
+
+
+button {
+  font-size: 20px;
+  width: 300px;
+  padding: 1em 0;
+  margin: 1em auto;
+  text-align: center;
+  display: block;
+  border: none;
+  box-shadow: none;
 }
 
 .login {

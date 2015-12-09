@@ -8,7 +8,6 @@ $schoolBus: $yellow;
 $indigo: #651FFF;
 $driveDrop: $indigo;
 $blue: #00B8D4;
-$walk: $blue;
 $green: rgb(68,	113, 113);
 $bike: $green;
 $orange: #FF6D00;
@@ -17,8 +16,13 @@ $transparentGray: rgba(99,99,99,.5);
 $colorOne: #311417;
 $colorTwo: #34403E;
 
+$twitter: #00aced;
+$facebook: #3b5998;
+$google: #dd4b39;
+
 .green {
-  color: $green;
+  background: $green;
+  color: white;
 }
 
 .pink {
@@ -27,6 +31,18 @@ $colorTwo: #34403E;
 
 .blue {
   color: $blue;
+}
+
+.twitter {
+  background: $twitter;
+}
+
+.google {
+  background: $google;
+}
+
+.facebook {
+  background: $facebook;
 }
 
 .red {

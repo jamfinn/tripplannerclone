@@ -3,11 +3,11 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
   authservice = {}
 
     // create user variable
-    var user = null;
-    var user_id = null;
+    // var user = null;
+    // var user_id = sessionStorage.getItem('user') || null;
 
     authservice.isLoggedIn = function() {
-      if(user) {
+      if(sessionStorage.getItem('user')) {
         return true;
       } else {
         return false;
@@ -15,22 +15,11 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
     }
 
     authservice.getUserStatus = function() {
-      return user_id;
+      return sessionStorage.getItem('user');
     }
-
-    // authservice.setUser = function(id) {
-    //   console.log(id);
-    //   if (user) {
-    //     $http.get('/user', username).then(function(data) {
-    //       console.log(data);
-    //     })
-    //     // $scope.user_id = id
-    //   }
-    // }
 
     authservice.login = function (username, password) {
       console.log('authservice.login');
-
 
       // create a new instance of deferred
       var deferred = $q.defer();
@@ -39,12 +28,10 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       $http.post('/user/login', {username: username, password: password})
       // handle success // test for success
       .success(function (data, status) { // note to mherman: angular docs say .success method has been deprecated and to use .then https://docs.angularjs.org/api/ng/service/$http
-        console.log('data from authservice.login', data);
-        console.log('is this the id?', data.user_id);
-
-        if(status === 200 && data.status){
-          user = true;
-          user_id=data.user_id;
+        console.log('login service', data);
+        if(status === 200 && data.user_id){
+          // user = true;
+          sessionStorage.setItem('user', data.user_id);
           deferred.resolve();
         } else {
           user = false;
@@ -73,6 +60,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       .success(function (data) {
         user = false;
         user_id = null;
+        sessionStorage.clear()
         deferred.resolve();
       })
       // handle error
@@ -98,7 +86,8 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       .success(function (data, status) {
         console.log('hello!');
         console.log('data', data);
-        if(status === 200 && data.status){
+        if(status === 200 && data.user_id){
+          sessionStorage.setItem('user', data.user_id);
           deferred.resolve();
         } else {
           deferred.reject();
@@ -114,13 +103,5 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     }
 
-    // return available functions for use in controllers
-    // return ({
-    //   isLoggedIn: isLoggedIn,
-    //   getUserStatus: getUserStatus,
-    //   login: login,
-    //   logout: logout,
-    //   register: register
-    // });
     return authservice;
 }]);

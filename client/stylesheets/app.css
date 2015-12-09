@@ -46,13 +46,23 @@ table {
   border-spacing: 0; }
 
 .green {
-  color: #447171; }
+  background: #447171;
+  color: white; }
 
 .pink {
   color: hotpink; }
 
 .blue {
   color: #00B8D4; }
+
+.twitter {
+  background: #00aced; }
+
+.google {
+  background: #dd4b39; }
+
+.facebook {
+  background: #3b5998; }
 
 .red {
   color: #FF1744; }
@@ -183,6 +193,12 @@ article.misc {
       left: 270px;
       z-index: 1; }
 
+.auth {
+  text-align: center; }
+  .auth h2 {
+    margin: 0 auto;
+    width: 300px; }
+
 .right {
   float: right; }
 
@@ -251,14 +267,28 @@ small, .font_small {
   text-align: left; }
 
 form {
-  text-align: left;
-  padding: 2em; }
+  margin: 0 auto;
+  text-align: center; }
 
 input {
+  font-size: 20px;
+  width: 300px;
+  padding: 1em;
+  margin: 1em auto;
   display: block; }
 
 textarea {
   display: block; }
+
+button {
+  font-size: 20px;
+  width: 300px;
+  padding: 1em 0;
+  margin: 1em auto;
+  text-align: center;
+  display: block;
+  border: none;
+  box-shadow: none; }
 
 .login input {
   font-size: 14px;

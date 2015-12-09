@@ -3,7 +3,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
     console.log('user status: ', authservice.getUserStatus());
 
     $scope.login = function () {
-      console.log('hi from login');
+
       // initial values
       $scope.error = false;
       $scope.disabled = true;
@@ -12,13 +12,9 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
       authservice.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
         .then(function (data) {
-          console.log('data from login function', data);
-          // $scope.user_id = authservice.setUser($scope.loginForm.username);
-          // console.log('find user id: ', $scope);
           $location.path('/');
           $scope.disabled = false;
           $scope.loginForm = {};
-          console.log('user status after login: ', authservice.getUserStatus());
         })
         // handle error
         .catch(function () {
@@ -32,9 +28,9 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 }]);
 
 app.controller('homeController', ['$scope', '$http', 'AuthService', function ($scope, $http, AuthService) {
-  console.log($scope);
   console.log("from homeController: ", authservice.getUserStatus());
-  $http.get('/activities')
+  $scope.user_id = authservice.getUserStatus();
+  console.log($scope);
   $http.get('/activities').success(function (data) {
     $scope.activities = data;
     // deferred.resolve(data);
