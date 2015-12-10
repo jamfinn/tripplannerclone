@@ -79,7 +79,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
     // create a new instance of deferred
     var deferred = $q.defer();
 
-      console.log('hello from authservice.register');
+    console.log('hello from authservice.register');
     // send a post request to the server
     $http.post('/user/register', {username: username, password: password})
       // handle success
@@ -110,13 +110,62 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
   planservice = {}
 
+    planservice.getPlan = function (user) {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      $http.get('/plans/' + user).success(function (doc) {
+        console.log('this user-s plans', doc.plan);
+        deferred.resolve(doc.plan);
+      })
+
+      // handle error
+      .error(function (data) {
+        deferred.reject();
+      });
+
+      // return promise object
+      return deferred.promise;
+    }
+
     planservice.addToPlan = function(user, activity) {
-      $http.post('/plans', {user: user, activity: activity})
+
+
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      $http.post('/plans', {user: user, activity: activity}).success(function (doc) {
+        console.log('this user-s plans', doc.plan);
+        deferred.resolve();
+      })
+
+      // handle error
+      .error(function (data) {
+        deferred.reject();
+      });
+
+      // return promise object
+      return deferred.promise;
     }
 
     planservice.removeFromPlan = function(user, activity) {
-      console.log(user);
-      $http.post('/plans/' + user, {user: user, activity: activity})
+
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      $http.post('/plans/' + user, {user: user, activity: activity}).success(function (doc) {
+        console.log('this user-s plans', doc.plan);
+        deferred.resolve();
+      })
+
+      // handle error
+      .error(function (data) {
+        deferred.reject();
+      });
+
+      // return promise object
+      return deferred.promise;
+
     }
 
     return planservice;

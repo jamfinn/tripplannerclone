@@ -15,23 +15,22 @@ router.post('/', function(req, res) {
     // findOne plan with user_id of user
     Plan.findOne({user: req.body.user}, function(err, doc){
       if (err) throw err;
+      console.log('found a plan', doc);
+      // if no plan for that user, add
       if (!doc) {
         var plan = [req.body.activity]
         console.log('no plan found for this user');
         new Plan({user: req.body.user, plan: plan}).save(function(err, doc) {
-        res.redirect('/');
+        res.send(doc);
         })
-      }
-      else {
-        if (doc.plan.indexOf(req.body.activity) === -1) {
-          doc.plan.push(req.body.activity)
-          console.log(doc);
-          Plan.update(doc, function (){
-            res.redirect('/')
-          })
-        } else {
-          res.redirect('/')
-        }
+      } // if not already in plan
+      else if (doc.plan.indexOf(req.body.activity) === -1) {
+        doc.plan.push(req.body.activity)
+        Plan.update(doc, function (){
+          res.send(doc)
+        })
+      } else { // already in plan
+        res.send(doc)
       }
   });
 });

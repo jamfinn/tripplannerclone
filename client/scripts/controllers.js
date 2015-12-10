@@ -28,8 +28,11 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 }]);
 
 app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', function ($scope, $http, $route, PlanService) {
+
+  // see if the user is logged in
   $scope.user_id = authservice.getUserStatus();
-  console.log($scope);
+
+  //get list of activites
   $http.get('/activities').success(function (docs) {
     $scope.activities = docs;
     // deferred.resolve(data);
@@ -37,25 +40,40 @@ app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', fu
     console.log('error');
     // deferred.reject("Error!");
   });
+
+  //get plan if user has one
   if ($scope.user_id) {
     console.log('user is logged in', $scope.user_id);
-    $http.get('/plans/' + $scope.user_id).success(function (doc) {
-      console.log('this user-s plans', doc);
-      $scope.userPlan = doc.plan;
-      console.log('userPlan', $scope.userPlan);
+    var id = $scope.user_id;
+    // console.log(planservice.getPlan(id));
+    // $scope.userPlan = planservice.getPlan(id);
+    planservice.getPlan(id).then(function(data) {
+      $scope.userPlan = data
+      console.log($scope.userPlan);
     })
   } else {
     console.log('no one is logged in');
   }
 
+  // close myPlan box if plan is empty
+
   $scope.addToPlan = function (user, activity) {
-    planservice.addToPlan(user, activity)
-    $route.reload();
+    planservice.addToPlan(user, activity).then(function () {
+      planservice.getPlan(user).then(function (data) {
+        $scope.userPlan = data
+      })
+    })
   }
 
   $scope.removeFromPlan = function (user, activity) {
-    planservice.removeFromPlan(user, activity);
-    $route.reload();
+    planservice.removeFromPlan(user, activity).then(function () {
+      planservice.getPlan(user).then(function (data) {
+        $scope.userPlan = data
+        if ($scope.userPlan.length === 0) {
+          $scope.myPlan = false;
+        }
+      })
+    })
   }
 
 }]);
