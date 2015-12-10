@@ -74,7 +74,7 @@
           <img ng-src={{activity.image}} alt="{{activity.title}}">
           <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
           <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
-          <h4 class="title">{{activity.title}}</h4>
+          <h4 class="title">{{activity.title}} {{activity._id}}</h4>
 
 
           <div class="more" ng-show="details.open" >
