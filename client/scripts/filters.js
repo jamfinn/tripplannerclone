@@ -5,7 +5,6 @@ app.filter('myActivities', function () {
         input.forEach(function (activity) {
           if (array.indexOf(activity._id) >= 0){
             myActivities.push(activity)
-            console.log('myActivities', myActivities);
           }
         })
         return myActivities;

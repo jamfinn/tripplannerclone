@@ -27,8 +27,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', 'PlanService', function ($scope, $http, PlanService) {
-  console.log("from homeController: ", authservice.getUserStatus());
+app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', function ($scope, $http, $route, PlanService) {
   $scope.user_id = authservice.getUserStatus();
   console.log($scope);
   $http.get('/activities').success(function (docs) {
@@ -51,6 +50,12 @@ app.controller('homeController', ['$scope', '$http', 'PlanService', function ($s
 
   $scope.addToPlan = function (user, activity) {
     planservice.addToPlan(user, activity)
+    $route.reload();
+  }
+
+  $scope.removeFromPlan = function (user, activity) {
+    planservice.removeFromPlan(user, activity);
+    $route.reload();
   }
 
 }]);

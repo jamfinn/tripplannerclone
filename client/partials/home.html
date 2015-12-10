@@ -16,13 +16,13 @@
 
 <nav class="nav">
 
-  <article class="info myPlan green" >
-    <h2 ng-click="myPlan.open = !myPlan.open">My Plan  <i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
+  <article class="info myPlan green" ng-show="userPlan.length">
+    <h2 ng-click="myPlan.open = !myPlan.open">My Plan <i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="myPlan.open" ng-init="myPlan.open = false">
 
       <div class="activity" ng-repeat="activity in activities | myActivities: userPlan" ng-click="details.open=!details.open" ng-init="details.open = false">
           <img ng-src={{activity.image}} alt="{{activity.title}}">
-          <i ng-click="deletePlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times"></i>
+          <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times"></i>
           <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
           <h4 class="title">{{activity.title}} {{activity._id}}</h4>
 

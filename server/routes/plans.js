@@ -23,7 +23,7 @@ router.post('/', function(req, res) {
         })
       }
       else {
-        if (indexOf(req.body.activity) === -1) {
+        if (doc.plan.indexOf(req.body.activity) === -1) {
           doc.plan.push(req.body.activity)
           console.log(doc);
           Plan.update(doc, function (){
@@ -32,27 +32,33 @@ router.post('/', function(req, res) {
         } else {
           res.redirect('/')
         }
-
-      //   res.send(doc);
       }
   });
-    //if no plan, make a plan and add activity
-    //if plan, push activity to Plan.plan array
-  //   Plan.findOne({})
-  //   new Activity(req.body).save(function(err, doc) {
-  //   console.log(doc)
-  //   res.redirect('/');
-  // })
 });
 
 router.get('/:id', function(req, res) {
   console.log('get plan!', req.params.id);
-  //findOne plan with the user_id of user, return Plan.plan array
   Plan.findOne({user: req.params.id}, function(err, doc){
     if (err) throw err;
     console.log('does this user have a plan?', doc)
     res.send(doc);
   });
 });
+
+router.post('/:id', function(req, res) {
+  console.log('delete plan!', req.body);
+  //findOne plan with the user_id of user, return Plan.plan array
+  Plan.findOne({user: req.params.id}, function(err, doc){
+    if (err) throw err;
+    var index = doc.plan.indexOf(req.body.activity)
+    console.log('index', index);
+    doc.plan.splice(index, 1)
+    Plan.update({user: req.params.id}, doc, function (err, doc) {
+      console.log(doc.plan);
+      res.send(doc);
+    })
+  });
+});
+
 
 module.exports = router;

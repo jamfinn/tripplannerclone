@@ -114,5 +114,10 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       $http.post('/plans', {user: user, activity: activity})
     }
 
+    planservice.removeFromPlan = function(user, activity) {
+      console.log(user);
+      $http.post('/plans/' + user, {user: user, activity: activity})
+    }
+
     return planservice;
 }]);
