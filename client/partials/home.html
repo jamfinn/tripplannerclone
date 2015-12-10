@@ -7,22 +7,22 @@
 </header>
 
 <div class="hero" ng-hide="plan.open">
-  <img src="http://cdn.lightgalleries.net/4bd5ec12b739d/images/Grand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg" alt="">
+  <img src="http://cdn.lightgalleries.net/4bd5ec12b739d/images/Grand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg" alt="Grand Canyon">
   <h3 class="title">
     Plan your trip and get the most out of your Grand Canyon visit
   </h3>
-  <button>Call to action</button>
+  <button>Join today</button>
 </div>
 
 <nav class="nav">
 
-  <article class="info myPlan" ng-show="myPlan">
-    <h2 ng-click="myPlan.open = !myPlan.open">Plan your Trip  <i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
+  <article class="info myPlan green" >
+    <h2 ng-click="myPlan.open = !myPlan.open">My Plan  <i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="myPlan.open" ng-init="myPlan.open = false">
 
-      <div class="activity" ng-repeat="activity in myPlan.plan" ng-click="details.open=!details.open" ng-init="details.open = false">
+      <div class="activity" ng-repeat="activity in activities | myActivities: userPlan" ng-click="details.open=!details.open" ng-init="details.open = false">
           <img ng-src={{activity.image}} alt="{{activity.title}}">
-          <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+          <i ng-click="deletePlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times"></i>
           <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
           <h4 class="title">{{activity.title}} {{activity._id}}</h4>
 

@@ -12,9 +12,9 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
       authservice.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
         .then(function (data) {
-          $location.path('/');
           $scope.disabled = false;
           $scope.loginForm = {};
+          $location.path('/');
         })
         // handle error
         .catch(function () {
@@ -31,12 +31,23 @@ app.controller('homeController', ['$scope', '$http', 'PlanService', function ($s
   console.log("from homeController: ", authservice.getUserStatus());
   $scope.user_id = authservice.getUserStatus();
   console.log($scope);
-  $http.get('/activities').success(function (data) {
-    $scope.activities = data;
+  $http.get('/activities').success(function (docs) {
+    $scope.activities = docs;
     // deferred.resolve(data);
   }).error(function () {
+    console.log('error');
     // deferred.reject("Error!");
   });
+  if ($scope.user_id) {
+    console.log('user is logged in', $scope.user_id);
+    $http.get('/plans/' + $scope.user_id).success(function (doc) {
+      console.log('this user-s plans', doc);
+      $scope.userPlan = doc.plan;
+      console.log('userPlan', $scope.userPlan);
+    })
+  } else {
+    console.log('no one is logged in');
+  }
 
   $scope.addToPlan = function (user, activity) {
     planservice.addToPlan(user, activity)
@@ -76,9 +87,9 @@ app.controller('registerController',
       authservice.register($scope.registerForm.username, $scope.registerForm.password)
         // handle success
         .then(function () {
-          $location.path('/login');
           $scope.disabled = false;
           $scope.registerForm = {};
+          $location.path('/login');
         })
         // handle error
         .catch(function () {

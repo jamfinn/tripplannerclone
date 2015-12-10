@@ -23,11 +23,15 @@ router.post('/', function(req, res) {
         })
       }
       else {
-        doc.plan.push(req.body.activity)
-        console.log(doc);
-        Plan.update(doc, function (){
+        if (indexOf(req.body.activity) === -1) {
+          doc.plan.push(req.body.activity)
+          console.log(doc);
+          Plan.update(doc, function (){
+            res.redirect('/')
+          })
+        } else {
           res.redirect('/')
-        })
+        }
 
       //   res.send(doc);
       }
@@ -42,12 +46,12 @@ router.post('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-  console.log('get plan!', req.body);
+  console.log('get plan!', req.params.id);
   //findOne plan with the user_id of user, return Plan.plan array
-  Plan.findOne({user_id: req.user_id}, function(err, doc){
-  //   if (err) throw err;
-    console.log(doc)
-  //   res.send(doc);
+  Plan.findOne({user: req.params.id}, function(err, doc){
+    if (err) throw err;
+    console.log('does this user have a plan?', doc)
+    res.send(doc);
   });
 });
 

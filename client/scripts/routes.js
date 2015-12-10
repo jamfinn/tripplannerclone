@@ -20,11 +20,11 @@ app.config(function ($routeProvider) {
       controller: 'registerController',
       access: {restricted: false}
     })
-    .when('/activities', {
-      templateURL: '.partials/home.html',
-      controller: 'homeController',
-      access: {restricted: false}
-    })
+    // .when('/activities', {
+    //   templateURL: '.partials/home.html',
+    //   controller: 'homeController',
+    //   access: {restricted: false}
+    // })
     .when('/two', {
       template: '<h1>This is page two!</h1>',
       access: {restricted: false}
