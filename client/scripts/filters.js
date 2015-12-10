@@ -1,7 +1,5 @@
 app.filter('myActivities', function () {
   return function (input, array) {
-    console.log(input);
-    console.log(array);
     var myActivities = []
     if (input && array) {
         input.forEach(function (activity) {
@@ -11,5 +9,23 @@ app.filter('myActivities', function () {
         })
     }
     return myActivities;
+  };
+});
+
+app.filter('activityType', function () {
+  return function (input, string) {
+    if (string === 'all') {
+      return input;
+    } else {
+      var activityTypes = []
+      if (input && string) {
+        input.forEach(function (activity) {
+          if (activity.hasOwnProperty(string)){
+            activityTypes.push(activity)
+          }
+        })
+      }
+      return activityTypes;
+    }
   };
 });

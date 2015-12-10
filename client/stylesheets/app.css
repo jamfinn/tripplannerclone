@@ -280,6 +280,11 @@ input {
 textarea {
   display: block; }
 
+select {
+  border: none;
+  font-size: 18px;
+  border-radius: none; }
+
 button {
   font-size: 20px;
   width: 300px;

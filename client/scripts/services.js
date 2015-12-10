@@ -115,7 +115,6 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       var deferred = $q.defer();
 
       $http.get('/plans/' + user).success(function (doc) {
-        console.log('this user-s plans', doc.plan);
         deferred.resolve(doc.plan);
       })
 
@@ -135,7 +134,6 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       var deferred = $q.defer();
 
       $http.post('/plans', {user: user, activity: activity}).success(function (doc) {
-        console.log('this user-s plans', doc.plan);
         deferred.resolve();
       })
 
@@ -154,7 +152,6 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       var deferred = $q.defer();
 
       $http.post('/plans/' + user, {user: user, activity: activity}).success(function (doc) {
-        console.log('this user-s plans', doc.plan);
         deferred.resolve();
       })
 

@@ -29,8 +29,9 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 
 app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', function ($scope, $http, $route, PlanService) {
 
-  // see if the user is logged in
+  // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
+  console.log('user is logged in', $scope.user_id);
 
   //get list of activites
   $http.get('/activities').success(function (docs) {
@@ -43,13 +44,9 @@ app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', fu
 
   //get plan if user has one
   if ($scope.user_id) {
-    console.log('user is logged in', $scope.user_id);
-    var id = $scope.user_id;
-    // console.log(planservice.getPlan(id));
-    // $scope.userPlan = planservice.getPlan(id);
-    planservice.getPlan(id).then(function(data) {
+    planservice.getPlan($scope.user_id).then(function(data) {
       $scope.userPlan = data
-      console.log($scope.userPlan);
+      console.log('user plan: ', $scope.userPlan);
     })
   } else {
     console.log('no one is logged in');
@@ -61,6 +58,7 @@ app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', fu
     planservice.addToPlan(user, activity).then(function () {
       planservice.getPlan(user).then(function (data) {
         $scope.userPlan = data
+        console.log('user plan', $scope.userPlan);
       })
     })
   }
@@ -69,6 +67,7 @@ app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', fu
     planservice.removeFromPlan(user, activity).then(function () {
       planservice.getPlan(user).then(function (data) {
         $scope.userPlan = data
+        console.log('user plan', $scope.userPlan);
         if ($scope.userPlan.length === 0) {
           $scope.myPlan = false;
         }

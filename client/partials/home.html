@@ -3,7 +3,7 @@
 <header>
   <img class="logo" src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
   <h2 class="right"><i class="fa fa-bars"></i></h2>
-  <h2 class="right" ng-show="userPlan.length"><i class="fa fa-calendar"></i></h2>
+  <h2 class="right" ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h2>
 </header>
 
 <div class="hero" ng-hide="plan.open">
@@ -17,7 +17,7 @@
 <nav class="nav">
 
   <article class="info myPlan green" ng-show="userPlan.length">
-    <h2 ng-click="myPlan.open = !myPlan.open">My Plan <i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
+    <h2 ng-click="myPlan.open = !myPlan.open">My Plan {{userPlan.length}}<i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="myPlan.open" ng-init="myPlan.open = false">
 
       <div class="activity" ng-repeat="activity in activities | myActivities: userPlan" ng-click="details.open=!details.open" ng-init="details.open = false">
@@ -63,21 +63,14 @@
 
         <h6 ng-click="filters.open = !filters.open" ng-init="filters.open = false">Filters <i ng-hide="filters.open" class="fa fa-chevron-right"></i><i ng-show="filters.open" class="fa fa-times"></i></h6>
       <div ng-show="filters.open" class="filter">
-        <h6>Activity</h6>
-        <p>{{type}}</p>
-        <ul>
-          <!-- <li ng-click="all = !all"><i ng-show="all" ng-init="all = false" class="fa fa-check"></i>All</li> -->
-          <li ng-click="type.museum = !type.museum"><i ng-show="type.museum" ng-init="type.museum = false" class="fa fa-check"></i>Museums</li>
-          <li ng-click="type.shopping = !type.shopping"><i ng-show="type.shopping" ng-init="type.shopping = false" class="fa fa-check"></i>Shopping</li>
-          <li ng-click="type.active = !type.active"><i ng-show="type.active" ng-init="type.active = false" class="fa fa-check"></i>Active</li>
-          <li ng-click="type.tour = !type.tour"><i ng-show="type.tour" ng-init="type.tour = false" class="fa fa-check"></i>Tours</li>
-          <li ng-click="type.class = !type.class"><i ng-show="type.class" ng-init="type.class = false" class="fa fa-check"></i>Classes</li>
-          <li ng-click="type.nearby = !type.nearby"><i ng-show="type.nearby" ng-init="type.nearby = false" class="fa fa-check"></i>Nearby</li>
-        </ul>
+        <h6>Activity type {{type}}</h6>
+        <select ng-model="type" ng-init="type='all'">
+          <option ng-value="type" ng-repeat="type in ['all', 'museum', 'shopping', 'active', 'tour', 'class', 'nearby']">{{type}}</option>
+        </select>
 
       </div>
 
-      <div class="activity" ng-repeat="activity in activities" ng-click="details.open=!details.open" ng-init="details.open = false">
+      <div class="activity" ng-repeat="activity in activities | activityType: type"  ng-click="details.open=!details.open" ng-init="details.open = false">
           <img ng-src={{activity.image}} alt="{{activity.title}}">
           <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
           <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
