@@ -20,8 +20,9 @@ app.filter('activityType', function () {
       var activityTypes = []
       if (input && string) {
         input.forEach(function (activity) {
-          if (activity.hasOwnProperty(string)){
+          if (activity[string]){
             activityTypes.push(activity)
+            console.log(activityTypes);
           }
         })
       }
