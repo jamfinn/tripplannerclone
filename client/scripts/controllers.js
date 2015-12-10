@@ -27,7 +27,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', 'AuthService', function ($scope, $http, AuthService) {
+app.controller('homeController', ['$scope', '$http', 'PlanService', function ($scope, $http, PlanService) {
   console.log("from homeController: ", authservice.getUserStatus());
   $scope.user_id = authservice.getUserStatus();
   console.log($scope);
@@ -37,6 +37,11 @@ app.controller('homeController', ['$scope', '$http', 'AuthService', function ($s
   }).error(function () {
     // deferred.reject("Error!");
   });
+
+  $scope.addToPlan = function (user, activity) {
+    planservice.addToPlan(user, activity)
+  }
+
 }]);
 
 app.controller('logoutController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {

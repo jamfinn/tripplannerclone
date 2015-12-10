@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     // passportLocalMongoose = require('passport-local-mongoose');
 
 var Plan = new Schema({
-  user_id: Number,
+  user: String,
   plan: []
 });
 

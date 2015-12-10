@@ -3,6 +3,7 @@
 <header>
   <img class="logo" src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
   <h2 class="right"><i class="fa fa-bars"></i></h2>
+  <h2 class="right" ng-show="myPlan"><i class="fa fa-calendar"></i></h2>
 </header>
 
 <div class="hero" ng-hide="plan.open">
@@ -14,6 +15,44 @@
 </div>
 
 <nav class="nav">
+
+  <article class="info myPlan" ng-show="myPlan">
+    <h2 ng-click="myPlan.open = !myPlan.open">Plan your Trip  <i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
+    <div class="accordian" ng-show="myPlan.open" ng-init="myPlan.open = false">
+
+      <div class="activity" ng-repeat="activity in myPlan.plan" ng-click="details.open=!details.open" ng-init="details.open = false">
+          <img ng-src={{activity.image}} alt="{{activity.title}}">
+          <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+          <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
+          <h4 class="title">{{activity.title}} {{activity._id}}</h4>
+
+
+          <div class="more" ng-show="details.open" >
+            <i class="fa fa-times close"></i>
+            <h5>hours</h5>
+            <p>
+              {{activity.hours}}
+            </p>
+            <h5>location</h5>
+            <p>
+              {{activity.location}}
+            </p>
+            <h5>description</h5>
+            <p>
+              {{activity.description}}
+            </p>
+            <h5>good for</h5>
+            <p>
+              {{activity.age}}
+            </p>
+            <p>
+              {{activity.access}}
+            </p>
+          </div>
+      </div>
+
+    </div>
+  </article>
 
   <article class="info plan">
     <h2 ng-click="plan.open = !plan.open">Plan your Trip  <i ng-hide="plan.open" class="fa fa-chevron-right"></i><i ng-show="plan.open" class="fa fa-chevron-down"></i></h2>
@@ -37,9 +76,9 @@
 
       <div class="activity" ng-repeat="activity in activities" ng-click="details.open=!details.open" ng-init="details.open = false">
           <img ng-src={{activity.image}} alt="{{activity.title}}">
-          <i ng-click="addToPlan(user); $event.stopPropagation();" class="fa fa-plus"></i>
+          <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
           <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
-          <h4 class="title">{{activity.title}}</h4>
+          <h4 class="title">{{activity.title}} {{activity._id}}</h4>
 
 
           <div class="more" ng-show="details.open" >

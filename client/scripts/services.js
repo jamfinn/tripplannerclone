@@ -105,3 +105,14 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     return authservice;
 }]);
+
+app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
+
+  planservice = {}
+
+    planservice.addToPlan = function(user, activity) {
+      $http.post('/plans', {user: user, activity: activity})
+    }
+
+    return planservice;
+}]);

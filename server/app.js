@@ -123,9 +123,9 @@ passport.deserializeUser(function(id, done) {
 });
 
 // routes
-app.use('/user/', users);
-app.use('/activities/', activities);
-app.use('/plans/', plans)
+app.use('/user', users);
+app.use('/activities', activities);
+app.use('/plans', plans)
 
 // app.get('/', routes.index);
 // app.get('/ping', routes.ping);
@@ -171,10 +171,6 @@ passport.authenticate('google', { failureRedirect: '/login' }),
 function(req, res) {
  res.redirect('/plan');
 });
-// app.get('/logout', function(req, res){//this is redundant with routes/api.js
-// req.logout();
-// res.redirect('/');
-// });
 
 // test authentication
 function ensureAuthenticated(req, res, next) {
