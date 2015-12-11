@@ -97,14 +97,14 @@ article.misc {
     width: 300px;
     height: 150px;
   }
-  .fa-plus, .fa-times{
+  .fa-plus, .delete{
     padding-right: 30px;
     position: absolute;
     top: 23px;
     left: 270px;
     z-index: 1;
    }
-   .fa-times{
+   .delete{
      color: $google;
     }
    .title {
@@ -145,6 +145,7 @@ article.misc {
 
 .right {
   float: right;
+  margin-left: 1em;
 }
 
 .left {
