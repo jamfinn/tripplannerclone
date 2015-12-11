@@ -113,7 +113,7 @@ app.controller('registerController',
         .then(function () {
           $scope.disabled = false;
           $scope.registerForm = {};
-          $location.path('/login');
+          $location.path('/');
         })
         // handle error
         .catch(function () {
