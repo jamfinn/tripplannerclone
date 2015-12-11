@@ -27,7 +27,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', function ($scope, $http, $route, PlanService) {
+app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', function ($scope, $http, $route, $location, PlanService) {
 
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
@@ -52,15 +52,17 @@ app.controller('homeController', ['$scope', '$http', '$route', 'PlanService', fu
     console.log('no one is logged in');
   }
 
-  // close myPlan box if plan is empty
-
   $scope.addToPlan = function (user, activity) {
-    planservice.addToPlan(user, activity).then(function () {
-      planservice.getPlan(user).then(function (data) {
-        $scope.userPlan = data
-        console.log('user plan', $scope.userPlan);
+    if (user === null) {
+      $location.path('/login');
+    } else {
+      planservice.addToPlan(user, activity).then(function () {
+        planservice.getPlan(user).then(function (data) {
+          $scope.userPlan = data
+          console.log('user plan', $scope.userPlan);
+        })
       })
-    })
+    }
   }
 
   $scope.removeFromPlan = function (user, activity) {

@@ -15,6 +15,7 @@ passport.use(new FacebookStrategy({
     callbackURL: config.facebook.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log('In authentication.js!!!!');
   User.findOne({ oauthID: profile.id }, function(err, user) {
     if(err) { console.log(err); }
     if (!err && user != null) {

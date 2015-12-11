@@ -3,7 +3,7 @@ var express = require('express'),
     passport = require('passport');
     Plan = require('../models/plan.js');
 
-router.get('/', function(req, res) {
+router.get('/', ensureAuthenticated, function(req, res) {
   Plan.find(function(err, docs){
     if (err) throw err;
     res.send(docs);
@@ -60,5 +60,11 @@ router.post('/:id', function(req, res) {
   });
 });
 
+// test authentication
+function ensureAuthenticated(req, res, next) {
+  console.log('traveling through ensureAuthenticated');
+if (req.isAuthenticated()) { return next(); }
+res.redirect('/login')
+}
 
 module.exports = router;

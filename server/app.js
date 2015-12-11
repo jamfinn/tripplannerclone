@@ -129,15 +129,15 @@ app.use('/plans', plans)
 
 // app.get('/', routes.index);
 // app.get('/ping', routes.ping);
-app.get('/plan', ensureAuthenticated, function(req, res){
-  User.findById(req.session.passport.user, function(err, user) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.status(200).json({status: 'Find the plan!'});
-    }
-  })
-})
+// app.get('/plans', ensureAuthenticated, function(req, res){
+//   User.findById(req.session.passport.user, function(err, user) {
+//     if(err) {
+//       console.log(err);
+//     } else {
+//       res.status(200).json({status: 'Find the plan!'});
+//     }
+//   })
+// })
 
 // app.get('/', function(req, res) {
 //   res.sendFile(path.join(__dirname, '../client', 'index.html'));
@@ -151,7 +151,7 @@ function(req, res){
 app.get('/auth/facebook/callback',
 passport.authenticate('facebook', { failureRedirect: '/login' }),
 function(req, res) {
- res.redirect('/plan');
+ res.redirect('/');
 });
 app.get('/auth/twitter',
 passport.authenticate('twitter'),
@@ -160,7 +160,7 @@ function(req, res){
 app.get('/auth/twitter/callback',
 passport.authenticate('twitter', { failureRedirect: '/login' }),
 function(req, res) {
- res.redirect('/plan');
+ res.redirect('/');
 });
 app.get('/auth/google',
 passport.authenticate('google'),
@@ -169,7 +169,7 @@ function(req, res){
 app.get('/auth/google/callback',
 passport.authenticate('google', { failureRedirect: '/login' }),
 function(req, res) {
- res.redirect('/plan');
+ res.redirect('/');
 });
 
 // test authentication

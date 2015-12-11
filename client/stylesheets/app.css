@@ -49,6 +49,9 @@ table {
   background: #447171;
   color: white; }
 
+.greentxt {
+  color: #447171; }
+
 .pink {
   color: hotpink; }
 
@@ -164,12 +167,14 @@ article.misc {
     background-color: transparent;
     width: 300px;
     height: 150px; }
-  .activity .fa-plus {
+  .activity .fa-plus, .activity .fa-times {
     padding-right: 30px;
     position: absolute;
     top: 23px;
     left: 270px;
     z-index: 1; }
+  .activity .fa-times {
+    color: #dd4b39; }
   .activity .title {
     font-size: .8em;
     font-weight: bold;

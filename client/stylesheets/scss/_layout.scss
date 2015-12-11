@@ -97,13 +97,16 @@ article.misc {
     width: 300px;
     height: 150px;
   }
-  .fa-plus{
+  .fa-plus, .fa-times{
     padding-right: 30px;
     position: absolute;
     top: 23px;
     left: 270px;
     z-index: 1;
    }
+   .fa-times{
+     color: $google;
+    }
    .title {
      font-size: .8em;
      font-weight: bold;

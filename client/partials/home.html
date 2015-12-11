@@ -23,8 +23,8 @@
       <div class="activity" ng-repeat="activity in activities | myActivities: userPlan" ng-click="details.open=!details.open" ng-init="details.open = false">
           <img ng-src={{activity.image}} alt="{{activity.title}}">
           <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times"></i>
-          <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
-          <h4 class="title">{{activity.title}} {{activity._id}}</h4>
+          <h5 class="subtitle">{{activity.rim}} rim</h5>
+          <h4 class="title">{{activity.title}}</h4>
 
 
           <div class="more" ng-show="details.open" >
@@ -73,8 +73,8 @@
       <div class="activity" ng-repeat="activity in activities | activityType: type"  ng-click="details.open=!details.open" ng-init="details.open = false">
           <img ng-src={{activity.image}} alt="{{activity.title}}">
           <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
-          <h5 class="subtitle">{{activity.rim}} rim  {{user_id}}</h5>
-          <h4 class="title">{{activity.title}} {{activity._id}}</h4>
+          <h5 class="subtitle">{{activity.rim}} rim</h5>
+          <h4 class="title">{{activity.title}}</h4>
 
 
           <div class="more" ng-show="details.open" >
