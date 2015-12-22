@@ -1,5 +1,3 @@
-
-
 <header>
   <img class="logo" src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
   <h2 class="right"><i class="fa fa-bars"></i></h2>
@@ -105,8 +103,8 @@
   </article>
 
   <article class="info about">
-    <h2 ng-click="about.open = !about.open">About the Park  <i ng-hide="about.open" class="fa fa-chevron-right"></i><i ng-show="about.open" class="fa fa-chevron-down"></i></h2>
-    <div ng-click="about.open = !about.open" class="accordian" ng-show="about.open" ng-init="about.open = false">
+    <h2 ng-click="about.open = !about.open" ng-init="about.open = false">About the Park  <i ng-hide="about.open" class="fa fa-chevron-right"></i><i ng-show="about.open" class="fa fa-chevron-down"></i></h2>
+    <div ng-click="about.open = !about.open" class="accordian" ng-show="about.open">
       <p>
         Grand Canyon National Park spans 277 miles of the Colorado river and adjacent uplands.
         It is located entirely in northern Arizona.
