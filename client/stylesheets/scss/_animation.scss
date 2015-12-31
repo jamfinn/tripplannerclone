@@ -1,11 +1,11 @@
  .accordian.ng-hide {
-  transition: all 0.75s ease;
+  transition: all 0.75s ease-out;
   max-height: 0;
   overflow:hidden;
 }
 
 .accordian {
-  transition: all 0.75s ease;
+  transition: all 0.75s ease-in;
   max-height: 1000px;
   overflow:hidden;
 }
