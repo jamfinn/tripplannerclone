@@ -77,23 +77,38 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     })
   }
 
-}]);
-
-app.controller('logoutController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
-
-    $scope.logout = function () {
-
-
-      // call logout from service
-      authservice.logout()
-        .then(function () {
-          console.log('user status from logout', authservice.getUserStatus());
-          $location.path('/login');
-        });
-
-    };
+  $scope.login = function () {
+    $location.path('/login')
+  }
+  $scope.logout = function () {
+    // call logout from service
+    authservice.logout()
+      .then(function () {
+        console.log('user status from logout', authservice.getUserStatus());
+        $scope.user_id = user_id;
+        $location.path('/');
+      });
+  }
 
 }]);
+
+// app.controller('logoutController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
+//
+//     $scope.logout = function () {
+//
+//
+//       // call logout from service
+//       authservice.logout()
+//         .then(function () {
+//           console.log('user status from logout', authservice.getUserStatus());
+//           $location.path('/');
+//         });
+//
+//     };
+//
+//     $scope.logout();
+//
+// }]);
 
 app.controller('registerController',
   ['$scope', '$location', 'AuthService',

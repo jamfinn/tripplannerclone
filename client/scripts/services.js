@@ -58,6 +58,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       $http.get('/user/logout')
       // handle success
       .success(function (data) {
+        console.log('logged out!');
         user = false;
         user_id = null;
         sessionStorage.clear()

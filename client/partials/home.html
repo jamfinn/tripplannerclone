@@ -1,15 +1,17 @@
 <header>
-  <img class="logo" src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
-  <h2 class="right"><i class="fa fa-bars"></i></h2>
+  <img class="logo" ng-src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
+  <h2 class="right" ng-show="user_id" ng-click="logout()">logout</h2>
+  <h2 class="right" ng-show="!user_id" ng-click="login()">login</h2>
+  <!-- <h2 class="right"><i class="fa fa-bars"></i></h2> -->
   <h2 class="right" ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h2>
 </header>
 
-<div class="hero" ng-hide="plan.open">
-  <img src="http://cdn.lightgalleries.net/4bd5ec12b739d/images/Grand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg" alt="Grand Canyon">
+<div class="hero" ng-show="!plan.open && !myPlan.open">
+  <img ng-src="http://cdn.lightgalleries.net/4bd5ec12b739d/images/Grand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg" alt="Grand Canyon">
   <h3 class="title">
     Plan your trip and get the most out of your Grand Canyon visit
   </h3>
-  <button>Join today</button>
+  <button>Join GCA today</button>
 </div>
 
 <nav class="nav">
@@ -23,7 +25,6 @@
           <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
           <h5 class="subtitle">{{activity.rim}} rim</h5>
           <h4 class="title">{{activity.title}}</h4>
-
 
           <div class="more" ng-show="details.open" >
             <i class="fa fa-times close"></i>
@@ -298,9 +299,9 @@
 
 </nav>
 
-<div ng-controller="logoutController">
+<!-- <div ng-controller="logoutController">
   <a ng-click='logout()' class="btn btn-default">Logout</a>
-</div>
+</div> -->
 
 <a href="#/activities/new">add activity</a><br>
 <a href="#/plan">show my plan</a><br>

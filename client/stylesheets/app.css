@@ -316,12 +316,42 @@ button {
     background-color: transparent; }
 
 .accordian.ng-hide {
-  transition: all 0.75s ease-out;
+  transition: all 1s ease-out;
   max-height: 0;
   overflow: hidden; }
 
 .accordian {
-  transition: all 0.75s ease-in;
+  transition: all 1s ease-out;
+  max-height: 1000px;
+  overflow: hidden; }
+
+.filter.ng-hide {
+  transition: all 1s ease-out;
+  max-height: 0;
+  overflow: hidden; }
+
+.filter {
+  transition: all 1s ease-in;
+  max-height: 1000px;
+  overflow: hidden; }
+
+.more.ng-hide {
+  transition: all 1s linear;
+  max-height: 0;
+  overflow: hidden; }
+
+.more {
+  transition: all 1s linear;
+  max-height: 1000px;
+  overflow: hidden; }
+
+.hero.ng-hide {
+  transition: all 1s ease-out;
+  max-height: 0;
+  overflow: hidden; }
+
+.hero {
+  transition: all 1s ease-in;
   max-height: 1000px;
   overflow: hidden; }
 
