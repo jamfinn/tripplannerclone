@@ -345,16 +345,6 @@ button {
   max-height: 1000px;
   overflow: hidden; }
 
-.hero.ng-hide {
-  transition: all 1s ease-out;
-  max-height: 0;
-  overflow: hidden; }
-
-.hero {
-  transition: all 1s ease-in;
-  max-height: 1000px;
-  overflow: hidden; }
-
 ul {
   padding-left: 2em; }
 
