@@ -86,6 +86,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       .then(function () {
         console.log('user status from logout', authservice.getUserStatus());
         $scope.user_id = user_id;
+        $scope.userPlan = undefined;
         $location.path('/');
       });
   }
