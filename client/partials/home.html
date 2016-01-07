@@ -16,38 +16,43 @@
 
 <nav class="nav">
 
+<div ng-if="showInfo">
+<p>showInfo div</p>
+{{showInfo}}
+</div>
+
   <article class="info myPlan green" ng-show="userPlan.length">
     <h2 ng-click="myPlan.open = !myPlan.open">My Plan {{userPlan.length}}<i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="myPlan.open" ng-init="myPlan.open = false">
 
       <div class="activity" ng-repeat="activity in activities | myActivities: userPlan" ng-click="details.open=!details.open" ng-init="details.open = false">
-          <img ng-src={{activity.image}} alt="{{activity.title}}">
-          <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
-          <h5 class="subtitle">{{activity.rim}} rim</h5>
-          <h4 class="title">{{activity.title}}</h4>
+        <img ng-src={{activity.image}} alt="{{activity.title}}">
+        <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
+        <h5 class="subtitle">{{activity.rim}} rim</h5>
+        <h4 class="title">{{activity.title}}</h4>
 
-          <div class="more" ng-show="details.open" >
-            <i class="fa fa-times close"></i>
-            <h5>hours</h5>
-            <p>
-              {{activity.hours}}
-            </p>
-            <h5>location</h5>
-            <p>
-              {{activity.location}}
-            </p>
-            <h5>description</h5>
-            <p>
-              {{activity.description}}
-            </p>
-            <h5>good for</h5>
-            <p>
-              {{activity.age}}
-            </p>
-            <p>
-              {{activity.access}}
-            </p>
-          </div>
+        <div class="more" ng-show="details.open" >
+          <i class="fa fa-times close"></i>
+          <h5>hours</h5>
+          <p>
+            {{activity.hours}}
+          </p>
+          <h5>location</h5>
+          <p>
+            {{activity.location}}
+          </p>
+          <h5>description</h5>
+          <p>
+            {{activity.description}}
+          </p>
+          <h5>good for</h5>
+          <p>
+            {{activity.age}}
+          </p>
+          <p>
+            {{activity.access}}
+          </p>
+        </div>
       </div>
 
     </div>

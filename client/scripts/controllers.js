@@ -27,24 +27,61 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', function ($scope, $http, $route, $location, PlanService) {
+app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService','$routeParams', function ($scope, $http, $route, $location, PlanService, $routeParams) {
+  console.log('route params', $routeParams);
+//   $scope.$watch(function(){
+//    return $location.path();
+// }, function(value){
+//    var temp = value.split("/");
+//    var urlForActivity = temp[temp.length-1];
+//    $http.post('/activities/getActivity', {_id: urlForActivity}).then(function(res){
+//      $scope.showInfo = res.data;
+//      $scope.showPage = true;
+//    })
+// })
+
+
 
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
   console.log('user is logged in', $scope.user_id);
-
   //get list of activites
-  $http.get('/activities').success(function (docs) {
+  $http.get('/activities').success(function (docs) { // move this to a service and use .then
     $scope.activities = docs;
+    if ($routeParams.title) {
+      $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes
+      $scope.activities.forEach(function(activity){
+        // console.log(activity.name);
+        if (activity.title === $routeParams.title){
+          console.log('found a match!');
+          $scope.showInfo = activity
+          console.log('activity url', $scope.showInfo);
+        }
+      })
+    }
     // deferred.resolve(data);
   }).error(function () {
     console.log('error');
     // deferred.reject("Error!");
   });
 
-  //get plan if user has one
+  // if $routeParams.id go get plan id
+  if ($routeParams.id) {
+    console.log('got an id!');
+    planservice.getPlans().then(function(plans) {
+      console.log(plans);
+      plans.forEach(function(plan){
+        if (plan._id === $routeParams.id) {
+          $scope.showInfo = plan
+          console.log($scope.showInfo);
+        }
+      })
+    })
+  }
+
+  //get userPlan if user has one
   if ($scope.user_id) {
-    planservice.getPlan($scope.user_id).then(function(data) {
+    planservice.getUserPlan($scope.user_id).then(function(data) {
       $scope.userPlan = data
       console.log('user plan: ', $scope.userPlan);
     })

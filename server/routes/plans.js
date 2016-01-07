@@ -3,7 +3,7 @@ var express = require('express'),
     passport = require('passport');
     Plan = require('../models/plan.js');
 
-router.get('/', ensureAuthenticated, function(req, res) {
+router.get('/', function(req, res) {
   Plan.find(function(err, docs){
     if (err) throw err;
     res.send(docs);

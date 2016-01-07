@@ -111,7 +111,24 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
   planservice = {}
 
-    planservice.getPlan = function (user) {
+    planservice.getPlans = function () {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      $http.get('/plans/').success(function (docs) {
+        deferred.resolve(docs);
+      })
+
+      // handle error
+      .error(function (data) {
+        deferred.reject();
+      });
+
+      // return promise object
+      return deferred.promise;
+    }
+
+    planservice.getUserPlan = function (user) {
       // create a new instance of deferred
       var deferred = $q.defer();
 
