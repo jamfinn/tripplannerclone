@@ -72,6 +72,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       console.log(plans);
       plans.forEach(function(plan){
         if (plan._id === $routeParams.id) { // need to at this point go get the plan to display in a new div, not the "myPlan" div…
+          // need to write the getPlan function to get the Plan from the url parameters
           $scope.showPlan = plan
           console.log($scope.showInfo);
         }
@@ -89,13 +90,15 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     console.log('no one is logged in');
   }
 
+
   $scope.addToPlan = function (user, activity) {
-    // activityservice.saveClickedActivity(activity)
     if (user === null) {
+      activityservice.saveClickedActivity(activity)
+      console.log(activityservice.getSavedActivity());// go to this url at the end of the login!!!
       $location.path('/login');
     } else {
       planservice.addToPlan(user, activity).then(function () {
-        planservice.getPlan(user).then(function (data) {
+        planservice.getUserPlan(user).then(function (data) {
           $scope.userPlan = data
           console.log('user plan', $scope.userPlan);
         })
