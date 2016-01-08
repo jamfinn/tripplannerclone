@@ -16,32 +16,16 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
           $scope.disabled = false;
           $scope.loginForm = {};
           var savedActivity = activityservice.getSavedActivity();
-          activityservice.saveClickedActivity(undefined) // dispose of clicked activity
-            console.log('is there a saved activity?', savedActivity);
-            var user = authservice.getUserStatus();
-            // check for userPlan
-            // add to user plan
-            console.log(user);
-            // planservice.addToPlan(user, savedActivity._id)
-            console.log("activity I try to add", savedActivity._id);
+          activityservice.saveClickedActivity(null) // dispose of clicked activity
+          console.log('is there a saved activity?', savedActivity);
+          var user = authservice.getUserStatus();
 
-            if (savedActivity) {
-              planservice.addToPlan(user, savedActivity._id)
-              // .then(function () {
-              //   planservice.getUserPlan(user).then(function (data) {
-              //     $scope.userPlan = data
-              //     console.log('user plan', $scope.userPlan);
-              //   })
-              // })
-            }
-            // var title = savedActivity.title.replace(/ /g, '-')
-            // console.log("title of activity I tried to add: ", title);
-            // console.log('url to go to', '/activity/' + title);
-            // $location.path('/activity/' + title);
-          // } else {
-            $location.path('/')
-          // }
+          if (savedActivity) {
+            planservice.addToPlan(user, savedActivity._id)
+          }
+          $location.path('/')
         })
+
         // handle error
         .catch(function () {
           $scope.error = true;

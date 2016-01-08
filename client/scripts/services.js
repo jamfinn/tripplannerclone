@@ -191,7 +191,7 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
 
   activityservice = {}
 
-  var savedActivity = {}
+  var savedActivity = undefined
 
     activityservice.getActivities = function () {
       // create a new instance of deferred
@@ -211,8 +211,7 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
     }
 
     activityservice.saveClickedActivity = function (activity) {
-      console.log('saving clicked activity', activity);
-      savedActivity = activity
+        savedActivity = activity
     }
 
     activityservice.getSavedActivity = function () {
