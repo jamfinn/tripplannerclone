@@ -27,7 +27,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService','$routeParams', function ($scope, $http, $route, $location, PlanService, $routeParams) {
+app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
   console.log('route params', $routeParams);
 //   $scope.$watch(function(){
 //    return $location.path();
@@ -40,30 +40,30 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 //    })
 // })
 
-
-
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
   console.log('user is logged in', $scope.user_id);
   //get list of activites
-  $http.get('/activities').success(function (docs) { // move this to a service and use .then
+  activityservice.getActivities().then(function (docs) {
     $scope.activities = docs;
-    if ($routeParams.title) {
+    if ($routeParams.title) { // check if a particular activity is asked for…
       $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes
       $scope.activities.forEach(function(activity){
         // console.log(activity.name);
         if (activity.title === $routeParams.title){
           console.log('found a match!');
-          $scope.showInfo = activity
+          // $scope.showInfo = activity
+          $scope.showActivity = activity
           console.log('activity url', $scope.showInfo);
         }
       })
     }
     // deferred.resolve(data);
-  }).error(function () {
-    console.log('error');
-    // deferred.reject("Error!");
-  });
+  })
+  // .error(function () {
+  //   console.log('error');
+  //   // deferred.reject("Error!");
+  // });
 
   // if $routeParams.id go get plan id
   if ($routeParams.id) {
@@ -71,8 +71,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     planservice.getPlans().then(function(plans) {
       console.log(plans);
       plans.forEach(function(plan){
-        if (plan._id === $routeParams.id) {
-          $scope.showInfo = plan
+        if (plan._id === $routeParams.id) { // need to at this point go get the plan to display in a new div, not the "myPlan" div…
+          $scope.showPlan = plan
           console.log($scope.showInfo);
         }
       })
@@ -90,6 +90,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   }
 
   $scope.addToPlan = function (user, activity) {
+    // activityservice.saveClickedActivity(activity)
     if (user === null) {
       $location.path('/login');
     } else {

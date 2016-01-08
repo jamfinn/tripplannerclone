@@ -77,30 +77,30 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     authservice.register = function(username, password) {
 
-    // create a new instance of deferred
-    var deferred = $q.defer();
+      // create a new instance of deferred
+      var deferred = $q.defer();
 
-    console.log('hello from authservice.register');
-    // send a post request to the server
-    $http.post('/user/register', {username: username, password: password})
-      // handle success
-      .success(function (data, status) {
-        console.log('hello!');
-        console.log('data', data);
-        if(status === 200 && data.user_id){
-          sessionStorage.setItem('user', data.user_id);
-          deferred.resolve();
-        } else {
+      console.log('hello from authservice.register');
+      // send a post request to the server
+      $http.post('/user/register', {username: username, password: password})
+        // handle success
+        .success(function (data, status) {
+          console.log('hello!');
+          console.log('data', data);
+          if(status === 200 && data.user_id){
+            sessionStorage.setItem('user', data.user_id);
+            deferred.resolve();
+          } else {
+            deferred.reject();
+          }
+        })
+        // handle error
+        .error(function (data) {
           deferred.reject();
-        }
-      })
-      // handle error
-      .error(function (data) {
-        deferred.reject();
-      });
+        });
 
-    // return promise object
-    return deferred.promise;
+      // return promise object
+      return deferred.promise;
 
     }
 
@@ -184,4 +184,32 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
     }
 
     return planservice;
+}]);
+
+app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
+
+  activityservice = {}
+
+    activityservice.getActivities = function () {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      $http.get('/activities/').success(function (docs) {
+        deferred.resolve(docs);
+      })
+
+      // handle error
+      .error(function (data) {
+        deferred.reject();
+      });
+
+      // return promise object
+      return deferred.promise;
+    }
+
+    activityservice.saveActivity = function () {
+      
+    }
+
+    return activityservice;
 }]);

@@ -16,9 +16,9 @@
 
 <nav class="nav">
 
-<div ng-if="showInfo">
-<p>showInfo div</p>
-{{showInfo}}
+<div ng-if="showPlan">
+<p>showPlan div</p>
+{{showPlan}}
 </div>
 
   <article class="info myPlan green" ng-show="userPlan.length">
@@ -63,7 +63,7 @@
       <h2 ng-hide="userPlan.length">Plan your Trip  <i ng-hide="plan.open" class="fa fa-chevron-right"></i><i ng-show="plan.open" class="fa fa-chevron-down"></i></h2>
       <h2 ng-show="userPlan.length">Add Activities  <i ng-hide="plan.open" class="fa fa-chevron-right"></i><i ng-show="plan.open" class="fa fa-chevron-down"></i></h2>
     </div>
-    <div class="accordian" ng-show="plan.open" ng-init="plan.open = false">
+    <div class="accordian" ng-show="plan.open || showActivity">
 
         <h6 ng-click="filters.open = !filters.open" ng-init="filters.open = false">Filters <i ng-hide="filters.open" class="fa fa-chevron-right"></i><i ng-show="filters.open" class="fa fa-times"></i></h6>
       <div ng-show="filters.open" class="filter">
@@ -81,7 +81,7 @@
           <h4 class="title">{{activity.title}}</h4>
 
 
-          <div class="more" ng-show="details.open" >
+          <div class="more" ng-show="details.open || showActivity.title === activity.title" >
             <i class="fa fa-times close"></i>
             <h5>hours</h5>
             <p>
