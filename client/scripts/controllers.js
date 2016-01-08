@@ -1,4 +1,4 @@
-app.controller('loginController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
+app.controller('loginController', ['$scope', '$location', 'AuthService', 'ActivityService', 'PlanService', function ($scope, $location, AuthService, ActivityService, PlanService) {
 
     console.log('user status: ', authservice.getUserStatus());
 
@@ -12,9 +12,35 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', functio
       authservice.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
         .then(function (data) {
+          console.log('hello!');
           $scope.disabled = false;
           $scope.loginForm = {};
-          $location.path('/');
+          var savedActivity = activityservice.getSavedActivity();
+          activityservice.saveClickedActivity(undefined) // dispose of clicked activity
+            console.log('is there a saved activity?', savedActivity);
+            var user = authservice.getUserStatus();
+            // check for userPlan
+            // add to user plan
+            console.log(user);
+            // planservice.addToPlan(user, savedActivity._id)
+            console.log("activity I try to add", savedActivity._id);
+
+            if (savedActivity) {
+              planservice.addToPlan(user, savedActivity._id)
+              // .then(function () {
+              //   planservice.getUserPlan(user).then(function (data) {
+              //     $scope.userPlan = data
+              //     console.log('user plan', $scope.userPlan);
+              //   })
+              // })
+            }
+            // var title = savedActivity.title.replace(/ /g, '-')
+            // console.log("title of activity I tried to add: ", title);
+            // console.log('url to go to', '/activity/' + title);
+            // $location.path('/activity/' + title);
+          // } else {
+            $location.path('/')
+          // }
         })
         // handle error
         .catch(function () {
@@ -39,11 +65,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 //      $scope.showPage = true;
 //    })
 // })
-
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
   console.log('user is logged in', $scope.user_id);
-  //get list of activites
+
+  //get list of activites, open activity if url includes activity title OR if there is an activity in
   activityservice.getActivities().then(function (docs) {
     $scope.activities = docs;
     if ($routeParams.title) { // check if a particular activity is asked for…
@@ -53,8 +79,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
         if (activity.title === $routeParams.title){
           console.log('found a match!');
           // $scope.showInfo = activity
-          $scope.showActivity = activity
-          console.log('activity url', $scope.showInfo);
+          $scope.showActivity = activity // use this to make sure activity is open
+          console.log('activity url', $scope.showActivity);
         }
       })
     }
@@ -93,10 +119,16 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 
   $scope.addToPlan = function (user, activity) {
     if (user === null) {
-      activityservice.saveClickedActivity(activity)
-      console.log(activityservice.getSavedActivity());// go to this url at the end of the login!!!
+      // capture the activity that the user was trying to add
+      $scope.activities.forEach(function (element) {
+        if (element._id === activity) {
+          activityservice.saveClickedActivity(element)
+          // console.log(activityservice.getSavedActivity());// go to this url at the end of the login!!!
+        }
+      })
       $location.path('/login');
     } else {
+      console.log("user found, add to plan", activity);
       planservice.addToPlan(user, activity).then(function () {
         planservice.getUserPlan(user).then(function (data) {
           $scope.userPlan = data
@@ -108,7 +140,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 
   $scope.removeFromPlan = function (user, activity) {
     planservice.removeFromPlan(user, activity).then(function () {
-      planservice.getPlan(user).then(function (data) {
+      planservice.getUserPlan(user).then(function (data) {
         $scope.userPlan = data
         console.log('user plan', $scope.userPlan);
         if ($scope.userPlan.length === 0) {

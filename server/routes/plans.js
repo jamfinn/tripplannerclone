@@ -18,8 +18,9 @@ router.post('/', function(req, res) {
       console.log('found a plan', doc);
       // if no plan for that user, add
       if (!doc) {
-        var plan = [req.body.activity]
         console.log('no plan found for this user');
+        var plan = [req.body.activity]
+        console.log('new user plan', plan);
         new Plan({user: req.body.user, plan: plan}).save(function(err, doc) {
         res.send(doc);
         })

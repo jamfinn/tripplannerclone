@@ -147,11 +147,12 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     planservice.addToPlan = function(user, activity) {
 
-
+      console.log('in add to plan!', user, activity);
       // create a new instance of deferred
       var deferred = $q.defer();
 
       $http.post('/plans', {user: user, activity: activity}).success(function (doc) {
+        console.log('test', doc);
         deferred.resolve();
       })
 
@@ -210,10 +211,12 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
     }
 
     activityservice.saveClickedActivity = function (activity) {
+      console.log('saving clicked activity', activity);
       savedActivity = activity
     }
 
     activityservice.getSavedActivity = function () {
+      console.log('getting saved activity', savedActivity);
       return savedActivity;
     }
 
