@@ -88,15 +88,32 @@ article.misc {
   background-color: $gray;
 }
 
+.accordian {
+  position: relative;
+}
+
 .activity {
-  margin-top: 2em;
+  z-index: +1;
+  margin-bottom: 1em;
   position: relative;
   color: black;
-  display: block;
-  img {
-    background-color: transparent;
+  // display: block;
+  .imageBox {
+    position: relative;
+    margin: 0 auto;
     width: 300px;
     height: 150px;
+    -webkit-box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
+    -moz-box-shadow:    inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
+    box-shadow:         inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
+    img {
+      // background-color: transparent;
+      position: relative;
+      width: 300px;
+      height: 150px;
+      vertical-align: bottom;
+      z-index: -2;
+    }
   }
   .fa-plus, .delete{
     padding-right: 30px;
@@ -105,29 +122,33 @@ article.misc {
     left: 270px;
     z-index: 1;
    }
-   .delete{
-     color: $google;
+   .delete {
+     color: brown;
     }
    .title {
-     font-size: .8em;
+     font-size: 1em;
      font-weight: bold;
      padding-right: 30px;
      position: absolute;
-     top: 20px;
+     top: 40px;
      left: 20px;
    }
    .subtitle {
      position: absolute;
-     top: 5px;
+     top: 20px;
      left: 20px;
    }
    .more {
-     box-shadow: inset 0 20px 30px -20px black;
+     position: relative;
+     margin: 0 auto;
      width: 300px;
      height: 100%;
      background-color: white;
      padding: 30px;
-     .close{
+     -webkit-box-shadow: 0 -30px 30px -6px rgba(255, 255, 255, 1);
+     -moz-box-shadow:    0 -30px 30px -6px rgba(255, 255, 255, 1);
+     box-shadow:         0 -30px 30px -6px rgba(255, 255, 255, 1);
+     .close {
        padding-right: 30px;
        position: absolute;
        left: 270px;

@@ -5,8 +5,8 @@
 }
 
 .accordian {
-  transition: all 1s ease-out;
-  max-height: 1000px;
+  transition: all 1s ease-in;
+  max-height: 2000px;
   overflow:hidden;
 }
 //  .accordian.ng-leave {
@@ -34,14 +34,14 @@
 }
 
  .more.ng-hide {
-  transition: all 1s linear;
+  transition: all .4s ease-out;
   max-height: 0;
   overflow:hidden;
 }
 
 .more {
   transition: all 1s linear;
-  max-height: 1000px;
+  max-height: 800px;
   overflow:hidden;
 }
 
