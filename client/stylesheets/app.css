@@ -199,10 +199,13 @@ article.misc {
       z-index: 1; }
 
 .auth {
+  padding: 1em 0;
   text-align: center; }
   .auth h2 {
     margin: 0 auto;
     width: 300px; }
+  .auth p {
+    margin-bottom: .5em; }
 
 .right {
   float: right;
@@ -280,7 +283,7 @@ input {
   font-size: 20px;
   width: 300px;
   padding: 1em;
-  margin: 1em auto;
+  margin: 0 auto 1em auto;
   display: block; }
 
 textarea {

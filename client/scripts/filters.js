@@ -12,6 +12,20 @@ app.filter('myActivities', function () {
   };
 });
 
+app.filter('notInMyPlan', function () {
+  return function (input, array) {
+    var notInMyPlan = []
+    if (input && array) {
+        input.forEach(function (activity) {
+          if (array.indexOf(activity._id) === -1){
+            notInMyPlan.push(activity)
+          }
+        })
+    }
+    return notInMyPlan;
+  };
+});
+
 app.filter('activityType', function () {
   return function (input, string) {
     if (string === 'all') {

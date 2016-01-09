@@ -12,11 +12,10 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
       authservice.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
         .then(function (data) {
-          console.log('hello!');
           $scope.disabled = false;
           $scope.loginForm = {};
           var savedActivity = activityservice.getSavedActivity();
-          activityservice.saveClickedActivity(null) // dispose of clicked activity
+          activityservice.saveClickedActivity(undefined) // dispose of clicked activity
           console.log('is there a saved activity?', savedActivity);
           var user = authservice.getUserStatus();
 
@@ -94,6 +93,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   if ($scope.user_id) {
     planservice.getUserPlan($scope.user_id).then(function(data) {
       $scope.userPlan = data
+      $scope.activities.forEach(function (activity) {
+        if ($scope.userPlan.indexOf(activity._id) >= 0){
+          activity.inUserPlan = true;
+        }
+      })
       console.log('user plan: ', $scope.userPlan);
     })
   } else {
@@ -116,6 +120,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       planservice.addToPlan(user, activity).then(function () {
         planservice.getUserPlan(user).then(function (data) {
           $scope.userPlan = data
+          $scope.activities.forEach(function (activity) {
+            if ($scope.userPlan.indexOf(activity._id) >= 0){
+              activity.inUserPlan = true;
+            }
+          })
           console.log('user plan', $scope.userPlan);
         })
       })
@@ -126,6 +135,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     planservice.removeFromPlan(user, activity).then(function () {
       planservice.getUserPlan(user).then(function (data) {
         $scope.userPlan = data
+        $scope.activities.forEach(function (activity) {
+          if ($scope.userPlan.indexOf(activity._id) === -1){
+            activity.inUserPlan = false;
+          }
+        })
         console.log('user plan', $scope.userPlan);
         if ($scope.userPlan.length === 0) {
           $scope.myPlan = false;

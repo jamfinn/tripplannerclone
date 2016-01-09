@@ -137,10 +137,14 @@ article.misc {
 }
 
 .auth {
+  padding: 1em 0;
   text-align: center;
   h2 {
     margin: 0 auto;
     width: 300px;
+  }
+  p {
+    margin-bottom: .5em;
   }
 }
 
