@@ -22,14 +22,14 @@
 // }
 
  .filter.ng-hide {
-  transition: all 1s ease-out;
+  transition: all .4s linear;
   max-height: 0;
   overflow:hidden;
 }
 
 .filter {
   transition: all 1s ease-in;
-  max-height: 1000px;
+  max-height: 300px;
   overflow:hidden;
 }
 

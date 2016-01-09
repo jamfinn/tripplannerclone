@@ -110,13 +110,15 @@ header {
     height: 7vh; }
 
 .hero {
-  margin: 10vh 0 5vh 0;
   position: relative;
   width: 100%;
   /* for IE 6 */
   height: 40vh;
   overflow: hidden;
   background-color: #1b1e20; }
+  .hero h3 {
+    font-weight: 500;
+    font-size: 2em; }
   .hero img {
     width: 100%; }
   .hero .title {
@@ -161,6 +163,10 @@ article.misc {
 
 .accordian {
   position: relative; }
+  .accordian .fa-caret-right, .accordian .fa-caret-down {
+    margin-left: .3em;
+    font-size: 1.4em;
+    color: #71aaaa; }
 
 .activity {
   z-index: +1;
@@ -181,8 +187,6 @@ article.misc {
       height: 150px;
       vertical-align: bottom;
       z-index: -2; }
-  .activity i.fa.fa-caret-right, .activity i.fa.fa-caret-down {
-    color: #447171; }
   .activity .fa-plus, .activity .delete {
     padding-right: 30px;
     position: absolute;
@@ -218,25 +222,28 @@ article.misc {
       left: 270px;
       z-index: 1; }
 
-.green {
-  padding: 2em;
-  height: auto; }
-  .green img {
-    margin: 1em;
-    display: inline-block;
-    float: left; }
-  .green p {
-    display: block;
-    margin: 2em; }
+footer {
+  height: 150px; }
+  footer .green {
+    padding: 2em; }
+    footer .green .shield {
+      margin: 1em;
+      display: inline-block;
+      float: left; }
+    footer .green p {
+      display: block;
+      margin: 2em; }
 
 .auth {
   padding: 1em 0;
   text-align: center; }
+  .auth a {
+    color: white; }
   .auth h2 {
-    margin: 0 auto;
+    margin: 0 auto 1em auto;
     width: 300px; }
-  .auth p {
-    margin-bottom: .5em; }
+  .auth h3 {
+    font-weight: 400; }
 
 .right {
   float: right;
@@ -297,7 +304,7 @@ h4 {
   font-size: 1.7em; }
 
 h5 {
-  color: #447171;
+  color: #579191;
   font-size: 1em;
   text-transform: uppercase;
   font-weight: 700; }
@@ -319,8 +326,8 @@ form {
 input {
   font-size: 20px;
   width: 300px;
-  padding: 1em;
-  margin: 0 auto 1em auto;
+  padding: .5em;
+  margin: 0 auto 0.5em auto;
   display: block; }
 
 textarea {
@@ -334,9 +341,10 @@ select {
 
 button {
   font-size: 20px;
+  color: white;
   width: 300px;
   padding: 1em 0;
-  margin: 1em auto;
+  margin: .5em auto;
   text-align: center;
   display: block;
   border: none;
@@ -367,13 +375,13 @@ button {
   overflow: hidden; }
 
 .filter.ng-hide {
-  transition: all 1s ease-out;
+  transition: all 0.4s linear;
   max-height: 0;
   overflow: hidden; }
 
 .filter {
   transition: all 1s ease-in;
-  max-height: 1000px;
+  max-height: 300px;
   overflow: hidden; }
 
 .more.ng-hide {

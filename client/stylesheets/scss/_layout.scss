@@ -33,12 +33,16 @@ header {
 }
 
 .hero {
-  margin: 10vh 0 5vh 0;
+  // margin: 10vh 0 5vh 0;
   position: relative;
   width: 100%; /* for IE 6 */
   height: 40vh;
   overflow: hidden;
   background-color: darken($gray, 60%);
+  h3 {
+    font-weight: 500;
+    font-size: 2em;
+  }
   img {
    width: 100%;
   }
@@ -90,6 +94,11 @@ article.misc {
 
 .accordian {
   position: relative;
+  .fa-caret-right, .fa-caret-down {
+    margin-left: .3em;
+    font-size: 1.4em;
+    color: lighten($green, 20%);
+  }
 }
 
 .activity {
@@ -115,9 +124,7 @@ article.misc {
       z-index: -2;
     }
   }
-  i.fa.fa-caret-right, i.fa.fa-caret-down {
-    color: $green;
-  }
+
   .fa-plus, .delete{
     padding-right: 30px;
     position: absolute;
@@ -160,29 +167,35 @@ article.misc {
    }
 }
 
-.green {
-  padding: 2em;
-  height: auto;
-  img {
-    margin: 1em;
-    display: inline-block;
-    float: left;
-  }
-  p {
-    display: block;
-    margin: 2em;
+footer {
+  height: 150px;
+  .green {
+    padding: 2em;
+    // height: 150px;
+    .shield {
+      margin: 1em;
+      display: inline-block;
+      float: left;
+    }
+    p {
+      display: block;
+      margin: 2em;
+    }
   }
 }
 
 .auth {
   padding: 1em 0;
   text-align: center;
+  a {
+    color: white;
+  }
   h2 {
-    margin: 0 auto;
+    margin: 0 auto 1em auto;
     width: 300px;
   }
-  p {
-    margin-bottom: .5em;
+  h3 {
+    font-weight: 400;
   }
 }
 

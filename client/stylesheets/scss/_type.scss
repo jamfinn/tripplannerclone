@@ -63,7 +63,7 @@ h4 {
 }
 
 h5 {
-  color: $green;
+  color: lighten($green, 10%);
   font-size: 1em;
   text-transform: uppercase;
   font-weight: 700;
