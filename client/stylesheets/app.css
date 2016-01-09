@@ -181,6 +181,8 @@ article.misc {
       height: 150px;
       vertical-align: bottom;
       z-index: -2; }
+  .activity i.fa.fa-caret-right, .activity i.fa.fa-caret-down {
+    color: #447171; }
   .activity .fa-plus, .activity .delete {
     padding-right: 30px;
     position: absolute;
@@ -216,6 +218,17 @@ article.misc {
       left: 270px;
       z-index: 1; }
 
+.green {
+  padding: 2em;
+  height: auto; }
+  .green img {
+    margin: 1em;
+    display: inline-block;
+    float: left; }
+  .green p {
+    display: block;
+    margin: 2em; }
+
 .auth {
   padding: 1em 0;
   text-align: center; }
@@ -245,7 +258,7 @@ body {
   line-height: 1.45; }
 
 a {
-  color: lightgray;
+  color: #505f6b;
   text-decoration: none; }
 
 p {
@@ -263,6 +276,9 @@ header h1 {
   top: 85px;
   position: relative;
   font-size: 2.074em; }
+
+i.fa.fa-chevron-right, i.fa.fa-chevron-down {
+  float: right; }
 
 .backArrow {
   font-size: 2em; }

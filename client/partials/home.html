@@ -67,7 +67,7 @@
     </div>
     <div class="accordian" ng-show="plan.open || showActivity">
 
-        <h6 ng-click="filters.open = !filters.open" ng-init="filters.open = false">Filters <i ng-hide="filters.open" class="fa fa-chevron-right"></i><i ng-show="filters.open" class="fa fa-chevron-down"></i></h6>
+        <h6 ng-click="filters.open = !filters.open" ng-init="filters.open = false">Filters <i ng-hide="filters.open" class="fa fa-caret-right"></i><i ng-show="filters.open" class="fa fa-caret-down"></i></h6>
       <div ng-show="filters.open" class="filter">
         <h6>Activity type</h6>
         <select ng-model="type" ng-init="type='all'">
@@ -312,14 +312,16 @@
   <a ng-click='logout()' class="btn btn-default">Logout</a>
 </div> -->
 
-<a href="#/activities/new">add activity</a><br>
+<!-- <a href="#/activities/new">add activity</a><br>
 <a href="#/plan">show my plan</a><br>
-<a href="#/login">login</a><br>
+<a href="#/login">login</a><br> -->
 
 <footer>
   <section class="green">
-    <img src="" alt="">
-
+    <img ng-src="../assets/images/footer-national_forest_service.png" alt="">
+    <p>
+      The Grand Canyon Association is the official nonprofit partner of Grand Canyon National Park. For more information about the Grand Canyon National Park, visit http://www.nps.gov/grca
+    </p>
   </section>
   <section class="copyright">
 

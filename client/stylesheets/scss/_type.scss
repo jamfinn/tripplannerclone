@@ -12,11 +12,13 @@ body {
 }
 
 a {
-  color: lightgray;
+  color: $grayText;
   text-decoration: none;
 }
 
-p {margin-bottom: 1em;}
+p {
+  margin-bottom: 1em;
+}
 
 h1, h2, h4 {
   font-weight: 400;
@@ -36,9 +38,9 @@ header{
   }
 }
 
-// i.fa.fa-plus {
-//   color: pink;
-// }
+i.fa.fa-chevron-right, i.fa.fa-chevron-down {
+  float: right;
+}
 
 .backArrow {
   font-size: 2em;

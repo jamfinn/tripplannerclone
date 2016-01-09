@@ -115,6 +115,9 @@ article.misc {
       z-index: -2;
     }
   }
+  i.fa.fa-caret-right, i.fa.fa-caret-down {
+    color: $green;
+  }
   .fa-plus, .delete{
     padding-right: 30px;
     position: absolute;
@@ -155,6 +158,20 @@ article.misc {
        z-index: 1;
       }
    }
+}
+
+.green {
+  padding: 2em;
+  height: auto;
+  img {
+    margin: 1em;
+    display: inline-block;
+    float: left;
+  }
+  p {
+    display: block;
+    margin: 2em;
+  }
 }
 
 .auth {
