@@ -114,7 +114,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
           // console.log(activityservice.getSavedActivity());// go to this url at the end of the login!!!
         }
       })
-      $location.path('/login');
+      $location.path('/register');
     } else {
       console.log("user found, add to plan", activity);
       planservice.addToPlan(user, activity).then(function () {

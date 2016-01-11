@@ -169,21 +169,23 @@ footer {
 }
 
 .auth {
-  padding: 1em 0;
+  padding: .5em 0;
   text-align: center;
+  margin: 0 auto;
+  width: 300px;
   a {
     color: transparentize(white, .1);
   }
   button {
     margin: .5em auto;
-    width: 300px;
+    width: 100%;
   }
   h3 {
     margin: 0 auto .3em auto;
-    width: 300px;
+    // width: 300px;
   }
   input {
-    width: 300px;
+    width: 100%;
   }
 }
 
