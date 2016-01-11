@@ -96,7 +96,7 @@ article.misc {
 }
 
 .activityBox {
-  background-color: red;
+  // background-color: red;
   margin: 0 auto;
   width: 98vw;
   max-width: 960px;
@@ -122,7 +122,7 @@ article.misc {
     }
   }
 
-  .fa-plus, .delete{
+  .fa-plus, .fa-plus-circle, .delete{
     position: absolute;
     top: 23px;
     left: 85%;

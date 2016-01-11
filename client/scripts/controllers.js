@@ -38,16 +38,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
 
 app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
   console.log('route params', $routeParams);
-//   $scope.$watch(function(){
-//    return $location.path();
-// }, function(value){
-//    var temp = value.split("/");
-//    var urlForActivity = temp[temp.length-1];
-//    $http.post('/activities/getActivity', {_id: urlForActivity}).then(function(res){
-//      $scope.showInfo = res.data;
-//      $scope.showPage = true;
-//    })
-// })
+
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
   console.log('user is logged in', $scope.user_id);
@@ -92,12 +83,14 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   //get userPlan if user has one
   if ($scope.user_id) {
     planservice.getUserPlan($scope.user_id).then(function(data) {
-      $scope.userPlan = data
-      $scope.activities.forEach(function (activity) {
-        if ($scope.userPlan.indexOf(activity._id) >= 0){
-          activity.inUserPlan = true;
-        }
-      })
+      // if (data.length > 0) {
+        $scope.userPlan = data
+        $scope.activities.forEach(function (activity) {
+          if ($scope.userPlan.indexOf(activity._id) >= 0){
+            activity.inUserPlan = true;
+          }
+        })
+      // }
       console.log('user plan: ', $scope.userPlan);
     })
   } else {

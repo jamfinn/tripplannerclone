@@ -470,7 +470,7 @@ th {
   color: white; }
 
 .greentxt {
-  color: #447171; }
+  color: #71aaaa; }
 
 .pink {
   color: hotpink; }
@@ -628,7 +628,8 @@ select {
   height: 38px;
   padding: 6px 10px;
   /* The 6px vertically centers text on FF, ignored by Webkit */
-  background-color: #fff;
+  background-color: white;
+  color: black;
   border: none;
   box-shadow: none;
   box-sizing: border-box; }
@@ -642,6 +643,7 @@ input[type="tel"],
 input[type="url"],
 input[type="password"],
 textarea {
+  color: black;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; }
@@ -746,7 +748,8 @@ td:last-child {
   padding-right: 0; }
 
 .fa-plus:hover {
-  color: #447171; }
+  color: #71aaaa;
+  text-shadow: 0px 0px 13px rgba(225, 225, 225, 0.5); }
 
 .u-full-width {
   width: 100%;
@@ -854,7 +857,6 @@ article.misc {
     color: #71aaaa; }
 
 .activityBox {
-  background-color: red;
   margin: 0 auto;
   width: 98vw;
   max-width: 960px; }
@@ -876,7 +878,7 @@ article.misc {
         position: relative;
         vertical-align: bottom;
         z-index: -2; }
-  .activityBox .fa-plus, .activityBox .delete {
+  .activityBox .fa-plus, .activityBox .fa-plus-circle, .activityBox .delete {
     position: absolute;
     top: 23px;
     left: 85%;
@@ -964,5 +966,5 @@ footer {
 
 .more {
   transition: all 1s linear;
-  max-height: 800px;
+  max-height: 2000px;
   overflow: hidden; }

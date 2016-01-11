@@ -157,7 +157,8 @@
           <div class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 0" ng-init="details.open = false">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
@@ -195,7 +196,8 @@
           <div ng-hide="activity.inUserPlan" class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 3" ng-init="details.open = false">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
@@ -229,7 +231,8 @@
           <div ng-hide="activity.inUserPlan" class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 6" ng-init="details.open = false">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>

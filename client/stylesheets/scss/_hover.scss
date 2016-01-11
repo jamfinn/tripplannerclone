@@ -1,3 +1,4 @@
 .fa-plus:hover {
-  color: $green;
+  color: lighten($green, 20%);
+  text-shadow: 0px 0px 13px rgba(225, 225, 225, .5);
 }
