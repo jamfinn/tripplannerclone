@@ -2,7 +2,6 @@
   <img class="logo" ng-src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
   <p class="right" ng-show="user_id" ng-click="logout()">logout</p>
   <p class="right" ng-show="!user_id" ng-click="login()">login</p>
-  <!-- <h2 class="right"><i class="fa fa-bars"></i></h2> -->
   <h2 class="right" ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h2>
 </header>
 
@@ -25,36 +24,113 @@
     <h2 ng-click="myPlan.open = !myPlan.open">My Plan {{userPlan.length}}<i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="myPlan.open" ng-init="myPlan.open = true">
 
-      <div class="activity" ng-repeat="activity in activities | myActivities: userPlan" ng-click="details.open=true" ng-init="details.open = false">
-        <div class="imageBox">
-          <img ng-src={{activity.image}} alt="{{activity.title}}">
-          <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
-          <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-          <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+      <div class="activityBox">
+
+        <!-- row One -->
+        <div class="row">
+          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 0" ng-click="details.open=true" ng-init="details.open = false">
+            <div class="imageBox">
+              <img ng-src={{activity.image}} alt="{{activity.title}}">
+              <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
+              <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+            </div>
+
+            <div class="more" ng-show="details.open" >
+              <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
+              <h5>hours</h5>
+              <p>
+                {{activity.hours}}
+              </p>
+              <h5>location</h5>
+              <p>
+                {{activity.location}}
+              </p>
+              <h5>description</h5>
+              <p>
+                {{activity.description}}
+              </p>
+              <h5>good for</h5>
+              <p>
+                {{activity.age}}
+              </p>
+              <p>
+                {{activity.access}}
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="more" ng-show="details.open" >
-          <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
-          <h5>hours</h5>
-          <p>
-            {{activity.hours}}
-          </p>
-          <h5>location</h5>
-          <p>
-            {{activity.location}}
-          </p>
-          <h5>description</h5>
-          <p>
-            {{activity.description}}
-          </p>
-          <h5>good for</h5>
-          <p>
-            {{activity.age}}
-          </p>
-          <p>
-            {{activity.access}}
-          </p>
+        <!-- row Two -->
+        <div class="row">
+          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 3" ng-click="details.open=true" ng-init="details.open = false">
+            <div class="imageBox">
+              <img ng-src={{activity.image}} alt="{{activity.title}}">
+              <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
+              <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+            </div>
+
+            <div class="more" ng-show="details.open" >
+              <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
+              <h5>hours</h5>
+              <p>
+                {{activity.hours}}
+              </p>
+              <h5>location</h5>
+              <p>
+                {{activity.location}}
+              </p>
+              <h5>description</h5>
+              <p>
+                {{activity.description}}
+              </p>
+              <h5>good for</h5>
+              <p>
+                {{activity.age}}
+              </p>
+              <p>
+                {{activity.access}}
+              </p>
+            </div>
+          </div>
         </div>
+
+        <!-- row Three -->
+        <div class="row">
+          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 6" ng-click="details.open=true" ng-init="details.open = false">
+            <div class="imageBox">
+              <img ng-src={{activity.image}} alt="{{activity.title}}">
+              <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
+              <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+            </div>
+
+            <div class="more" ng-show="details.open" >
+              <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
+              <h5>hours</h5>
+              <p>
+                {{activity.hours}}
+              </p>
+              <h5>location</h5>
+              <p>
+                {{activity.location}}
+              </p>
+              <h5>description</h5>
+              <p>
+                {{activity.description}}
+              </p>
+              <h5>good for</h5>
+              <p>
+                {{activity.age}}
+              </p>
+              <p>
+                {{activity.access}}
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -78,7 +154,7 @@
       <div class="activityBox">
         <!-- row One -->
         <div class="row">
-          <div ng-hide="activity.inUserPlan" class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 0" ng-init="details.open = false">
+          <div class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 0" ng-init="details.open = false">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
