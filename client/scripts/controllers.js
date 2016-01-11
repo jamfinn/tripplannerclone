@@ -20,7 +20,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
           var user = authservice.getUserStatus();
 
           if (savedActivity) {
-            planservice.addToPlan(user, savedActivity._id)
+            planservice.addToPlan(user, savedActivity._id) // add saved activity to plan
           }
           $location.path('/')
         })
@@ -43,6 +43,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   $scope.user_id = authservice.getUserStatus();
   console.log('user is logged in', $scope.user_id);
 
+  // see if any saved activities and set $scope.showActivity
+  $scope.showActivity = activityservice.getSavedActivity()
+  // reset saved Activity
+  activityservice.saveClickedActivity(undefined)
+
   //get list of activites, open activity if url includes activity title OR if there is an activity in
   activityservice.getActivities().then(function (docs) {
     $scope.activities = docs;
@@ -52,18 +57,12 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
         // console.log(activity.name);
         if (activity.title === $routeParams.title){
           console.log('found a match!');
-          // $scope.showInfo = activity
-          $scope.showActivity = activity // use this to make sure activity is open
-          console.log('activity url', $scope.showActivity);
+          activityservice.saveClickedActivity(activity)
+          $location.path('/')
         }
       })
     }
-    // deferred.resolve(data);
   })
-  // .error(function () {
-  //   console.log('error');
-  //   // deferred.reject("Error!");
-  // });
 
   // if $routeParams.id go get plan id
   if ($routeParams.id) {
@@ -96,7 +95,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   } else {
     console.log('no one is logged in');
   }
-
 
   $scope.addToPlan = function (user, activity) {
     if (user === null) {
@@ -156,24 +154,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   }
 
 }]);
-
-// app.controller('logoutController', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
-//
-//     $scope.logout = function () {
-//
-//
-//       // call logout from service
-//       authservice.logout()
-//         .then(function () {
-//           console.log('user status from logout', authservice.getUserStatus());
-//           $location.path('/');
-//         });
-//
-//     };
-//
-//     $scope.logout();
-//
-// }]);
 
 app.controller('registerController',
   ['$scope', '$location', 'AuthService',

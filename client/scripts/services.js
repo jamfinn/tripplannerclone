@@ -211,6 +211,7 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
     }
 
     activityservice.saveClickedActivity = function (activity) {
+      console.log('saving activity', activity);
         savedActivity = activity
     }
 
