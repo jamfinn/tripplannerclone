@@ -368,8 +368,7 @@ th {
 .column,
 .columns {
   width: 100%;
-  float: left;
-  box-sizing: border-box; }
+  float: left; }
 
 /* For devices larger than 400px */
 @media (min-width: 400px) {
@@ -383,7 +382,7 @@ th {
     width: 100%; }
   .column,
   .columns {
-    margin-left: 4%; }
+    margin-left: .5em; }
   .column:first-child,
   .columns:first-child {
     margin-left: 0; }
@@ -591,7 +590,6 @@ small, .font_small {
   font-size: 0.833em;
   margin-left: .1em;
   display: block;
-  width: 178px;
   text-align: left; }
 
 button,
@@ -628,7 +626,6 @@ select {
   padding: 6px 10px;
   /* The 6px vertically centers text on FF, ignored by Webkit */
   background-color: #fff;
-  border: 1px solid #D1D1D1;
   box-shadow: none;
   box-sizing: border-box; }
 
@@ -659,7 +656,6 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid #33C3F0;
   outline: 0; }
 
 label,
@@ -846,6 +842,8 @@ article.misc {
 .accordian {
   position: relative;
   margin: 0 auto; }
+  .accordian select {
+    color: black; }
   .accordian .fa-caret-right, .accordian .fa-caret-down {
     margin-left: .3em;
     font-size: 1.4em;
@@ -854,33 +852,30 @@ article.misc {
 .activityBox {
   background-color: red;
   margin: 0 auto;
-  width: 100vw;
-  height: auto; }
+  width: 98vw;
+  max-width: 960px; }
   .activityBox .activity {
+    margin: .5em;
     z-index: +1;
-    margin: 1em;
     position: relative;
     color: black;
-    float: left; }
+    max-width: 300px; }
     .activityBox .activity .imageBox {
+      max-width: 300px;
       position: relative;
       margin: 0 auto;
-      width: 300px;
-      height: 150px;
+      overflow: hidden;
       -webkit-box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
       -moz-box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
       box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8); }
       .activityBox .activity .imageBox img {
         position: relative;
-        width: 300px;
-        height: 150px;
         vertical-align: bottom;
         z-index: -2; }
   .activityBox .fa-plus, .activityBox .delete {
-    padding-right: 30px;
     position: absolute;
     top: 23px;
-    left: 270px;
+    left: 85%;
     z-index: 1; }
   .activityBox .delete {
     color: brown; }
@@ -898,30 +893,20 @@ article.misc {
   .activityBox .more {
     position: relative;
     margin: 0 auto;
-    width: 300px;
-    height: 100%;
     background-color: white;
     padding: 30px;
     -webkit-box-shadow: 0 -30px 30px -6px white;
     -moz-box-shadow: 0 -30px 30px -6px white;
     box-shadow: 0 -30px 30px -6px white; }
     .activityBox .more .close {
-      padding-right: 30px;
       position: absolute;
-      left: 270px;
+      left: 85%;
       z-index: 1; }
 
 footer {
   height: 150px; }
   footer .green {
-    padding: 2em; }
-    footer .green .shield {
-      margin: 1em;
-      display: inline-block;
-      float: left; }
-    footer .green p {
-      display: block;
-      margin: 2em; }
+    padding: 1vmax 2vmax; }
 
 .auth {
   padding: 1em 0;

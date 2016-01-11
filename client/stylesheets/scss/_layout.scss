@@ -85,48 +85,47 @@ article.misc {
 .accordian {
   position: relative;
   margin: 0 auto;
+  select {
+    color: black;
+  }
   .fa-caret-right, .fa-caret-down {
     margin-left: .3em;
     font-size: 1.4em;
     color: lighten($green, 20%);
   }
 }
+
 .activityBox {
   background-color: red;
   margin: 0 auto;
-  width: 100vw;
-  height: auto;
+  width: 98vw;
+  max-width: 960px;
   .activity {
+    margin: .5em;
     z-index: +1;
-    margin: 1em;
     position: relative;
     color: black;
-    float: left;
-    // display: block;
+    max-width: 300px;
     .imageBox {
+      max-width: 300px;
       position: relative;
       margin: 0 auto;
-      width: 300px;
-      height: 150px;
+      overflow: hidden;
       -webkit-box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
       -moz-box-shadow:    inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
       box-shadow:         inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
       img {
-        // background-color: transparent;
         position: relative;
-        width: 300px;
-        height: 150px;
         vertical-align: bottom;
         z-index: -2;
       }
     }
-}
+  }
 
   .fa-plus, .delete{
-    padding-right: 30px;
     position: absolute;
     top: 23px;
-    left: 270px;
+    left: 85%;
     z-index: 1;
    }
    .delete {
@@ -148,36 +147,24 @@ article.misc {
    .more {
      position: relative;
      margin: 0 auto;
-     width: 300px;
-     height: 100%;
+    //  height: 100%;
      background-color: white;
      padding: 30px;
      -webkit-box-shadow: 0 -30px 30px -6px rgba(255, 255, 255, 1);
      -moz-box-shadow:    0 -30px 30px -6px rgba(255, 255, 255, 1);
      box-shadow:         0 -30px 30px -6px rgba(255, 255, 255, 1);
      .close {
-       padding-right: 30px;
+      //  padding-right: 30px;
        position: absolute;
-       left: 270px;
+       left: 85%;
        z-index: 1;
       }
    }
 }
-
 footer {
   height: 150px;
   .green {
-    padding: 2em;
-    // height: 150px;
-    .shield {
-      margin: 1em;
-      display: inline-block;
-      float: left;
-    }
-    p {
-      display: block;
-      margin: 2em;
-    }
+    padding: 1vmax 2vmax;
   }
 }
 

@@ -69,42 +69,113 @@
 
       <p ng-click="filters.open = !filters.open" ng-init="filters.open = false">Filters <i ng-hide="filters.open" class="fa fa-caret-right"></i><i ng-show="filters.open" class="fa fa-caret-down"></i></p>
       <div ng-show="filters.open" class="filter">
-        <h6>Activity type</h6>
+        <p>Activity type</p>
         <select ng-model="type" ng-init="type='all'">
           <option ng-value="type" ng-repeat="type in ['all', 'museum', 'shopping', 'active', 'tour', 'class', 'nearby']">{{type}}</option>
         </select>
       </div>
 
       <div class="activityBox">
-        <div ng-hide="activity.inUserPlan" class="activity" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type" ng-init="details.open = false">
-          <div class="imageBox">
-            <img ng-src={{activity.image}} alt="{{activity.title}}">
-            <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
-            <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-            <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
-          </div>
+        <!-- row One -->
+        <div class="row">
+          <div ng-hide="activity.inUserPlan" class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 0" ng-init="details.open = false">
+            <div class="imageBox">
+              <img ng-src={{activity.image}} alt="{{activity.title}}">
+              <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+            </div>
 
-          <div class="more" ng-show="details.open || showActivity.title === activity.title" >
-            <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
-            <h5>hours</h5>
-            <p>
-              {{activity.hours}}
-            </p>
-            <h5>location</h5>
-            <p>
-              {{activity.location}}
-            </p>
-            <h5>description</h5>
-            <p>
-              {{activity.description}}
-            </p>
-            <h5>good for</h5>
-            <p>
-              {{activity.age}}
-            </p>
-            <p>
-              {{activity.access}}
-            </p>
+            <div class="more" ng-show="details.open || showActivity.title === activity.title" >
+              <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
+              <h5>hours</h5>
+              <p>
+                {{activity.hours}}
+              </p>
+              <h5>location</h5>
+              <p>
+                {{activity.location}}
+              </p>
+              <h5>description</h5>
+              <p>
+                {{activity.description}}
+              </p>
+              <h5>good for</h5>
+              <p>
+                {{activity.age}}
+              </p>
+              <p>
+                {{activity.access}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- row Two -->
+        <div class="row">
+          <div ng-hide="activity.inUserPlan" class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 3" ng-init="details.open = false">
+            <div class="imageBox">
+              <img ng-src={{activity.image}} alt="{{activity.title}}">
+              <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+            </div>
+
+            <div class="more" ng-show="details.open || showActivity.title === activity.title" >
+              <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
+              <h5>hours</h5>
+              <p>
+                {{activity.hours}}
+              </p>
+              <h5>location</h5>
+              <p>
+                {{activity.location}}
+              </p>
+              <h5>description</h5>
+              <p>
+                {{activity.description}}
+              </p>
+              <h5>good for</h5>
+              <p>
+                {{activity.age}}
+              </p>
+              <p>
+                {{activity.access}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- row Three -->
+        <div class="row">
+          <div ng-hide="activity.inUserPlan" class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 6" ng-init="details.open = false">
+            <div class="imageBox">
+              <img ng-src={{activity.image}} alt="{{activity.title}}">
+              <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
+              <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+            </div>
+
+            <div class="more" ng-show="details.open || showActivity.title === activity.title" >
+              <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
+              <h5>hours</h5>
+              <p>
+                {{activity.hours}}
+              </p>
+              <h5>location</h5>
+              <p>
+                {{activity.location}}
+              </p>
+              <h5>description</h5>
+              <p>
+                {{activity.description}}
+              </p>
+              <h5>good for</h5>
+              <p>
+                {{activity.age}}
+              </p>
+              <p>
+                {{activity.access}}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -318,10 +389,15 @@
 
 <footer>
   <section class="green">
-    <img class="shield" ng-src="../assets/images/footer-national_forest_service.png" alt="">
-    <small>
-      The Grand Canyon Association is the official nonprofit partner of Grand Canyon National Park. For more information about the Grand Canyon National Park, visit http://www.nps.gov/grca
-    </small>
+    <div class="row">
+    <div class="one column"><img class="shield" ng-src="../assets/images/footer-national_forest_service.png" alt=""></div>
+    <div class="eleven columns">
+      <small>
+        The Grand Canyon Association is the official nonprofit partner of Grand Canyon National Park. For more information about the Grand Canyon National Park, visit http://www.nps.gov/grca
+      </small>
+    </div>
+  </div>
+
   </section>
   <section class="copyright">
 
