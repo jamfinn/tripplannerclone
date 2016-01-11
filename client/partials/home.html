@@ -1,25 +1,25 @@
 <header>
   <img class="logo" ng-src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
-  <h2 class="right" ng-show="user_id" ng-click="logout()">logout</h2>
-  <h2 class="right" ng-show="!user_id" ng-click="login()">login</h2>
+  <p class="right" ng-show="user_id" ng-click="logout()">logout</p>
+  <p class="right" ng-show="!user_id" ng-click="login()">login</p>
   <!-- <h2 class="right"><i class="fa fa-bars"></i></h2> -->
   <h2 class="right" ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h2>
 </header>
 
 <div class="hero" ng-hide="(user_id && myPlan.open) || plan.open" >
   <img ng-src="http://cdn.lightgalleries.net/4bd5ec12b739d/images/Grand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg" alt="Grand Canyon">
-  <h3 class="title">
+  <h2 class="title">
     Plan your trip and get the most out of your Grand Canyon visit
-  </h3>
+  </h2>
   <a href="/#/register" ng-show="!user_id"><button>Sign up and make a plan!</button></a>
 </div>
 
 <nav class="nav">
 
-<div ng-if="showPlan">
-<p>showPlan div</p>
-{{showPlan}}
-</div>
+  <div ng-if="showPlan">
+  <p>showPlan div</p>
+  {{showPlan}}
+  </div>
 
   <article class="info myPlan green" ng-show="userPlan.length">
     <h2 ng-click="myPlan.open = !myPlan.open">My Plan {{userPlan.length}}<i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
@@ -67,23 +67,22 @@
     </div>
     <div class="accordian" ng-show="plan.open || showActivity">
 
-        <h6 ng-click="filters.open = !filters.open" ng-init="filters.open = false">Filters <i ng-hide="filters.open" class="fa fa-caret-right"></i><i ng-show="filters.open" class="fa fa-caret-down"></i></h6>
+      <p ng-click="filters.open = !filters.open" ng-init="filters.open = false">Filters <i ng-hide="filters.open" class="fa fa-caret-right"></i><i ng-show="filters.open" class="fa fa-caret-down"></i></p>
       <div ng-show="filters.open" class="filter">
         <h6>Activity type</h6>
         <select ng-model="type" ng-init="type='all'">
           <option ng-value="type" ng-repeat="type in ['all', 'museum', 'shopping', 'active', 'tour', 'class', 'nearby']">{{type}}</option>
         </select>
-
       </div>
 
-      <div ng-hide="activity.inUserPlan" class="activity" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type" ng-init="details.open = false">
+      <div class="activityBox">
+        <div ng-hide="activity.inUserPlan" class="activity" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type" ng-init="details.open = false">
           <div class="imageBox">
             <img ng-src={{activity.image}} alt="{{activity.title}}">
             <i ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
             <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
             <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
           </div>
-
 
           <div class="more" ng-show="details.open || showActivity.title === activity.title" >
             <i class="fa fa-times close" ng-click="details.open=!details.open; $event.stopPropagation();"></i>
@@ -107,6 +106,7 @@
               {{activity.access}}
             </p>
           </div>
+        </div>
       </div>
 
     </div>
@@ -319,9 +319,9 @@
 <footer>
   <section class="green">
     <img class="shield" ng-src="../assets/images/footer-national_forest_service.png" alt="">
-    <p>
+    <small>
       The Grand Canyon Association is the official nonprofit partner of Grand Canyon National Park. For more information about the Grand Canyon National Park, visit http://www.nps.gov/grca
-    </p>
+    </small>
   </section>
   <section class="copyright">
 
