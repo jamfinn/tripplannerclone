@@ -515,10 +515,10 @@ body {
 
 a {
   text-decoration: none;
-  color: #7470a9; }
+  color: rgba(255, 255, 255, 0.7); }
 
 a:hover {
-  color: #505f6b; }
+  color: white; }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
@@ -556,21 +556,6 @@ h6 {
   font-size: 1.5rem;
   line-height: 1.6;
   letter-spacing: 0; }
-
-/* Larger than phablet */
-@media (min-width: 550px) {
-  h1 {
-    font-size: 5.0rem; }
-  h2 {
-    font-size: 4.2rem; }
-  h3 {
-    font-size: 3.6rem; }
-  h4 {
-    font-size: 3.0rem; }
-  h5 {
-    font-size: 2.4rem; }
-  h6 {
-    font-size: 1.5rem; } }
 
 p {
   margin-top: 0; }
@@ -814,7 +799,7 @@ header {
     width: 100%; }
   .hero .title {
     position: absolute;
-    top: 10vh;
+    top: 8vh;
     left: 20px;
     color: white; }
   .hero button {
