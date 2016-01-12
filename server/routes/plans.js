@@ -15,7 +15,7 @@ router.post('/', function(req, res) {
     // findOne plan with user_id of user
     Plan.findOne({user: req.body.user}, function(err, doc){
       if (err) throw err;
-      console.log('found a plan', doc);
+      console.log('found a plan by user id:', doc);
       // if no plan for that user, add
       if (!doc) {
         console.log('no plan found for this user');

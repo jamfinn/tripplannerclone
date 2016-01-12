@@ -21,6 +21,8 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
 
           if (savedActivity) {
             planservice.addToPlan(user, savedActivity._id) // add saved activity to plan
+            savedActivity = undefined // dispose of saved activity
+            console.log('saved activity should be gone: ', savedActivity);
           }
           $location.path('/')
         })
