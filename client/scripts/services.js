@@ -2,10 +2,6 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
   authservice = {}
 
-    // create user variable
-    // var user = null;
-    // var user_id = sessionStorage.getItem('user') || null;
-
     authservice.isLoggedIn = function() {
       if(sessionStorage.getItem('user')) {
         return true;
@@ -86,8 +82,10 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
         // handle success
         .success(function (data, status) {
           console.log('hello!');
-          console.log('data', data);
+          console.log('registration data', data);
           if(status === 200 && data.user_id){
+            // user = true
+            console.log('data.user_id is: ', data.user_id);
             sessionStorage.setItem('user', data.user_id);
             deferred.resolve();
           } else {
@@ -147,12 +145,12 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     planservice.addToPlan = function(user, activity) {
 
-      console.log('in add to plan!', user, activity);
+      console.log('in add to plan! user, activity', user, activity);
       // create a new instance of deferred
       var deferred = $q.defer();
 
       $http.post('/plans', {user: user, activity: activity}).success(function (doc) {
-        console.log('test', doc);
+        console.log('reponse from post/plans: ', doc);
         deferred.resolve();
       })
 

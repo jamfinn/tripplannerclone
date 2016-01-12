@@ -20,11 +20,16 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
           var user = authservice.getUserStatus();
 
           if (savedActivity) {
-            planservice.addToPlan(user, savedActivity._id) // add saved activity to plan
-            savedActivity = undefined // dispose of saved activity
-            console.log('saved activity should be gone: ', savedActivity);
+            console.log('saved acivity should be defined: ', savedActivity);
+            console.log('here is how user is defined: ', user);
+            planservice.addToPlan(user, savedActivity._id).then(function(){ // add saved activity to plan
+              savedActivity = undefined // dispose of saved activity
+              console.log('saved activity should be undefined: ', savedActivity);
+              $location.path('/')
+            })
+          } else {
+            $location.path('/')
           }
-          $location.path('/')
         })
 
         // handle error
@@ -46,9 +51,9 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   console.log('user is logged in', $scope.user_id);
 
   // see if any saved activities and set $scope.showActivity
-  $scope.showActivity = activityservice.getSavedActivity()
+  // $scope.showActivity = activityservice.getSavedActivity()
   // reset saved Activity
-  activityservice.saveClickedActivity(undefined)
+  // activityservice.saveClickedActivity(undefined)
 
   //get list of activites, open activity if url includes activity title OR if there is an activity in
   activityservice.getActivities().then(function (docs) {
@@ -150,8 +155,12 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     authservice.logout()
       .then(function () {
         console.log('user status from logout', authservice.getUserStatus());
-        $scope.user_id = user_id;
+        $scope.user_id = null;
         $scope.userPlan = undefined;
+        $scope.activities.forEach(function (activity) {
+          activity.inUserPlan = false;
+        })
+        $scope.plan.open = false;
         $location.path('/');
       });
   }
@@ -159,8 +168,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 }]);
 
 app.controller('registerController',
-  ['$scope', '$location', 'AuthService',
-  function ($scope, $location, AuthService) {
+  ['$scope', '$location', 'AuthService', 'ActivityService',
+  function ($scope, $location, AuthService, ActivityService) {
 
     console.log(authservice.getUserStatus());
 
@@ -176,7 +185,22 @@ app.controller('registerController',
         .then(function () {
           $scope.disabled = false;
           $scope.registerForm = {};
+          var savedActivity = activityservice.getSavedActivity();
+          activityservice.saveClickedActivity(undefined) // dispose of clicked activity
+          console.log('is there a saved activity?', savedActivity);
+          var user = authservice.getUserStatus();
+
+          if (savedActivity) {
+            console.log('saved acivity should be defined: ', savedActivity);
+            console.log('here is how user is defined: ', user);
+            planservice.addToPlan(user, savedActivity._id).then(function(){ // add saved activity to plan
+              savedActivity = undefined // dispose of saved activity
+              console.log('saved activity should be undefined: ', savedActivity);
+              $location.path('/')
+            })
+          } else {
           $location.path('/');
+          }
         })
         // handle error
         .catch(function () {
