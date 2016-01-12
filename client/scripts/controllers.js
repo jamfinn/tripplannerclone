@@ -82,14 +82,14 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   //get userPlan if user has one
   if ($scope.user_id) {
     planservice.getUserPlan($scope.user_id).then(function(data) {
-      // if (data.length > 0) {
+      if (data) {
         $scope.userPlan = data
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) >= 0){
             activity.inUserPlan = true;
           }
         })
-      // }
+      }
       console.log('user plan: ', $scope.userPlan);
     })
   } else {
@@ -117,6 +117,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
             }
           })
           console.log('user plan', $scope.userPlan);
+          console.log('activities', $scope.activities);
         })
       })
     }
