@@ -165,7 +165,7 @@
 
             <div class="more" ng-show="details.open || showActivity.title === activity.title" >
               <i class="fa fa-times close" ng-click="details.open=false; showActivity=undefined; $event.stopPropagation();"></i>
-            
+
               <a ng-href="https://www.facebook.com/dialog/feed?app_id=184683071273&link=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Factivity%2F{{activity.title}}&picture=https%3A%2F%2Fplacekitten.com%2F300%2F200&name=Activity%20for%20Grand%20Canyon%20Trip%20Planner&caption=%20&description=Check%20out%20this%20great%20actvity%20at%20the%20Grand%20Canyon!&redirect_uri=http%3A%2F%2Fwww.facebook.com%2F&display=popup">F</a>
               <a ng-href="http://twitter.com/intent/tweet?text=Here%27s%20what%20I%27m%20doing%20on%20my%20trip%20to%20the%20Grand%20Canyon%3A%20https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Factivity%2F{{activity.title}}">T</a>
               <a ng-href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Factivity%2F{{activity.title}}&media=https%3A%2F%2Fplacekitten.com%2F300%2F200&description=For%20my%20trip%20to%20the%20Grand%20Canyon%3A">P</a>
@@ -193,7 +193,7 @@
         </div>
         <!-- row Two -->
         <div class="row">
-          <div ng-hide="activity.inUserPlan" class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 3" ng-init="details.open = false">
+          <div class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 3" ng-init="details.open = false">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
@@ -228,7 +228,7 @@
         </div>
         <!-- row Three -->
         <div class="row">
-          <div ng-hide="activity.inUserPlan" class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 6" ng-init="details.open = false">
+          <div class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 6" ng-init="details.open = false">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
