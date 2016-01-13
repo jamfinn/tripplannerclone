@@ -40,7 +40,6 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
           $scope.loginForm = {};
         });
     };
-
 }]);
 
 app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
@@ -51,18 +50,20 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   console.log('user is logged in', $scope.user_id);
 
   // see if any saved activities and set $scope.showActivity
-  // $scope.showActivity = activityservice.getSavedActivity()
+  console.log ('is there a saved activity this time through?', activityservice.getSavedActivity());
+  $scope.showActivity = activityservice.getSavedActivity()
   // reset saved Activity
-  // activityservice.saveClickedActivity(undefined)
+  activityservice.saveClickedActivity(undefined)
 
   //get list of activites, open activity if url includes activity title OR if there is an activity in
   activityservice.getActivities().then(function (docs) {
     $scope.activities = docs;
     if ($routeParams.title) { // check if a particular activity is asked for…
-      $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes
+      $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes, actually, strip it to letters only
+      console.log('title from the routeParams: ', $routeParams.title);
       $scope.activities.forEach(function(activity){
-        // console.log(activity.name);
-        if (activity.title === $routeParams.title){
+        console.log(activity.title); // make a temp variable here and strip it to letters only too so the match matches
+        if (activity.title === $routeParams.title){ // need to verify that this will match in the end
           console.log('found a match!');
           activityservice.saveClickedActivity(activity)
           $location.path('/')
@@ -80,7 +81,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
         if (plan._id === $routeParams.id) { // need to at this point go get the plan to display in a new div, not the "myPlan" div…
           // need to write the getPlan function to get the Plan from the url parameters
           $scope.showPlan = plan
-          console.log($scope.showInfo);
+          console.log($scope.showPlan);
         }
       })
     })
@@ -150,6 +151,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   $scope.login = function () {
     $location.path('/login')
   }
+
   $scope.logout = function () {
     // call logout from service
     authservice.logout()
