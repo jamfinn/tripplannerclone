@@ -44,7 +44,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
 }]);
 
 app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
-  console.log('route params', $routeParams);
+  console.log('route params: ', $routeParams);
 
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
