@@ -10,6 +10,10 @@ html {
     background-size: cover;
 }
 
+.container {
+  max-width: 960px;
+}
+
 nav {
   // h3 {
   //   line-height: 1.6em;
@@ -17,11 +21,18 @@ nav {
 }
 
 header {
+  position: relative;
   max-height: 75px;
   .logo {
     height: 50px;
     // height: 7vh;
     // min-height: 50px;
+  }
+  p {
+    position: absolute;
+    margin-bottom: 0;
+    bottom: .5vmax;
+    right: 2vmax;
   }
   padding: 1vmax 2vmax;
   display: block;
@@ -131,10 +142,20 @@ article.misc {
    .delete {
      color: brown;
     }
+   .fa-facebook-square {
+     color: $facebook;
+    }
+   .fa-twitter-square {
+     color: $twitter;
+    }
+   .fa-pinterest-square {
+     color: $google;
+    }
+
    .title {
      font-size: 1em;
      font-weight: bold;
-     padding-right: 30px;
+     padding: 2em;
      position: absolute;
      top: 40px;
      left: 20px;

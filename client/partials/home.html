@@ -1,7 +1,7 @@
 <header>
   <img class="logo" ng-src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
-  <p class="right" ng-show="user_id" ng-click="logout()">logout</p>
-  <p class="right" ng-show="!user_id" ng-click="login()">login</p>
+  <p ng-show="user_id" ng-click="logout()">logout</p>
+  <p ng-show="!user_id" ng-click="login()">login</p>
   <h2 class="right" ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h2>
 </header>
 
@@ -166,9 +166,9 @@
             <div class="more" ng-show="details.open || showActivity.title === activity.title" >
               <i class="fa fa-times close" ng-click="details.open=false; showActivity=undefined; $event.stopPropagation();"></i>
 
-              <a ng-href="https://www.facebook.com/dialog/feed?app_id=184683071273&link=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Factivity%2F{{activity.title}}&picture=http%3A%2F%2Fplacekitten.com%2F300%2F300&name=Activity%20for%20Grand%20Canyon%20Trip%20Planner&caption=%20&description=Check%20out%20this%20great%20activity%20at%20the%20Grand%20Canyon!&redirect_uri=http%3A%2F%2Fwww.facebook.com%2F&display=popup">F</a>
-              <a ng-href="http://twitter.com/intent/tweet?text=Here%27s%20what%20I%27m%20doing%20on%20my%20trip%20to%20the%20Grand%20Canyon%3A%20https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Factivity%2F{{activity.title}}">T</a>
-              <a ng-href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Factivity%2F{{activity.title}}&media=https%3A%2F%2Fplacekitten.com%2F300%2F200&description=For%20my%20trip%20to%20the%20Grand%20Canyon%3A">P</a>
+              <a ng-href="{{activity.facebookShare}}"><i class="fa fa-facebook-square"></i></a>
+              <a ng-href="{{activity.twitterShare}}"><i class="fa fa-twitter-square"></i></a>
+              <a ng-href="{{activity.pinterestShare}}"><i class="fa fa-pinterest-square"></i></a>
               <h5>hours</h5>
               <p>
                 {{activity.hours}}
