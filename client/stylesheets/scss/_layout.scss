@@ -74,22 +74,22 @@ article {
   padding: 20px;
 }
 
-article.plan {
+article.two {
   background-color: darken($gray, 50%);
 }
-article.about {
+article.three {
   background-color: darken($gray, 40%);
 }
-article.transport {
+article.four {
   background-color: darken($gray, 30%);
 }
-article.lodging {
+article.five {
   background-color: darken($gray, 20%);
 }
-article.seasons {
+article.six {
   background-color: darken($gray, 10%);
 }
-article.misc {
+article.seven {
   background-color: $gray;
 }
 
@@ -125,6 +125,13 @@ article.misc {
       -webkit-box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
       -moz-box-shadow:    inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
       box-shadow:         inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
+      h4 {
+        padding: 0;
+      }
+      h4:hover {
+        color: transparentize(black, .2);
+        text-shadow: 0px 0px 13px rgba(225, 225, 225, 1);
+      }
       img {
         position: relative;
         vertical-align: bottom;
@@ -133,7 +140,7 @@ article.misc {
     }
   }
 
-  .fa-plus, .fa-plus-circle, .delete{
+  .fa-plus, .fa-plus-circle{
     position: absolute;
     top: 23px;
     left: 85%;
@@ -175,7 +182,7 @@ article.misc {
      -moz-box-shadow:    0 -30px 30px -6px rgba(255, 255, 255, 1);
      box-shadow:         0 -30px 30px -6px rgba(255, 255, 255, 1);
      .close {
-      //  padding-right: 30px;
+       padding-right: 30px;
        position: absolute;
        left: 85%;
        z-index: 1;

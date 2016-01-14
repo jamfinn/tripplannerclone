@@ -5,7 +5,7 @@
   <h2 class="right" ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h2>
 </header>
 
-<div class="hero" ng-hide="(user_id && myPlan.open) || plan.open" >
+<div class="hero" ng-show="info.hero" >
   <img ng-src="http://cdn.lightgalleries.net/4bd5ec12b739d/images/Grand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg" alt="Grand Canyon">
   <h1 class="title">
     Plan your trip and get the most out of your Grand Canyon visit
@@ -20,18 +20,18 @@
   {{showPlan}}
   </div>
 
-  <article class="info myPlan green" ng-show="userPlan.length">
-    <h2 ng-click="myPlan.open = !myPlan.open">My Plan {{userPlan.length}}<i ng-hide="myPlan.open" class="fa fa-chevron-right"></i><i ng-show="myPlan.open" class="fa fa-chevron-down"></i></h2>
-    <div class="accordian" ng-show="myPlan.open" ng-init="myPlan.open = true">
+  <article class="info one green" ng-show="userPlan.length">
+    <h2 ng-click="toggleDiv('one')">My Plan {{userPlan.length}}<i ng-hide="info.one" class="fa fa-chevron-right"></i><i ng-show="info.one" class="fa fa-chevron-down"></i></h2>
+    <div class="accordian" ng-show="info.one">
 
       <div class="activityBox">
 
         <!-- row One -->
         <div class="row">
-          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 0" ng-click="details.open=true" ng-init="details.open = false">
+          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 0" ng-click="details.open=true" >
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
+              <i class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
@@ -57,16 +57,17 @@
               <p>
                 {{activity.access}}
               </p>
+              <small class="delete" ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();"><i class="fa fa-times"></i> REMOVE FROM PLAN</small>
             </div>
           </div>
         </div>
 
         <!-- row Two -->
         <div class="row">
-          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 3" ng-click="details.open=true" ng-init="details.open = false">
+          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 3" ng-click="details.open=true">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
+              <i class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
@@ -92,16 +93,17 @@
               <p>
                 {{activity.access}}
               </p>
+              <small class="delete" ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();"><i class="fa fa-times"></i> REMOVE FROM PLAN</small>
             </div>
           </div>
         </div>
 
         <!-- row Three -->
         <div class="row">
-          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 6" ng-click="details.open=true" ng-init="details.open = false">
+          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 6" ng-click="details.open=true">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-times delete"></i>
+              <i class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="details.open=!details.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="details.open=!details.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
@@ -127,6 +129,7 @@
               <p>
                 {{activity.access}}
               </p>
+              <small class="delete" ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();"><i class="fa fa-times"></i> REMOVE FROM PLAN</small>
             </div>
           </div>
         </div>
@@ -136,12 +139,12 @@
     </div>
   </article>
 
-  <article class="info plan">
-    <div ng-click="plan.open = !plan.open">
-      <h2 ng-hide="userPlan.length">Plan your Trip<i ng-hide="plan.open" class="fa fa-chevron-right"></i><i ng-show="plan.open" class="fa fa-chevron-down"></i></h2>
-      <h2 ng-show="userPlan.length">Add Activities<i ng-hide="plan.open" class="fa fa-chevron-right"></i><i ng-show="plan.open" class="fa fa-chevron-down"></i></h2>
+  <article class="info two">
+    <div ng-click="toggleDiv('two')">
+      <h2 ng-hide="userPlan.length">Plan your Trip<i ng-hide="info.two" class="fa fa-chevron-right"></i><i ng-show="info.two" class="fa fa-chevron-down"></i></h2>
+      <h2 ng-show="userPlan.length">Add Activities<i ng-hide="info.two" class="fa fa-chevron-right"></i><i ng-show="info.two" class="fa fa-chevron-down"></i></h2>
     </div>
-    <div class="accordian" ng-show="plan.open || showActivity">
+    <div class="accordian" ng-show="info.two || showActivity">
 
       <p ng-click="filters.open=!filters.open" ng-init="filters.open=false">Filters <i ng-hide="filters.open" class="fa fa-caret-right"></i><i ng-show="filters.open" class="fa fa-caret-down"></i></p>
       <div ng-show="filters.open" class="filter">
@@ -193,7 +196,7 @@
         </div>
         <!-- row Two -->
         <div class="row">
-          <div class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 3" ng-init="details.open = false">
+          <div class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 3">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
@@ -228,7 +231,7 @@
         </div>
         <!-- row Three -->
         <div class="row">
-          <div class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 6" ng-init="details.open = false">
+          <div class="activity one-third column" ng-click="details.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 6">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
@@ -266,9 +269,9 @@
     </div>
   </article>
 
-  <article class="info about">
-    <h2 ng-click="about.open = !about.open" ng-init="about.open = false">About the Park  <i ng-hide="about.open" class="fa fa-chevron-right"></i><i ng-show="about.open" class="fa fa-chevron-down"></i></h2>
-    <div ng-click="about.open = !about.open" class="accordian" ng-show="about.open">
+  <article class="info three">
+    <h2 ng-click="toggleDiv('three')">About the Park  <i ng-hide="info.three" class="fa fa-chevron-right"></i><i ng-show="info.three" class="fa fa-chevron-down"></i></h2>
+    <div class="accordian" ng-show="info.three">
       <p>
         Grand Canyon National Park spans 277 miles of the Colorado river and adjacent uplands.
         It is located entirely in northern Arizona.
@@ -341,9 +344,9 @@
     </div>
   </article>
 
-  <article class="info transport">
-    <h2 ng-click="transport.open = !transport.open">Getting to the Park  <i ng-hide="transport.open" class="fa fa-chevron-right"></i><i ng-show="transport.open" class="fa fa-chevron-down"></i></h2>
-    <div class="accordian" ng-show="transport.open" ng-init="transport.open = false">
+  <article class="info four">
+    <h2 ng-click="toggleDiv('four')">Getting to the Park  <i ng-hide="info.four" class="fa fa-chevron-right"></i><i ng-show="info.four" class="fa fa-chevron-down"></i></h2>
+    <div class="accordian" ng-show="info.four">
       <h3>Airports and Drive Times</h3>
       <p>
         There are several ways to arrive at Grand Canyon National Park.
@@ -427,9 +430,9 @@
     </div>
   </article>
 
-  <article class="info lodging">
-    <h2 ng-click="lodging.open = !lodging.open">Where to Stay  <i ng-hide="lodging.open" class="fa fa-chevron-right"></i><i ng-show="lodging.open" class="fa fa-chevron-down"></i></h2>
-    <div class="accordian" ng-show="lodging.open" ng-init="lodging.open = false">
+  <article class="info five">
+    <h2 ng-click="toggleDiv('five')">Where to Stay  <i ng-hide="info.five" class="fa fa-chevron-right"></i><i ng-show="info.five" class="fa fa-chevron-down"></i></h2>
+    <div class="accordian" ng-show="info.five">
       <h3>South Rim Lodging</h3>
       <p>
         A variety of historic lodges, motels and hotels are located
@@ -442,9 +445,9 @@
     </div>
   </article>
 
-  <article class="info seasons">
-    <h2 ng-click="seasons.open = !seasons.open">Seasonal Information  <i ng-hide="seasons.open" class="fa fa-chevron-right"></i><i ng-show="seasons.open" class="fa fa-chevron-down"></i></h2>
-    <div class="accordian" ng-show="seasons.open" ng-init="seasons.open = false">
+  <article class="info six">
+    <h2 ng-click="toggleDiv('six')">Seasonal Information  <i ng-hide="info.six" class="fa fa-chevron-right"></i><i ng-show="info.six" class="fa fa-chevron-down"></i></h2>
+    <div class="accordian" ng-show="info.six">
       <p>
         When it comes to weather at the Grand Canyon, we recommend that
         you expect the unexpected! Weather conditions vary greatly at the
@@ -453,9 +456,9 @@
     </div>
   </article>
 
-  <article class="info misc">
-    <h2 ng-click="misc.open = !misc.open">More Resources <i ng-hide="misc.open" class="fa fa-chevron-right"></i><i ng-show="misc.open" class="fa fa-chevron-down"></i></h2>
-    <div class="accordian" ng-show="misc.open" ng-init="misc.open = false">
+  <article class="info seven">
+    <h2 ng-click="toggleDiv('seven')">More Resources <i ng-hide="info.seven" class="fa fa-chevron-right"></i><i ng-show="info.seven" class="fa fa-chevron-down"></i></h2>
+    <div class="accordian" ng-show="info.seven">
       <h3>GCA and other planning resources</h3>
     </div>
   </article>

@@ -45,6 +45,19 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
 app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
   console.log('route params: ', $routeParams);
 
+  $scope.info = {
+    hero: true,
+    one: false,
+    two: false,
+    three: false,
+    four: false,
+    five: false,
+    six: false,
+    seven: false,
+    'eight': false
+  }
+  console.log('scope.info is: ', $scope.info);
+
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
   console.log('user is logged in', $scope.user_id);
@@ -102,6 +115,21 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     })
   } else {
     console.log('no one is logged in');
+  }
+
+  $scope.toggleDiv = function (div) {
+    var temp = $scope.info[div]
+    for (item in $scope.info) {
+      $scope.info[item] = false
+    }
+    $scope.info[div] = !temp; // div is now the opposite of what it was before
+    if (!$scope.info.one && !$scope.info.two
+      && !$scope.info.three && !$scope.info.four
+      && !$scope.info.five && !$scope.info.six
+      && !$scope.info.seven && !$scope.info.eight) {
+        $scope.info.hero = true;
+      }
+    console.log($scope);
   }
 
   $scope.addToPlan = function (user, activity) {
