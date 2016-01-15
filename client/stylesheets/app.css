@@ -556,6 +556,7 @@ p {
   margin-top: 0; }
 
 i.fa.fa-chevron-right, i.fa.fa-chevron-down {
+  margin-top: .2em;
   float: right; }
 
 small, .font_small {
@@ -948,7 +949,7 @@ footer {
   overflow: hidden; }
 
 .filter {
-  transition: all 1s ease-in;
+  transition: all 0.4s ease-in;
   max-height: 300px;
   overflow: hidden; }
 
@@ -958,6 +959,6 @@ footer {
   overflow: hidden; }
 
 .details {
-  transition: all 1s linear;
+  transition: all 0.4s linear;
   max-height: 2000px;
   overflow: hidden; }
