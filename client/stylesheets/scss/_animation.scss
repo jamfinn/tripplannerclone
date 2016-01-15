@@ -33,13 +33,13 @@
   overflow:hidden;
 }
 
- .more.ng-hide {
+ .details.ng-hide {
   transition: all .4s ease-out;
   max-height: 0;
   overflow:hidden;
 }
 
-.more {
+.details {
   transition: all 1s linear;
   max-height: 2000px;
   overflow:hidden;

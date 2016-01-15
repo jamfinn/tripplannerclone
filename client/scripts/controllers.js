@@ -117,9 +117,15 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     console.log('no one is logged in');
   }
 
+  $scope.reset = function () {
+    $scope.activities.forEach(function (activity) {
+      activity.open = false;
+    })
+  }
+
   $scope.toggleDiv = function (div) {
     var temp = $scope.info[div]
-    for (item in $scope.info) {
+    for (item in $scope.info) { // close all divs
       $scope.info[item] = false
     }
     $scope.info[div] = !temp; // div is now the opposite of what it was before

@@ -539,7 +539,7 @@ h3 {
 
 h4 {
   font-size: 2.4rem;
-  line-height: 1.35; }
+  line-height: 1em; }
 
 h5 {
   font-size: 1.8rem;
@@ -552,6 +552,7 @@ h6 {
   line-height: 1.6; }
 
 p {
+  font-weight: 300;
   margin-top: 0; }
 
 i.fa.fa-chevron-right, i.fa.fa-chevron-down {
@@ -593,7 +594,7 @@ input[type="url"],
 input[type="password"],
 textarea,
 select {
-  height: 38px;
+  height: 50px;
   padding: 6px 10px;
   /* The 6px vertically centers text on FF, ignored by Webkit */
   background-color: white;
@@ -732,6 +733,9 @@ td:last-child {
 
 .u-pull-left {
   float: left; }
+
+.margin {
+  margin: 0.5em 1em; }
 
 /* Misc
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -884,7 +888,7 @@ article.seven {
     position: absolute;
     top: 20px;
     left: 20px; }
-  .activityBox .more {
+  .activityBox .details {
     position: relative;
     margin: 0 auto;
     background-color: white;
@@ -892,7 +896,7 @@ article.seven {
     -webkit-box-shadow: 0 -30px 30px -6px white;
     -moz-box-shadow: 0 -30px 30px -6px white;
     box-shadow: 0 -30px 30px -6px white; }
-    .activityBox .more .close {
+    .activityBox .details .close {
       padding-right: 30px;
       position: absolute;
       left: 85%;
@@ -948,12 +952,12 @@ footer {
   max-height: 300px;
   overflow: hidden; }
 
-.more.ng-hide {
+.details.ng-hide {
   transition: all 0.4s ease-out;
   max-height: 0;
   overflow: hidden; }
 
-.more {
+.details {
   transition: all 1s linear;
   max-height: 2000px;
   overflow: hidden; }
