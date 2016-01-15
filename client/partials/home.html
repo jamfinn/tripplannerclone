@@ -31,16 +31,16 @@
 
         <!-- row One -->
         <div class="row">
-          <div class="activity one-third column" ng-click="reset(); this.open=true" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 0">
+          <div class="activity one-third column" ng-click="reset(); activity.open=true" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 0">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); this.open=!this.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); this.open=!this.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
-            <div class="details" ng-show="this.open" >
-              <i class="fa fa-times close" ng-click="this.open=false; $event.stopPropagation();"></i>
+            <div class="details" ng-show="activity.open" >
+              <i class="fa fa-times close" ng-click="activity.open=false; $event.stopPropagation();"></i>
               <h5>hours</h5>
               <p>
                 {{activity.hours}}
@@ -67,16 +67,16 @@
 
         <!-- row Two -->
         <div class="row">
-          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 3" ng-click="reset(); this.open=true">
+          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 3" ng-click="reset(); activity.open=true">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); this.open=!this.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); this.open=!this.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
-            <div class="details" ng-show="this.open" >
-              <i class="fa fa-times close" ng-click="this.open=false; $event.stopPropagation();"></i>
+            <div class="details" ng-show="activity.open" >
+              <i class="fa fa-times close" ng-click="activity.open=false; $event.stopPropagation();"></i>
               <h5>hours</h5>
               <p>
                 {{activity.hours}}
@@ -103,16 +103,16 @@
 
         <!-- row Three -->
         <div class="row">
-          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 6" ng-click="reset(); this.open=true">
+          <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 6" ng-click="reset(); activity.open=true">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); this.open=!this.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); this.open=!this.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
-            <div class="details" ng-show="this.open" >
-              <i class="fa fa-times close" ng-click="this.open=false; $event.stopPropagation();"></i>
+            <div class="details" ng-show="activity.open" >
+              <i class="fa fa-times close" ng-click="activity.open=false; $event.stopPropagation();"></i>
               <h5>hours</h5>
               <p>
                 {{activity.hours}}
@@ -166,12 +166,12 @@
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
               <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); this.open=!this.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); this.open=!this.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
             <div class="details" ng-show="activity.open || showActivity.title === activity.title" >
-              <i class="fa fa-times close" ng-click="this.open=false; showActivity=undefined; $event.stopPropagation();"></i>
+              <i class="fa fa-times close" ng-click="activity.open=false; showActivity=undefined; $event.stopPropagation();"></i>
 
               <a ng-href="{{activity.facebookShare}}"><i class="fa fa-facebook-square"></i></a>
               <a ng-href="{{activity.twitterShare}}"><i class="fa fa-twitter-square"></i></a>
@@ -200,17 +200,17 @@
         </div>
         <!-- row Two -->
         <div class="row">
-          <div class="activity one-third column" ng-click="reset(); this.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 3">
+          <div class="activity one-third column" ng-click="reset(); activity.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 3">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
               <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); this.open=!this.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); this.open=!this.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
-            <div class="details" ng-show="this.open || showActivity.title === activity.title" >
-              <i class="fa fa-times close" ng-click="this.open=false; showActivity=undefined; $event.stopPropagation();"></i>
+            <div class="details" ng-show="activity.open || showActivity.title === activity.title" >
+              <i class="fa fa-times close" ng-click="activity.open=false; showActivity=undefined; $event.stopPropagation();"></i>
               <h5>hours</h5>
               <p>
                 {{activity.hours}}
@@ -235,17 +235,17 @@
         </div>
         <!-- row Three -->
         <div class="row">
-          <div class="activity one-third column" ng-click="reset(); this.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 6">
+          <div class="activity one-third column" ng-click="reset(); activity.open=true" ng-repeat="activity in activities | activityType: type | limitTo: 3: 6">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
               <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); this.open=!this.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); this.open=!this.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
-            <div class="details" ng-show="this.open || showActivity.title === activity.title" >
-              <i class="fa fa-times close" ng-click="this.open=false; showActivity=undefined; $event.stopPropagation();"></i>
+            <div class="details" ng-show="activity.open || showActivity.title === activity.title" >
+              <i class="fa fa-times close" ng-click="activity.open=false; showActivity=undefined; $event.stopPropagation();"></i>
               <h5>hours</h5>
               <p>
                 {{activity.hours}}

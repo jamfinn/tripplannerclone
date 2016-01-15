@@ -117,9 +117,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     console.log('no one is logged in');
   }
 
-  $scope.reset = function () {
+  $scope.reset = function () { // change this to toggleActivity, take in activity, capture the state before resetting
+    console.log('resetting activity.open');
     $scope.activities.forEach(function (activity) {
       activity.open = false;
+      console.log(activity);
     })
   }
 
@@ -133,7 +135,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       && !$scope.info.three && !$scope.info.four
       && !$scope.info.five && !$scope.info.six
       && !$scope.info.seven && !$scope.info.eight) {
-        $scope.info.hero = true;
+        $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
       }
     console.log($scope);
   }
