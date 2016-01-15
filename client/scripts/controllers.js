@@ -45,7 +45,7 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
 app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
   console.log('route params: ', $routeParams);
 
-  $scope.info = {
+  $scope.info = { // a list of all divs for accordian
     hero: true,
     one: false,
     two: false,
@@ -54,9 +54,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     five: false,
     six: false,
     seven: false,
-    'eight': false
+    eight: false
   }
-  console.log('scope.info is: ', $scope.info);
 
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
@@ -65,8 +64,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   // see if any saved activities and set $scope.showActivity
   console.log ('is there a saved activity this time through?', activityservice.getSavedActivity());
   $scope.showActivity = activityservice.getSavedActivity()
-  // reset saved Activity
-  activityservice.saveClickedActivity(undefined)
+  activityservice.saveClickedActivity(undefined) // dispose of saved Activity
 
   //get list of activites, open activity if url includes activity title OR if there is an activity in
   activityservice.getActivities().then(function (docs) {
@@ -104,7 +102,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   if ($scope.user_id) {
     planservice.getUserPlan($scope.user_id).then(function(data) {
       if (data) {
-        $scope.userPlan = data
+        $scope.userPlan = data;
+        $scope.toggleDiv('one')
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) >= 0){
             activity.inUserPlan = true;
@@ -117,7 +116,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     console.log('no one is logged in');
   }
 
-  $scope.reset = function () { // change this to toggleActivity, take in activity, capture the state before resetting
+  $scope.reset = function () { // resets all activities to closed
     console.log('resetting activity.open');
     $scope.activities.forEach(function (activity) {
       activity.open = false;
@@ -127,11 +126,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 
   $scope.toggleDiv = function (div) {
     var temp = $scope.info[div]
-    for (item in $scope.info) { // close all divs
+    for (item in $scope.info) { // close all divs (make this a reset service?)
       $scope.info[item] = false
     }
     $scope.info[div] = !temp; // div is now the opposite of what it was before
-    if (!$scope.info.one && !$scope.info.two
+    if ((!$scope.info.one || $scope.userPlan.length === 0) && !$scope.info.two
       && !$scope.info.three && !$scope.info.four
       && !$scope.info.five && !$scope.info.six
       && !$scope.info.seven && !$scope.info.eight) {

@@ -522,7 +522,7 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: .5rem;
   font-weight: 500; }
 
 h1 {
@@ -779,11 +779,16 @@ header {
   color: black; }
   header .logo {
     height: 50px; }
-  header p {
+  header .status {
     position: absolute;
-    margin-bottom: 0;
     bottom: .5vmax;
     right: 2vmax; }
+    header .status p {
+      display: inline-block;
+      margin-bottom: 0; }
+    header .status h3 {
+      display: inline-block;
+      margin-right: .5em; }
 
 .hero {
   position: relative;

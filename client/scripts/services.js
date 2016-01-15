@@ -150,7 +150,7 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       var deferred = $q.defer();
 
       $http.post('/plans', {user: user, activity: activity}).success(function (doc) {
-        console.log('reponse from post/plans: ', doc);
+        console.log('reponse from post/plans is plan_id/user_id: ', doc);
         deferred.resolve();
       })
 

@@ -28,6 +28,7 @@ router.post('/', function(req, res) {
       else if (doc.plan.indexOf(req.body.activity) === -1) {
         console.log('activity added to plan');
         doc.plan.push(req.body.activity)
+        console.log('plan to be added: ', doc);
         Plan.update(doc, function (){
           res.send(doc)
         })

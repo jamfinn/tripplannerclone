@@ -25,14 +25,19 @@ header {
   max-height: 75px;
   .logo {
     height: 50px;
-    // height: 7vh;
-    // min-height: 50px;
   }
-  p {
+  .status {
     position: absolute;
-    margin-bottom: 0;
     bottom: .5vmax;
     right: 2vmax;
+    p {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+    h3 {
+      display: inline-block;
+      margin-right: .5em;
+    }
   }
   padding: 1vmax 2vmax;
   display: block;

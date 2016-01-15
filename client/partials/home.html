@@ -1,11 +1,13 @@
 <header>
   <img class="logo" ng-src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
-  <p ng-show="user_id" ng-click="logout()">logout</p>
-  <p ng-show="!user_id" ng-click="login()">login</p>
-  <h2 class="right" ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h2>
+  <div class="status">
+    <h3 ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h3>
+    <p ng-show="user_id" ng-click="logout()">logout</p>
+    <p ng-show="!user_id" ng-click="login()">login</p>
+  </div>
 </header>
 
-<div class="hero" ng-show="info.hero" >
+<div class="hero accordian" ng-show="info.hero" >
   <img ng-src="http://cdn.lightgalleries.net/4bd5ec12b739d/images/Grand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg" alt="Grand Canyon">
   <h1 class="title">
     Plan your trip and get the most out of your Grand Canyon visit
@@ -35,8 +37,8 @@
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
             <div class="details" ng-show="activity.open" >
@@ -71,8 +73,8 @@
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
             <div class="details" ng-show="activity.open" >
@@ -107,8 +109,8 @@
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
             <div class="details" ng-show="activity.open" >
@@ -166,8 +168,8 @@
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
               <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
             <div class="details" ng-show="activity.open || showActivity.title === activity.title" >
@@ -205,8 +207,8 @@
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
               <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
             <div class="details" ng-show="activity.open || showActivity.title === activity.title" >
@@ -240,8 +242,8 @@
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
               <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
-              <h5 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="reset(); activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+              <h5 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+              <h4 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
 
             <div class="details" ng-show="activity.open || showActivity.title === activity.title" >
