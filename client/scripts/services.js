@@ -15,7 +15,6 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
     }
 
     authservice.login = function (username, password) {
-      console.log('authservice.login');
 
       // create a new instance of deferred
       var deferred = $q.defer();
@@ -24,7 +23,6 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       $http.post('/user/login', {username: username, password: password})
       // handle success // test for success
       .success(function (data, status) { // note to mherman: angular docs say .success method has been deprecated and to use .then https://docs.angularjs.org/api/ng/service/$http
-        console.log('login service', data);
         if(status === 200 && data.user_id){
           // user = true;
           sessionStorage.setItem('user', data.user_id);
@@ -76,16 +74,12 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       // create a new instance of deferred
       var deferred = $q.defer();
 
-      console.log('hello from authservice.register');
       // send a post request to the server
       $http.post('/user/register', {username: username, password: password})
         // handle success
         .success(function (data, status) {
-          console.log('hello!');
-          console.log('registration data', data);
           if(status === 200 && data.user_id){
             // user = true
-            console.log('data.user_id is: ', data.user_id);
             sessionStorage.setItem('user', data.user_id);
             deferred.resolve();
           } else {

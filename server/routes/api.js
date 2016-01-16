@@ -24,13 +24,15 @@ router.post('/register', function(req, res) {
     }
     passport.authenticate('local')(req, res, function () {
       console.log('what is this?', req.user._id);
+      console.log('what type is user id? ', typeof req.user._id)
       return res.status(200).json({status: 'Registration successful!', user_id: req.user._id})
     });
-  });
+  })
 });
 
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
+    console.log('first user variable in login: ', user);
     if (err) { return next(err) }
     if (!user) {
       return res.status(401).json({err: info})
@@ -39,6 +41,9 @@ router.post('/login', function(req, res, next) {
       if (err) {
         return res.status(500).json({err: 'Could not log in user'})
       }
+      console.log('what is user on login? ', user);
+      console.log('what is type of user._id? ', typeof user._id);
+      console.log('just plain user._id: ', user._id);
       res.status(200).json({status: 'Login successful!', user_id: user._id})
     });
   })(req, res, next);

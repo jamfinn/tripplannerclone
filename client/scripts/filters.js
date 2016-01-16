@@ -36,7 +36,6 @@ app.filter('activityType', function () {
         input.forEach(function (activity) {
           if (activity[string]){
             activityTypes.push(activity)
-            console.log(activityTypes);
           }
         })
       }

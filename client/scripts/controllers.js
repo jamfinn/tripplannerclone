@@ -45,17 +45,21 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
 app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
   console.log('route params: ', $routeParams);
 
-  $scope.info = { // a list of all divs for accordian
-    hero: true,
-    one: false,
-    two: false,
-    three: false,
-    four: false,
-    five: false,
-    six: false,
-    seven: false,
-    eight: false
+  $scope.resetDivs = function () {
+    $scope.info = { // a list of all divs for accordian
+      hero: true,
+      one: false,
+      two: false,
+      three: false,
+      four: false,
+      five: false,
+      six: false,
+      seven: false,
+      eight: false
+    }
   }
+
+  $scope.resetDivs()
 
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
@@ -87,7 +91,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   if ($routeParams.id) {
     console.log('got an id!');
     planservice.getPlans().then(function(plans) {
-      console.log(plans);
       plans.forEach(function(plan){
         if (plan._id === $routeParams.id) { // need to at this point go get the plan to display in a new div, not the "myPlan" div…
           // need to write the getPlan function to get the Plan from the url parameters
@@ -117,10 +120,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   }
 
   $scope.reset = function () { // resets all activities to closed
-    console.log('resetting activity.open');
     $scope.activities.forEach(function (activity) {
       activity.open = false;
-      console.log(activity);
     })
   }
 
@@ -136,7 +137,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       && !$scope.info.seven && !$scope.info.eight) {
         $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
       }
-    console.log($scope);
   }
 
   $scope.addToPlan = function (user, activity) {
@@ -145,12 +145,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       $scope.activities.forEach(function (element) {
         if (element._id === activity) {
           activityservice.saveClickedActivity(element)
-          // console.log(activityservice.getSavedActivity());// go to this url at the end of the login!!!
         }
       })
       $location.path('/register');
     } else {
-      console.log("user found, add to plan", activity);
+      console.log("user found, add this activity to plan", activity);
       planservice.addToPlan(user, activity).then(function () {
         planservice.getUserPlan(user).then(function (data) {
           $scope.userPlan = data
@@ -160,7 +159,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
             }
           })
           console.log('user plan', $scope.userPlan);
-          console.log('activities', $scope.activities);
         })
       })
     }
@@ -194,10 +192,10 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
         console.log('user status from logout', authservice.getUserStatus());
         $scope.user_id = null;
         $scope.userPlan = undefined;
+        $scope.resetDivs();
         $scope.activities.forEach(function (activity) {
           activity.inUserPlan = false;
         })
-        $scope.plan.open = false;
         $location.path('/');
       });
   }
@@ -242,7 +240,7 @@ app.controller('registerController',
         // handle error
         .catch(function () {
           $scope.error = true;
-          $scope.errorMessage = "Something went wrong!";
+          $scope.errorMessage = "User already registered, please login!";
           $scope.disabled = false;
           $scope.registerForm = {};
         });
@@ -255,7 +253,6 @@ app.controller('activitiesController',
   ['$scope', '$location', '$http', function ($scope, $location, $http) {
 
     $scope.addActivity = function (activity) {
-      console.log('activity in activitiesController', activity);
       //send form data to database here? or from /activities route?
       $http.post('/activities', activity);
       $scope.activity = {};

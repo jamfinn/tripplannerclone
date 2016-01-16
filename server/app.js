@@ -23,7 +23,7 @@ var express = require('express'),
 mongoose.connect('mongodb://' + process.env.MONGOLAB_URI);
 
 // user schema/model
-var User = require('./models/user.js');//need this, because used later in app.js
+var User = require('./models/user.js'); // need this, because used later in app.js
 
 // create instance of express
 var app = express();
@@ -45,7 +45,7 @@ app.use(expressSession({
     resave: false,
     saveUninitialized: false
 }));
-console.log('after keyboard cat');
+console.log('cat is dancing');
 app.use(passport.initialize());
 app.use(passport.session());
 

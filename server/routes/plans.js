@@ -26,10 +26,13 @@ router.post('/', function(req, res) {
         })
       } // if not already in plan
       else if (doc.plan.indexOf(req.body.activity) === -1) {
-        console.log('activity added to plan');
+        console.log('type of req.body.activity: ', typeof req.body.activity);
         doc.plan.push(req.body.activity)
         console.log('plan to be added: ', doc);
-        Plan.update(doc, function (){
+        // doc.save(function (){
+        //   res.send(doc)
+        // })
+        Plan.update({user: req.body.user}, {plan: doc.plan}, function (){
           res.send(doc)
         })
       } else { // already in plan
@@ -53,12 +56,15 @@ router.post('/:id', function(req, res) {
   Plan.findOne({user: req.params.id}, function(err, doc){
     if (err) throw err;
     var index = doc.plan.indexOf(req.body.activity)
-    console.log('index', index);
     doc.plan.splice(index, 1)
-    Plan.update({user: req.params.id}, doc, function (err, doc) {
+    Plan.update({user: req.params.id}, {plan: doc.plan}, function (err, doc) {
       console.log(doc.plan);
       res.send(doc);
     })
+    // Plan.update({user: req.params.id}, doc, function (err, doc) {
+    //   console.log(doc.plan);
+    //   res.send(doc);
+    // })
   });
 });
 
