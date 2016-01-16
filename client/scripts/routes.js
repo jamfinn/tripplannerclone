@@ -11,8 +11,8 @@ app.config(function ($routeProvider) {
       controller: 'homeController'
     })
     .when('/plan/:id', {
-      templateUrl: './partials/home.html',
-      controller: 'homeController'
+      templateUrl: './partials/plan.html',
+      controller: 'planController'
     })
     .when('/login', {
       templateUrl: './partials/login.html',

@@ -786,6 +786,10 @@ header {
     header .status p {
       display: inline-block;
       margin-bottom: 0; }
+      header .status p a {
+        color: #7470a9; }
+      header .status p a:hover {
+        color: #333333; }
     header .status h3 {
       display: inline-block;
       margin-right: .5em; }
@@ -801,14 +805,14 @@ header {
     width: 100%; }
   .hero .title {
     position: absolute;
-    top: 8vh;
+    top: 40px;
     left: 20px;
     color: white; }
   .hero button {
     background-color: #7470a9;
     position: absolute;
-    top: 28vh;
-    right: 16vw;
+    bottom: 20px;
+    right: 30px;
     border: none;
     border-radius: 4px; }
 

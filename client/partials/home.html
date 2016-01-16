@@ -3,7 +3,7 @@
   <div class="status">
     <h3 ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h3>
     <p ng-show="user_id" ng-click="logout()">logout</p>
-    <p ng-show="!user_id" ng-click="login()">login</p>
+    <p ng-show="!user_id"><a href="/#/register">Sign Up</a> | <a href="/#/login">Login</a></p>
   </div>
 </header>
 

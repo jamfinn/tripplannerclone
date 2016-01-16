@@ -42,6 +42,53 @@ app.controller('loginController', ['$scope', '$location', 'AuthService', 'Activi
     };
 }]);
 
+app.controller('registerController',
+  ['$scope', '$location', 'AuthService', 'ActivityService',
+  function ($scope, $location, AuthService, ActivityService) {
+
+    console.log(authservice.getUserStatus());
+
+    $scope.register = function () {
+
+      // initial values
+      $scope.error = false;
+      $scope.disabled = true;
+
+      // call register from service
+      authservice.register($scope.registerForm.username, $scope.registerForm.password)
+        // handle success
+        .then(function () {
+          $scope.disabled = false;
+          $scope.registerForm = {};
+          var savedActivity = activityservice.getSavedActivity();
+          activityservice.saveClickedActivity(undefined) // dispose of clicked activity
+          console.log('is there a saved activity?', savedActivity);
+          var user = authservice.getUserStatus();
+
+          if (savedActivity) {
+            console.log('saved acivity should be defined: ', savedActivity);
+            console.log('here is how user is defined: ', user);
+            planservice.addToPlan(user, savedActivity._id).then(function(){ // add saved activity to plan
+              savedActivity = undefined // dispose of saved activity
+              console.log('saved activity should be undefined: ', savedActivity);
+              $location.path('/')
+            })
+          } else {
+          $location.path('/');
+          }
+        })
+        // handle error
+        .catch(function () {
+          $scope.error = true;
+          $scope.errorMessage = "User already registered, please login!";
+          $scope.disabled = false;
+          $scope.registerForm = {};
+        });
+
+    };
+
+}]);
+
 app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
   console.log('route params: ', $routeParams);
 
@@ -86,20 +133,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       })
     }
   })
-
-  // if $routeParams.id go get plan id
-  if ($routeParams.id) {
-    console.log('got an id!');
-    planservice.getPlans().then(function(plans) {
-      plans.forEach(function(plan){
-        if (plan._id === $routeParams.id) { // need to at this point go get the plan to display in a new div, not the "myPlan" div…
-          // need to write the getPlan function to get the Plan from the url parameters
-          $scope.showPlan = plan
-          console.log($scope.showPlan);
-        }
-      })
-    })
-  }
 
   //get userPlan if user has one
   if ($scope.user_id) {
@@ -202,50 +235,25 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 
 }]);
 
-app.controller('registerController',
-  ['$scope', '$location', 'AuthService', 'ActivityService',
-  function ($scope, $location, AuthService, ActivityService) {
+app.controller('planController',
+  ['$scope', '$location', '$http', '$routeParams', 'PlanService', 'ActivityService', function ($scope, $location, $http, $routeParams, PlanService, ActivityService) {
 
-    console.log(authservice.getUserStatus());
+    console.log($routeParams.id);
 
-    $scope.register = function () {
+    planservice.getPlans().then(function(plans) {
+      plans.forEach(function(plan){
+        if (plan._id === $routeParams.id) { // need to at this point go get the plan to display in a new div, not the "myPlan" div…
+          // need to write the getPlan function to get the Plan from the url parameters
+          $scope.showPlan = plan
+        }
+      })
+    })
+    console.log($scope.showPlan);
 
-      // initial values
-      $scope.error = false;
-      $scope.disabled = true;
+    activityservice.getActivities().then(function (docs) {
+      $scope.activities = docs
+    })
 
-      // call register from service
-      authservice.register($scope.registerForm.username, $scope.registerForm.password)
-        // handle success
-        .then(function () {
-          $scope.disabled = false;
-          $scope.registerForm = {};
-          var savedActivity = activityservice.getSavedActivity();
-          activityservice.saveClickedActivity(undefined) // dispose of clicked activity
-          console.log('is there a saved activity?', savedActivity);
-          var user = authservice.getUserStatus();
-
-          if (savedActivity) {
-            console.log('saved acivity should be defined: ', savedActivity);
-            console.log('here is how user is defined: ', user);
-            planservice.addToPlan(user, savedActivity._id).then(function(){ // add saved activity to plan
-              savedActivity = undefined // dispose of saved activity
-              console.log('saved activity should be undefined: ', savedActivity);
-              $location.path('/')
-            })
-          } else {
-          $location.path('/');
-          }
-        })
-        // handle error
-        .catch(function () {
-          $scope.error = true;
-          $scope.errorMessage = "User already registered, please login!";
-          $scope.disabled = false;
-          $scope.registerForm = {};
-        });
-
-    };
 
 }]);
 

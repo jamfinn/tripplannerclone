@@ -214,3 +214,37 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
 
     return activityservice;
 }]);
+
+app.factory('UserService', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
+
+  userservice = {}
+
+    userservice.getFname = function () {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      $http.get('/activities/').success(function (docs) {
+        deferred.resolve(docs);
+      })
+
+      // handle error
+      .error(function (data) {
+        deferred.reject();
+      });
+
+      // return promise object
+      return deferred.promise;
+    }
+
+    activityservice.saveClickedActivity = function (activity) {
+      console.log('saving activity', activity);
+        savedActivity = activity
+    }
+
+    activityservice.getSavedActivity = function () {
+      console.log('getting saved activity', savedActivity);
+      return savedActivity;
+    }
+
+    return activityservice;
+}]);
