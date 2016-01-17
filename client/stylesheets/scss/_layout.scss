@@ -213,6 +213,9 @@ footer {
   text-align: center;
   margin: 0 auto;
   width: 300px;
+  p {
+    margin-bottom: .5em;
+  }
   a {
     color: transparentize(white, .1);
   }
