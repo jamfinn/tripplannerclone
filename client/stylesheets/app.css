@@ -849,6 +849,24 @@ article.seven {
     margin-left: .3em;
     font-size: 1.4em;
     color: #71aaaa; }
+  .accordian .shareBox {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: white;
+    padding: 0 0.4em;
+    margin: 0 auto; }
+
+.fa-facebook-square {
+  color: #3b5998; }
+
+.fa-twitter-square {
+  color: #00aced; }
+
+.fa-pinterest-square {
+  color: #dd4b39; }
+
+.fa-envelope-square {
+  color: black; }
 
 .activityBox {
   margin: 0 auto;
@@ -884,12 +902,6 @@ article.seven {
     z-index: 1; }
   .activityBox .delete {
     color: brown; }
-  .activityBox .fa-facebook-square {
-    color: #3b5998; }
-  .activityBox .fa-twitter-square {
-    color: #00aced; }
-  .activityBox .fa-pinterest-square {
-    color: #dd4b39; }
   .activityBox .title {
     font-size: 1em;
     font-weight: bold;

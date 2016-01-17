@@ -75,7 +75,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/user/register', {username: username, password: password})
+      $http.post('/user/register', {username: username, password: password, fname: fname, lname:lname})
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.user_id){
@@ -109,6 +109,29 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
       $http.get('/plans/').success(function (docs) {
         deferred.resolve(docs);
+      })
+
+      // handle error
+      .error(function (data) {
+        deferred.reject();
+      });
+
+      // return promise object
+      return deferred.promise;
+    }
+
+    planservice.getPlanId = function (user) {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      $http.get('/plans/').success(function (docs) {
+        console.log('docs from get plans', docs);
+        docs.forEach(function(doc) {
+          if (doc.user === user) {
+            console.log('found user plan, id is: ', doc._id);
+            deferred.resolve(doc._id);
+          }
+        })
       })
 
       // handle error
@@ -236,15 +259,5 @@ app.factory('UserService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       return deferred.promise;
     }
 
-    activityservice.saveClickedActivity = function (activity) {
-      console.log('saving activity', activity);
-        savedActivity = activity
-    }
-
-    activityservice.getSavedActivity = function () {
-      console.log('getting saved activity', savedActivity);
-      return savedActivity;
-    }
-
-    return activityservice;
+    return userservice;
 }]);

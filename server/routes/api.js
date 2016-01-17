@@ -17,14 +17,12 @@ router.get('/', function (req, res) {
 
 router.post('/register', function(req, res) {
   console.log('hello from /register route', req.body);
-  User.register(new User({ username: req.body.username}), req.body.password, function(err, account) {
+  User.register(new User({ username: req.body.username}), req.body.password, req.body.fname, req.body.lname, function(err, account) {
     if (err) {
       console.log(err);
       return res.status(500).json({err: err})
     }
     passport.authenticate('local')(req, res, function () {
-      console.log('what is this?', req.user._id);
-      console.log('what type is user id? ', typeof req.user._id)
       return res.status(200).json({status: 'Registration successful!', user_id: req.user._id})
     });
   })
@@ -41,9 +39,6 @@ router.post('/login', function(req, res, next) {
       if (err) {
         return res.status(500).json({err: 'Could not log in user'})
       }
-      console.log('what is user on login? ', user);
-      console.log('what is type of user._id? ', typeof user._id);
-      console.log('just plain user._id: ', user._id);
       res.status(200).json({status: 'Login successful!', user_id: user._id})
     });
   })(req, res, next);

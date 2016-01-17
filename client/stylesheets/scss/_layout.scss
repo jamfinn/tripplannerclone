@@ -115,10 +115,31 @@ article.seven {
     font-size: 1.4em;
     color: lighten($green, 20%);
   }
+  .shareBox {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: white;
+    padding: 0 .4em;
+    margin: 0 auto;
+  }
 }
 
+
+.fa-facebook-square {
+  color: $facebook;
+ }
+.fa-twitter-square {
+  color: $twitter;
+ }
+.fa-pinterest-square {
+  color: $google;
+ }
+ .fa-envelope-square {
+   color: black;
+ }
+
+
 .activityBox {
-  // background-color: red;
   margin: 0 auto;
   width: 98vw;
   max-width: 960px;
@@ -160,16 +181,6 @@ article.seven {
    .delete {
      color: brown;
     }
-   .fa-facebook-square {
-     color: $facebook;
-    }
-   .fa-twitter-square {
-     color: $twitter;
-    }
-   .fa-pinterest-square {
-     color: $google;
-    }
-
    .title {
      font-size: 1em;
      font-weight: bold;

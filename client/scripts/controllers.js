@@ -55,7 +55,7 @@ app.controller('registerController',
       $scope.disabled = true;
 
       // call register from service
-      authservice.register($scope.registerForm.username, $scope.registerForm.password)
+      authservice.register($scope.registerForm.username, $scope.registerForm.password, $scope.registerForm.fname, $scope.registerForm.lname)
         // handle success
         .then(function () {
           $scope.disabled = false;
@@ -120,6 +120,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   //get list of activites, open activity if url includes activity title OR if there is an activity in
   activityservice.getActivities().then(function (docs) {
     $scope.activities = docs;
+    $scope.limitStart = []
+    for (var i = 0; i < ($scope.activities.length / 3); i++) {
+      $scope.limitStart.push(i * 3)
+    }
+    console.log($scope.limitStart);
     if ($routeParams.title) { // check if a particular activity is asked for…
       $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes, actually, strip it to letters only
       console.log('title from the routeParams: ', $routeParams.title);
@@ -134,7 +139,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     }
   })
 
-  //get userPlan if user has one
+
+  //get userPlan (array of activities) and userPlan id
   if ($scope.user_id) {
     planservice.getUserPlan($scope.user_id).then(function(data) {
       if (data) {
@@ -148,6 +154,12 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       }
       console.log('user plan: ', $scope.userPlan);
     })
+    planservice.getPlanId($scope.user_id).then(function(data){
+      if (data) {
+        $scope.planId = data;
+      }
+    })
+
   } else {
     console.log('no one is logged in');
   }
