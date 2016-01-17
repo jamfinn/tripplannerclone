@@ -31,7 +31,6 @@
           <div class="activity one-third column" ng-click="reset(); activity.open=true" ng-repeat="activity in activities | myActivities: showPlan.plan | limitTo: 3: 0">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
@@ -57,7 +56,6 @@
               <p>
                 {{activity.access}}
               </p>
-              <small class="delete" ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();"><i class="fa fa-times"></i> REMOVE FROM PLAN</small>
             </div>
           </div>
         </div>
@@ -67,7 +65,6 @@
           <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 3" ng-click="reset(); activity.open=true">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
@@ -93,7 +90,6 @@
               <p>
                 {{activity.access}}
               </p>
-              <small class="delete" ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();"><i class="fa fa-times"></i> REMOVE FROM PLAN</small>
             </div>
           </div>
         </div>
@@ -103,7 +99,6 @@
           <div class="activity one-third column" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: 6" ng-click="reset(); activity.open=true">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <i class="fa fa-plus-circle greentxt"></i>
               <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
               <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
             </div>
