@@ -775,6 +775,7 @@ html {
 header {
   position: relative;
   max-height: 75px;
+  color: #7470a9;
   padding: 1vmax 2vmax;
   display: block;
   width: 100%;
@@ -782,17 +783,24 @@ header {
   color: black; }
   header .logo {
     height: 50px; }
+  header a {
+    color: black; }
+  header a:hover {
+    color: #7470a9; }
   header .status {
     position: absolute;
     bottom: .5vmax;
     right: 2vmax; }
     header .status p {
+      color: #7470a9;
       display: inline-block;
       margin-bottom: 0; }
       header .status p a {
         color: #7470a9; }
       header .status p a:hover {
         color: #333333; }
+    header .status p:hover {
+      color: #333333; }
     header .status h3 {
       display: inline-block;
       margin-right: .5em; }
@@ -926,6 +934,9 @@ article.seven {
       position: absolute;
       left: 85%;
       z-index: 1; }
+
+.dummy h4 {
+  font-size: 1em; }
 
 footer {
   height: 150px; }

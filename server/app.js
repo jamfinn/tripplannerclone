@@ -109,35 +109,10 @@ function(identifier, profile, done) {
 }
 ));
 
-// serialize and deserialize
-// passport.serializeUser(function(user, done) {
-//  console.log('serializeUser: ' + user._id)
-//  done(null, user._id);
-// });
-// passport.deserializeUser(function(id, done) {
-//  User.findById(id, function(err, user){
-//      console.log(user)
-//      if(!err) done(null, user);
-//      else done(err, null)
-//  })
-// });
-
 // routes
 app.use('/user', users);
 app.use('/activities', activities);
-app.use('/plans', plans)
-
-// app.get('/', routes.index);
-// app.get('/ping', routes.ping);
-// app.get('/plans', ensureAuthenticated, function(req, res){
-//   User.findById(req.session.passport.user, function(err, user) {
-//     if(err) {
-//       console.log(err);
-//     } else {
-//       res.status(200).json({status: 'Find the plan!'});
-//     }
-//   })
-// })
+app.use('/plans', plans);
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '../client', 'index.html'));

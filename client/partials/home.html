@@ -1,7 +1,7 @@
 <header>
   <img class="logo" ng-src="../assets/images/gca-logo.jpeg" alt="Grand Canyon Association Logo">
   <div class="status">
-    <h3 ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h3>
+    <a ng-href="/#/plan/{{user_id}}"><h3 ng-show="userPlan.length">{{userPlan.length}}<i class="fa fa-calendar"></i></h3></a>
     <p ng-show="user_id" ng-click="logout()">logout</p>
     <p ng-show="!user_id"><a href="/#/register">Sign Up</a> | <a href="/#/login">Login</a></p>
   </div>
@@ -19,24 +19,26 @@
 
   <article class="info one green" ng-show="user_id">
     <div ng-click="reset(); toggleDiv('one')">
-      <h2>My Plan {{userPlan.length}} {{planId}}<i ng-hide="info.one" class="fa fa-chevron-right"></i><i ng-show="info.one" class="fa fa-chevron-down"></i></h2>
+      <h2>{{name | capitalize }}'s Plan ({{userPlan.length}})<i ng-hide="info.one" class="fa fa-chevron-right"></i><i ng-show="info.one" class="fa fa-chevron-down"></i></h2>
     </div>
 
     <div class="accordian" ng-show="info.one">
 
-    <div class="shareBox">
-      <a ng-href="https://www.facebook.com/dialog/feed?app_id=184683071273&link=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F5694796c9b91cf110004863b&picture=https%3A%2F%2Ftriplannr.herokuapp.com%2Fassets%2Fimages%2Fgca-logo.jpeg&name=My%20plan%20for%20a%20Grand%20Canyon%20visit&caption=%20&description=Check%20out%20the%20plan%20for%20my%20visit%20to%20the%20Grand%20Canyon.&redirect_uri=http%3A%2F%2Fwww.facebook.com%2F&display=popup"><i class="fa fa-facebook-square"></i></a>
-      <a ng-href="http://twitter.com/intent/tweet?text=Here%27s%20what%20I%27m%20doing%20on%20my%20trip%20to%20the%20Grand%20Canyon%3A%20https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F5694796c9b91cf110004863b"><i class="fa fa-twitter-square"></i></a>
-      <a ng-href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F5694796c9b91cf110004863b&media=https%3A%2F%2Ftriplannr.herokuapp.com%2Fassets%2Fimages%2Fgca-logo.jpeg&description=My%20trip%20to%20the%20Grand%20Canyon%3A"><i class="fa fa-pinterest-square"></i></a>
-      <a ng-href="mailto:?subject=For%20my%20visit%20to%20the%20Grand%20Canyon&body=Here%20is%20a%20link%20to%20my%20plan%3A%0D%0Ahttps%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F5694796c9b91cf110004863b"><i class="fa fa-envelope-square"></i></i></a>
+    <div class="shareBox" ng-hide="userPlan.length === 0">
+      <a ng-href="https://www.facebook.com/dialog/feed?app_id=184683071273&link=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F{{user_id}}&picture=http%3A%2F%2Fcdn.lightgalleries.net%2F4bd5ec12b739d%2Fimages%2FGrand-Canyon-National-Park-South-Rim-AZ-13-000435_bw_vv-1.jpg&name=My%20plan%20for%20a%20Grand%20Canyon%20visit&caption=%20&description=Check%20out%20the%20plan%20for%20my%20visit%20to%20the%20Grand%20Canyon.&redirect_uri=http%3A%2F%2Fwww.facebook.com%2F&display=popup"><i class="fa fa-facebook-square"></i></a>
+      <a ng-href="http://twitter.com/intent/tweet?text=Here%27s%20what%20I%27m%20doing%20on%20my%20trip%20to%20the%20Grand%20Canyon%3A%20https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F{{user_id}}"><i class="fa fa-twitter-square"></i></a>
+      <a ng-href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F{{user_id}}&media=https%3A%2F%2Ftriplannr.herokuapp.com%2Fassets%2Fimages%2Fgca-logo.jpeg&description=My%20trip%20to%20the%20Grand%20Canyon%3A"><i class="fa fa-pinterest-square"></i></a>
+      <a ng-href="mailto:?subject=For%20my%20visit%20to%20the%20Grand%20Canyon&body=Here%20is%20a%20link%20to%20my%20plan%3A%0D%0Ahttps%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F{{user_id}}"><i class="fa fa-envelope-square"></i></i></a>
     </div>
 
       <div class="activityBox">
 
-        <div class="dummy">
-          hello{{userPlan.length}}
+        <div class="dummy activity" ng-show="userPlan.length === 0" ng-click="toggleDiv('two')">
+          <div class="imageBox">
+            <img ng-src="../assets/images/gc-img-1.png" alt="Grand Canyon">
+            <h4 class="subtitle">Add activities to your plan!</h4>
+          </div>
         </div>
-
 
         <div class="row" ng-repeat="start in limitStart">
           <div class="activity one-third column" ng-click="reset(); activity.open=true" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">

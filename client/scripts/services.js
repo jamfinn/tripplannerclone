@@ -120,34 +120,12 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       return deferred.promise;
     }
 
-    planservice.getPlanId = function (user) {
-      // create a new instance of deferred
-      var deferred = $q.defer();
-
-      $http.get('/plans/').success(function (docs) {
-        console.log('docs from get plans', docs);
-        docs.forEach(function(doc) {
-          if (doc.user === user) {
-            console.log('found user plan, id is: ', doc._id);
-            deferred.resolve(doc._id);
-          }
-        })
-      })
-
-      // handle error
-      .error(function (data) {
-        deferred.reject();
-      });
-
-      // return promise object
-      return deferred.promise;
-    }
-
     planservice.getUserPlan = function (user) {
       // create a new instance of deferred
       var deferred = $q.defer();
 
       $http.get('/plans/' + user).success(function (doc) {
+        console.log('got a user plan', doc);
         deferred.resolve(doc.plan);
       })
 
@@ -242,11 +220,12 @@ app.factory('UserService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
   userservice = {}
 
-    userservice.getFname = function () {
+    userservice.getUser = function (user) {
       // create a new instance of deferred
       var deferred = $q.defer();
-
-      $http.get('/activities/').success(function (docs) {
+      console.log('user in getFname', user);
+      $http.get('/user/' + user).success(function (docs) {
+        console.log(docs);
         deferred.resolve(docs);
       })
 

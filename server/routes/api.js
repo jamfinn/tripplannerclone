@@ -57,4 +57,16 @@ router.get('/logout', function(req, res) {
   res.status(200).json({status: 'Bye!'})
 });
 
+router.get('/:id', function(req, res) {
+  console.log("from get/:id: ", req.params.id);
+  User.findOne({_id: req.params.id}, function (err, doc) {
+    console.log('doc', doc);
+    if (err) {
+      // console.log(err);
+      return res.status(500).json({err: err})
+    }
+    return res.status(200).json(doc)
+  })
+});
+
 module.exports = router;

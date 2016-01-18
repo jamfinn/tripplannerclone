@@ -90,7 +90,7 @@ app.controller('registerController',
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams) {
+app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams, UserService) {
   console.log('route params: ', $routeParams);
 
   $scope.resetDivs = function () {
@@ -110,8 +110,15 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   $scope.resetDivs()
 
   // see if a user is logged in
-  $scope.user_id = authservice.getUserStatus();
+  $scope.user_id = authservice.getUserStatus()
   console.log('user is logged in', $scope.user_id);
+
+  userservice.getUser($scope.user_id).then(function (data) {
+    console.log(data);
+    $scope.name = data.fname;
+
+  })
+
 
   // see if any saved activities and set $scope.showActivity
   console.log ('is there a saved activity this time through?', activityservice.getSavedActivity());
@@ -155,12 +162,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       }
       $scope.toggleDiv('one')
     })
-    planservice.getPlanId($scope.user_id).then(function(data){
-      if (data) {
-        $scope.planId = data;
-      }
-    })
-
   } else {
     console.log('no one is logged in');
   }
@@ -249,24 +250,33 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 }]);
 
 app.controller('planController',
-  ['$scope', '$location', '$http', '$routeParams', 'PlanService', 'ActivityService', function ($scope, $location, $http, $routeParams, PlanService, ActivityService) {
+  ['$scope', '$location', '$http', '$routeParams', 'PlanService', 'ActivityService', 'UserService', function ($scope, $location, $http, $routeParams, PlanService, ActivityService, UserService) {
 
     console.log($routeParams.id);
-
-    planservice.getPlans().then(function(plans) {
-      plans.forEach(function(plan){
-        if (plan._id === $routeParams.id) { // need to at this point go get the plan to display in a new div, not the "myPlan" div…
-          // need to write the getPlan function to get the Plan from the url parameters
-          $scope.showPlan = plan
-        }
-      })
-    })
-    console.log($scope.showPlan);
+    $scope.user = $routeParams.id;
 
     activityservice.getActivities().then(function (docs) {
       $scope.activities = docs
+      console.log($scope.activities);
+      $scope.limitStart = []
+      for (var i = 0; i < ($scope.activities.length / 3); i++) {
+        $scope.limitStart.push(i * 3)
+      }
     })
 
+    planservice.getUserPlan($scope.user).then(function(doc) {
+      console.log('user plan: ', doc);
+      $scope.userPlan = doc;
+      $scope.activities.forEach(function (activity) {
+        if ($scope.userPlan.indexOf(activity._id) >= 0){
+          activity.inUserPlan = true;
+        }
+      })
+    })
+
+    userservice.getUser($scope.user).then(function (data) {
+      $scope.name = data.fname
+    })
 
 }]);
 
