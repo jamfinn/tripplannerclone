@@ -113,11 +113,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   $scope.user_id = authservice.getUserStatus()
   console.log('user is logged in', $scope.user_id);
 
-  userservice.getUser($scope.user_id).then(function (data) {
-    console.log(data);
-    $scope.name = data.fname;
-
-  })
 
 
   // see if any saved activities and set $scope.showActivity
@@ -148,6 +143,10 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 
   //get userPlan (array of activities) and userPlan id
   if ($scope.user_id) {
+    userservice.getUser($scope.user_id).then(function (data) {
+      console.log(data);
+      $scope.name = data.fname;
+    })
     planservice.getUserPlan($scope.user_id).then(function(data) {
       if (data) {
         $scope.userPlan = data;
