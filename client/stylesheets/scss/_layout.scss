@@ -126,7 +126,12 @@ article.seven {
     font-size: 1.4em;
     color: lighten($green, 20%);
   }
+  h2.plan {
+    display: inline-block;
+    margin-right: .3em;
+  }
   .shareBox {
+    vertical-align: text-bottom;
     display: inline-block;
     border-radius: 4px;
     background-color: white;

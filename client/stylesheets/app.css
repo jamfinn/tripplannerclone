@@ -857,7 +857,11 @@ article.seven {
     margin-left: .3em;
     font-size: 1.4em;
     color: #71aaaa; }
+  .accordian h2.plan {
+    display: inline-block;
+    margin-right: .3em; }
   .accordian .shareBox {
+    vertical-align: text-bottom;
     display: inline-block;
     border-radius: 4px;
     background-color: white;
