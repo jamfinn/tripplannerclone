@@ -15,15 +15,23 @@ router.get('/', function (req, res) {
   })
 })
 
-router.post('/register', function(req, res) {
-  console.log('hello from /register route', req.body);
-  User.register(new User({ username: req.body.username}), req.body.password, req.body.fname, req.body.lname, function(err, account) {
+router.post('/register', function(req, res, next) {
+  console.log('hello from /register route', req.body.userInfo);
+  var user = req.body
+  User.register(new User({username: user.username, fname: user.fname, lname: user.lname}), user.password, function(err, account) {
+    console.log('account parameter from User.register ', account);
     if (err) {
-      console.log(err);
+      console.log('error in passport register', err);
       return res.status(500).json({err: err})
     }
     passport.authenticate('local')(req, res, function () {
-      return res.status(200).json({status: 'Registration successful!', user_id: req.user._id})
+    //   console.log('in authenticate');
+      req.session.save(function (err) {
+        if (err) {
+          return next(err);
+        }
+        res.status(200).json({status: 'Login successful!', user_id: account._id})
+      });
     });
   })
 });

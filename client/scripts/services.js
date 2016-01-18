@@ -69,13 +69,13 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     };
 
-    authservice.register = function(username, password) {
+    authservice.register = function(userInfo) {
 
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/user/register', {username: username, password: password, fname: fname, lname:lname})
+      $http.post('/user/register', userInfo)
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.user_id){

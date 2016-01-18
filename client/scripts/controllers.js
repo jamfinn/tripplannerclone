@@ -55,7 +55,8 @@ app.controller('registerController',
       $scope.disabled = true;
 
       // call register from service
-      authservice.register($scope.registerForm.username, $scope.registerForm.password, $scope.registerForm.fname, $scope.registerForm.lname)
+      console.log($scope.registerForm);
+      authservice.register($scope.registerForm)
         // handle success
         .then(function () {
           $scope.disabled = false;
@@ -66,7 +67,7 @@ app.controller('registerController',
           var user = authservice.getUserStatus();
 
           if (savedActivity) {
-            console.log('saved acivity should be defined: ', savedActivity);
+            console.log('saved activity should be defined: ', savedActivity);
             console.log('here is how user is defined: ', user);
             planservice.addToPlan(user, savedActivity._id).then(function(){ // add saved activity to plan
               savedActivity = undefined // dispose of saved activity
@@ -124,7 +125,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     for (var i = 0; i < ($scope.activities.length / 3); i++) {
       $scope.limitStart.push(i * 3)
     }
-    console.log($scope.limitStart);
     if ($routeParams.title) { // check if a particular activity is asked for…
       $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes, actually, strip it to letters only
       console.log('title from the routeParams: ', $routeParams.title);
@@ -139,20 +139,21 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     }
   })
 
-
   //get userPlan (array of activities) and userPlan id
   if ($scope.user_id) {
     planservice.getUserPlan($scope.user_id).then(function(data) {
       if (data) {
         $scope.userPlan = data;
-        $scope.toggleDiv('one')
+        console.log('user plan: ', $scope.userPlan);
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) >= 0){
             activity.inUserPlan = true;
           }
         })
+      } else {
+        $scope.userPlan = []
       }
-      console.log('user plan: ', $scope.userPlan);
+      $scope.toggleDiv('one')
     })
     planservice.getPlanId($scope.user_id).then(function(data){
       if (data) {
@@ -176,12 +177,12 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       $scope.info[item] = false
     }
     $scope.info[div] = !temp; // div is now the opposite of what it was before
-    if ((!$scope.info.one || $scope.userPlan.length === 0) && !$scope.info.two
-      && !$scope.info.three && !$scope.info.four
-      && !$scope.info.five && !$scope.info.six
-      && !$scope.info.seven && !$scope.info.eight) {
-        $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
-      }
+    if (!$scope.info.one && !$scope.info.two
+    && !$scope.info.three && !$scope.info.four
+    && !$scope.info.five && !$scope.info.six
+    && !$scope.info.seven && !$scope.info.eight) {
+      $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
+    }
   }
 
   $scope.addToPlan = function (user, activity) {

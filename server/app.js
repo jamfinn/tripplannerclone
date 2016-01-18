@@ -10,7 +10,7 @@ var express = require('express'),
     hash = require('bcrypt-nodejs'),
     path = require('path'),
     passport = require('passport'),
-    auth = require('./authentication.js');
+    // auth = require('./authentication.js');
 
     config = require('./oauth.js'),
     localStrategy = require('passport-local').Strategy,
@@ -45,81 +45,82 @@ app.use(expressSession({
     resave: false,
     saveUninitialized: false
 }));
-console.log('cat is dancing');
 app.use(passport.initialize());
 app.use(passport.session());
+console.log('cat is dancing');
 
 // configure passport
 // passport.use(new localStrategy(User.authenticate()));//try User.createStrategy()
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+passport.use(User.createStrategy());//try User.createStrategy()
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-// passport.use(new FacebookStrategy({
-// clientID: config.facebook.clientID,
-// clientSecret: config.facebook.clientSecret,
-// callbackURL: config.facebook.callbackURL
-// },
-// function(accessToken, refreshToken, profile, done) {
-//   User.findOne({ oauthID: profile.id }, function(err, user) {
-//   if(err) { console.log(err); }
-//   if (!err && user != null) {
-//     done(null, user);
-//   } else {
-//     console.log('facebook user profile', profile);
-//     var user = new User({
-//       oauthID: profile.id,
-//       name: profile.displayName,
-//       created: Date.now()
-//     });
-//     user.save(function(err) {
-//       if(err) {
-//         console.log(err);
-//       } else {
-//         console.log("saving user ...");
-//         done(null, user);
-//       };
-//     });
-//   };
-//   });
-// }
-// ));
-//
-// passport.use(new TwitterStrategy({
-//  consumerKey: config.twitter.consumerKey,
-//  consumerSecret: config.twitter.consumerSecret,
-//  callbackURL: config.twitter.callbackURL
-// },
-// function(accessToken, refreshToken, profile, done) {
-//  process.nextTick(function () {
-//    return done(null, profile);
-//  });
-// }
-// ));
-//
-// passport.use(new GoogleStrategy({
-//  returnURL: config.google.returnURL,
-//  realm: config.google.realm
-// },
-// function(identifier, profile, done) {
-//  process.nextTick(function () {
-//    profile.identifier = identifier;
-//    return done(null, profile);
-//  });
-// }
-// ));
+passport.use(new FacebookStrategy({
+clientID: config.facebook.clientID,
+clientSecret: config.facebook.clientSecret,
+callbackURL: config.facebook.callbackURL
+},
+function(accessToken, refreshToken, profile, done) {
+  User.findOne({ oauthID: profile.id }, function(err, user) {
+  if(err) { console.log(err); }
+  if (!err && user != null) {
+    done(null, user);
+  } else {
+    console.log('facebook user profile', profile);
+    var user = new User({
+      oauthID: profile.id,
+      name: profile.displayName,
+      created: Date.now()
+    });
+    user.save(function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("saving user ...");
+        done(null, user);
+      };
+    });
+  };
+  });
+}
+));
+
+passport.use(new TwitterStrategy({
+ consumerKey: config.twitter.consumerKey,
+ consumerSecret: config.twitter.consumerSecret,
+ callbackURL: config.twitter.callbackURL
+},
+function(accessToken, refreshToken, profile, done) {
+ process.nextTick(function () {
+   return done(null, profile);
+ });
+}
+));
+
+passport.use(new GoogleStrategy({
+ returnURL: config.google.returnURL,
+ realm: config.google.realm
+},
+function(identifier, profile, done) {
+ process.nextTick(function () {
+   profile.identifier = identifier;
+   return done(null, profile);
+ });
+}
+));
 
 // serialize and deserialize
-passport.serializeUser(function(user, done) {
- console.log('serializeUser: ' + user._id)
- done(null, user._id);
-});
-passport.deserializeUser(function(id, done) {
- User.findById(id, function(err, user){
-     console.log(user)
-     if(!err) done(null, user);
-     else done(err, null)
- })
-});
+// passport.serializeUser(function(user, done) {
+//  console.log('serializeUser: ' + user._id)
+//  done(null, user._id);
+// });
+// passport.deserializeUser(function(id, done) {
+//  User.findById(id, function(err, user){
+//      console.log(user)
+//      if(!err) done(null, user);
+//      else done(err, null)
+//  })
+// });
 
 // routes
 app.use('/user', users);
@@ -138,10 +139,10 @@ app.use('/plans', plans)
 //   })
 // })
 
-// app.get('/', function(req, res) {
-//   res.sendFile(path.join(__dirname, '../client', 'index.html'));
-//   // res.render('login', { user: req.user });
-// });
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '../client', 'index.html'));
+  // res.render('login', { user: req.user });
+});
 
 app.get('/auth/facebook',
 passport.authenticate('facebook'),

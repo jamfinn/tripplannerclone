@@ -33,6 +33,10 @@
 
       <div class="activityBox">
 
+        <div class="dummy">
+          hello{{userPlan.length}}
+        </div>
+
 
         <div class="row" ng-repeat="start in limitStart">
           <div class="activity one-third column" ng-click="reset(); activity.open=true" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
