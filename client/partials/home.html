@@ -41,7 +41,7 @@
         </div>
 
         <div class="row" ng-repeat="start in limitStart">
-          <div class="activity one-third column" ng-click="reset(); activity.open=true" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
+          <div class="activity one-third column" ng-click="reset(); activity.open=true $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
             <div class="imageBox">
               <img ng-src={{activity.image}} alt="{{activity.title}}">
               <i class="fa fa-plus-circle greentxt"></i>
@@ -352,21 +352,23 @@
 <footer>
   <section class="green">
     <div class="row">
-    <div class="one column"><img class="shield" ng-src="../assets/images/footer-national_forest_service.png" alt=""></div>
-    <div class="eleven columns">
-      <small>
-        The Grand Canyon Association is the official nonprofit partner of Grand Canyon National Park. For more information about the Grand Canyon National Park, visit http://www.nps.gov/grca
-      </small>
+      <div class="one column"><img class="shield" ng-src="../assets/images/footer-national_forest_service.png" alt=""></div>
+      <div class="eleven columns">
+        <small>
+          The Grand Canyon Association is the official nonprofit partner of Grand Canyon National Park. For more information about the Grand Canyon National Park, visit http://www.nps.gov/grca
+        </small>
+      </div>
     </div>
-  </div>
-
-</section> <section class="copyright"> <small> Copyright text goes here.
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices
-  sodales felis, non porta massa tincidunt ut. Sed a urna orci. Donec ac
-  pharetra lectus. Mauris placerat arcu eget viverra vulputate. Mauris finibus
-  tempus ligula, id pellentesque sapien luctus vitae. Integer sodales interdum
-  sagittis. Vestibulum tellus neque, consectetur non ante euismod, laoreet
-  rutrum urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-  posuere cubilia Curae; In ut malesuada nisi. Phasellus eu est ac nunc accumsan
-  lacinia. Quisque quis facilisis enim, a dictum sem. </small> </section>
-  </footer>
+  </section>
+  <section class="copyright">
+    <small> Copyright text goes here.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices
+    sodales felis, non porta massa tincidunt ut. Sed a urna orci. Donec ac
+    pharetra lectus. Mauris placerat arcu eget viverra vulputate. Mauris finibus
+    tempus ligula, id pellentesque sapien luctus vitae. Integer sodales interdum
+    sagittis. Vestibulum tellus neque, consectetur non ante euismod, laoreet
+    rutrum urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+    posuere cubilia Curae; In ut malesuada nisi. Phasellus eu est ac nunc accumsan
+    lacinia. Quisque quis facilisis enim, a dictum sem. </small>
+  </section>
+</footer>

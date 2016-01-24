@@ -92,6 +92,16 @@ header {
   }
 }
 
+.link {
+  padding: 1em;
+  text-align: center;
+  button {
+    border-radius: 4px;
+    background-color: $purple;
+    margin: 0 auto;
+  }
+}
+
 article {
   padding: 20px;
 }

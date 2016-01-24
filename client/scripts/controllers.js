@@ -277,6 +277,12 @@ app.controller('planController',
       $scope.name = data.fname
     })
 
+    $scope.reset = function () { // resets all activities to closed
+      $scope.activities.forEach(function (activity) {
+        activity.open = false;
+      })
+    }
+    
 }]);
 
 app.controller('activitiesController',

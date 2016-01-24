@@ -469,6 +469,10 @@ th {
   background: #447171;
   color: white; }
 
+.gray {
+  background: #4a5157;
+  color: white; }
+
 .greentxt {
   color: #447171; }
 
@@ -826,6 +830,14 @@ header {
     right: 30px;
     border: none;
     border-radius: 4px; }
+
+.link {
+  padding: 1em;
+  text-align: center; }
+  .link button {
+    border-radius: 4px;
+    background-color: #7470a9;
+    margin: 0 auto; }
 
 article {
   padding: 20px; }
