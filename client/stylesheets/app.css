@@ -906,10 +906,19 @@ article.seven {
       max-width: 300px;
       position: relative;
       margin: 0 auto;
-      overflow: hidden;
-      -webkit-box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
-      -moz-box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8);
-      box-shadow: inset -33px 67px 30px -13px rgba(255, 255, 255, 0.8); }
+      overflow: hidden; }
+      .activityBox .activity .imageBox .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, white), color-stop(1, transparent));
+        background-image: -o-linear-gradient(bottom, white 0%, transparent 100%);
+        background-image: -moz-linear-gradient(bottom, white 0%, transparent 100%);
+        background-image: -webkit-linear-gradient(bottom, white 0%, transparent 100%);
+        background-image: -ms-linear-gradient(bottom, white 0%, transparent 100%);
+        background-image: linear-gradient(to bottom, white 0%, transparent 100%); }
       .activityBox .activity .imageBox h4 {
         padding: 0; }
       .activityBox .activity .imageBox h4:hover {
@@ -931,11 +940,11 @@ article.seven {
     font-weight: bold;
     padding: 2em;
     position: absolute;
-    top: 40px;
+    top: 44px;
     left: 20px; }
   .activityBox .subtitle {
     position: absolute;
-    top: 20px;
+    top: 18px;
     left: 20px; }
   .activityBox .details {
     position: relative;
@@ -958,6 +967,9 @@ footer {
   height: 150px; }
   footer .green {
     padding: 1vmax 2vmax; }
+  footer .copyright {
+    padding: 1vmax 2vmax;
+    background: #b1b7bc; }
 
 .auth {
   padding: .5em 0;
