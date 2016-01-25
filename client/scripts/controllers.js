@@ -140,7 +140,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     }
   })
 
-
   //get userPlan (array of activities) and userPlan id
   if ($scope.user_id) {
     userservice.getUser($scope.user_id).then(function (data) {
@@ -152,10 +151,12 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
         $scope.userPlan = data;
         $scope.planStart = activityservice.getRowArray(data, $scope.columns);
         console.log('user plan: ', $scope.userPlan);
-        $scope.activities.forEach(function (activity) {
-          if ($scope.userPlan.indexOf(activity._id) >= 0){
-            activity.inUserPlan = true;
-          }
+        activityservice.getActivities().then(function (docs) {
+          $scope.activities.forEach(function (activity) {
+            if ($scope.userPlan.indexOf(activity._id) >= 0){
+              activity.inUserPlan = true;
+            }
+          })
         })
       } else {
         $scope.userPlan = []
