@@ -265,24 +265,32 @@ app.controller('planController',
 
     planservice.getUserPlan($scope.user).then(function(doc) {
       console.log('user plan: ', doc);
-      $scope.userPlan = doc;
-      $scope.activities.forEach(function (activity) {
-        if ($scope.userPlan.indexOf(activity._id) >= 0){
-          activity.inUserPlan = true;
-        }
-      })
+      if (!doc) {
+        console.log("no plan!");
+        $scope.user = undefined;
+      } else {
+        $scope.userPlan = doc;
+        $scope.activities.forEach(function (activity) {
+          if ($scope.userPlan.indexOf(activity._id) >= 0){
+            activity.inUserPlan = true;
+          }
+        })
+      }
     })
 
     userservice.getUser($scope.user).then(function (data) {
-      $scope.name = data.fname
+      if (data) {
+        $scope.name = data.fname
+      }
     })
+
 
     $scope.reset = function () { // resets all activities to closed
       $scope.activities.forEach(function (activity) {
         activity.open = false;
       })
     }
-    
+
 }]);
 
 app.controller('activitiesController',

@@ -369,11 +369,7 @@ th {
 .columns {
   width: 100%;
   float: left;
-  margin-left: .5em; }
-
-.column:first-child,
-.columns:first-child {
-  margin-left: 0; }
+  margin: 0; }
 
 .one-half.column {
   width: 48%; }
@@ -390,7 +386,8 @@ th {
     width: 100%; }
   .column,
   .columns {
-    margin-left: .5em; }
+    margin-left: 2%; }
+  margin-left: 0;
   .one.column,
   .one.columns {
     width: 4.66666666667%; }
@@ -841,6 +838,14 @@ header {
 
 article {
   padding: 20px; }
+  article .shareBox {
+    font-size: 20px;
+    margin-left: 1em;
+    display: inline;
+    border-radius: 4px;
+    background-color: white;
+    padding: 0 0.4em;
+    margin: 0 auto; }
 
 article.two {
   background-color: #33373b; }
@@ -872,13 +877,6 @@ article.seven {
   .accordian h2.plan {
     display: inline-block;
     margin-right: .3em; }
-  .accordian .shareBox {
-    vertical-align: text-bottom;
-    display: inline-block;
-    border-radius: 4px;
-    background-color: white;
-    padding: 0 0.4em;
-    margin: 0 auto; }
 
 .fa-facebook-square {
   color: #3b5998; }
@@ -893,15 +891,18 @@ article.seven {
   color: black; }
 
 .activityBox {
+  position: relative;
   margin: 0 auto;
-  width: 98vw;
+  width: 100%;
   max-width: 960px; }
+  .activityBox .big {
+    width: 100%; }
   .activityBox .activity {
-    margin: .5em;
-    z-index: +1;
+    padding: 1em;
+    margin: 0 auto;
     position: relative;
     color: black;
-    max-width: 300px; }
+    height: 100%; }
     .activityBox .activity .imageBox {
       max-width: 300px;
       position: relative;
@@ -913,52 +914,61 @@ article.seven {
         left: 0;
         height: 100%;
         width: 100%;
+        z-index: 1;
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, white), color-stop(1, transparent));
         background-image: -o-linear-gradient(bottom, white 0%, transparent 100%);
         background-image: -moz-linear-gradient(bottom, white 0%, transparent 100%);
         background-image: -webkit-linear-gradient(bottom, white 0%, transparent 100%);
         background-image: -ms-linear-gradient(bottom, white 0%, transparent 100%);
         background-image: linear-gradient(to bottom, white 0%, transparent 100%); }
-      .activityBox .activity .imageBox h4 {
-        padding: 0; }
-      .activityBox .activity .imageBox h4:hover {
+      .activityBox .activity .imageBox .title {
+        padding: 0;
+        font-size: 1em;
+        font-weight: bold;
+        position: absolute;
+        top: 44px;
+        left: 10px;
+        z-index: 2; }
+      .activityBox .activity .imageBox .title:hover {
         color: rgba(0, 0, 0, 0.8);
         text-shadow: 0px 0px 13px #e1e1e1; }
+      .activityBox .activity .imageBox .subtitle {
+        position: absolute;
+        top: 18px;
+        left: 10px;
+        z-index: 2; }
       .activityBox .activity .imageBox img {
         position: relative;
-        vertical-align: bottom;
-        z-index: -2; }
-  .activityBox .fa-plus, .activityBox .fa-plus-circle {
-    position: absolute;
-    top: 23px;
-    left: 85%;
-    z-index: 1; }
-  .activityBox .delete {
-    color: brown; }
-  .activityBox .title {
-    font-size: 1em;
-    font-weight: bold;
-    padding: 2em;
-    position: absolute;
-    top: 44px;
-    left: 20px; }
-  .activityBox .subtitle {
-    position: absolute;
-    top: 18px;
-    left: 20px; }
-  .activityBox .details {
-    position: relative;
-    margin: 0 auto;
-    background-color: white;
-    padding: 30px;
-    -webkit-box-shadow: 0 -30px 30px -6px white;
-    -moz-box-shadow: 0 -30px 30px -6px white;
-    box-shadow: 0 -30px 30px -6px white; }
-    .activityBox .details .close {
-      padding-right: 30px;
-      position: absolute;
-      left: 85%;
-      z-index: 1; }
+        vertical-align: bottom; }
+      .activityBox .activity .imageBox .detailBorder {
+        position: relative;
+        margin: 0 auto;
+        height: 30px;
+        z-index: 1;
+        background-color: white;
+        -webkit-box-shadow: 0px -20px 21px 4px white;
+        -moz-box-shadow: 0px -20px 21px 4px white;
+        box-shadow: 0px -20px 21px 4px white; }
+      .activityBox .activity .imageBox .fa-plus, .activityBox .activity .imageBox .fa-plus-circle {
+        position: absolute;
+        top: 23px;
+        left: 85%;
+        z-index: 1; }
+    .activityBox .activity .detail {
+      margin: 0 auto;
+      position: relative;
+      top: -20px;
+      background-color: white;
+      margin: 2%;
+      z-index: 2; }
+      .activityBox .activity .detail .shareBox {
+        padding-left: 1.5%; }
+      .activityBox .activity .detail .row {
+        margin-top: 1em; }
+      .activityBox .activity .detail .close {
+        margin-right: 1.5em; }
+      .activityBox .activity .detail .delete {
+        color: brown; }
 
 .dummy h4 {
   font-size: 1em; }
@@ -1018,12 +1028,12 @@ footer {
   max-height: 300px;
   overflow: hidden; }
 
-.details.ng-hide {
+.detail.ng-hide {
   transition: all 0.4s ease-out;
   max-height: 0;
   overflow: hidden; }
 
-.details {
+.detail {
   transition: all 0.4s linear;
   max-height: 2000px;
   overflow: hidden; }

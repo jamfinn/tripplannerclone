@@ -13,7 +13,7 @@
   <a href="/#/register"><button>Sign up and make a plan!</button></a>
 </div>
 
-<article class="info green accordian lone">
+<article ng-show="user" class="info green accordian lone">
 
   <h2 class="plan">{{name | capitalize:true}}'s Plan</h2>
     <div class="shareBox" ng-hide="userPlan.length === 0">
@@ -28,6 +28,7 @@
       <div class="row" ng-repeat="start in limitStart">
         <div class="activity one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
           <div class="imageBox">
+            <div class="overlay"></div>
             <img ng-src={{activity.image}} alt="{{activity.title}}">
             <h5 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
             <h4 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
