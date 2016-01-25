@@ -14,12 +14,6 @@ html {
   max-width: 960px;
 }
 
-nav {
-  // h3 {
-  //   line-height: 1.6em;
-  // }
-}
-
 header {
   position: relative;
   max-height: 75px;
@@ -101,6 +95,9 @@ header {
 
 article {
   padding: 20px;
+  h2 {
+    margin-bottom: .5em;
+  }
   .shareBox {
     font-size: 20px;
     margin-left: 1em;
@@ -177,7 +174,7 @@ article.seven {
     .imageBox {
       max-width: 300px;
       position: relative;
-      margin: 0 auto;
+      margin: .5em auto;
       overflow: hidden;
       .overlay {
         position: absolute;

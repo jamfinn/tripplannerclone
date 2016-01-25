@@ -838,6 +838,8 @@ header {
 
 article {
   padding: 20px; }
+  article h2 {
+    margin-bottom: .5em; }
   article .shareBox {
     font-size: 20px;
     margin-left: 1em;
@@ -905,7 +907,7 @@ article.seven {
     .activityBox .activity .imageBox {
       max-width: 300px;
       position: relative;
-      margin: 0 auto;
+      margin: .5em auto;
       overflow: hidden; }
       .activityBox .activity .imageBox .overlay {
         position: absolute;

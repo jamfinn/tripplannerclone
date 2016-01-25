@@ -203,6 +203,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       planservice.addToPlan(user, activity).then(function () {
         planservice.getUserPlan(user).then(function (data) {
           $scope.userPlan = data
+          $scope.userPlan = data;
+          $scope.planStart = []
+          for (var i = 0; i < ($scope.userPlan.length / 3); i++) {
+            $scope.planStart.push(i * 3)
+          }
           $scope.activities.forEach(function (activity) {
             if ($scope.userPlan.indexOf(activity._id) >= 0){
               activity.inUserPlan = true;
