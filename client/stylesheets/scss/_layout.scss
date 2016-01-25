@@ -158,107 +158,210 @@ article.seven {
    color: black;
  }
 
-.activityBox {
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 960px;
-  .big {
-    width: 100%;
+ .activityBox {
+   position: relative;
+   margin: 0 auto;
+   width: 300px;
+   .big {
+     width: 100%;
+   }
+   .activity {
+     margin: 0 auto;
+     position: relative;
+     color: black;
+     height: 100%;
+     .imageBox {
+       max-width: 300px;
+       position: relative;
+       margin: .5em auto;
+       overflow: hidden;
+       .overlay {
+         position: absolute;
+         top: 0;
+         left: 0;
+         height: 100%;
+         width: 100%;
+         z-index: 1;
+         background-image: -webkit-gradient(
+         linear,
+         left top,
+         left bottom,
+         color-stop(0, white),
+         color-stop(1, transparent)
+         );
+         background-image: -o-linear-gradient(bottom, white 0%, transparent 100%);
+         background-image: -moz-linear-gradient(bottom, white 0%, transparent 100%);
+         background-image: -webkit-linear-gradient(bottom, white 0%, transparent 100%);
+         background-image: -ms-linear-gradient(bottom, white 0%, transparent 100%);
+         background-image: linear-gradient(to bottom, white 0%, transparent 100%);
+       }
+       .title {
+         margin-right: 10px;
+         font-size: 1em;
+         font-weight: bold;
+         position: absolute;
+         top: 44px;
+         left: 10px;
+         z-index: 2;
+       }
+       .title:hover {
+         color: transparentize(black, .2);
+         text-shadow: 0px 0px 13px rgba(225, 225, 225, 1);
+       }
+       .subtitle {
+         position: absolute;
+         top: 18px;
+         left: 10px;
+         z-index: 2;
+       }
+       img {
+         position: relative;
+         vertical-align: bottom;
+       }
+       .detailBorder {
+         position: relative;
+         margin: 0 auto;
+         height: 30px;
+         z-index: 1;
+         background-color: white;
+         -webkit-box-shadow: 0px -20px 21px 4px rgba(255, 255, 255, 1);
+         -moz-box-shadow:    0px -20px 21px 4px rgba(255, 255, 255, 1);
+         box-shadow:         0px -20px 21px 4px rgba(255, 255, 255, 1);
+       }
+       .fa-plus, .fa-plus-circle{
+         position: absolute;
+         top: 18px;
+         left: 85%;
+         z-index: 1;
+       }
+     }
+     .detail {
+       padding: 15px;
+       margin: 0 auto;
+       position: relative;
+       top: -20px;
+       background-color: white;
+       z-index: 2;
+       .shareBox {
+         padding: 0;
+       }
+       .row {
+         margin-top: 1em;
+       }
+       .close {
+         margin-right: 15px;
+       }
+       .delete {
+         color: brown;
+       }
+     }
+
   }
-  .activity {
-    margin: 0 auto;
+ }
+
+ /* For devices larger than 550px */
+ @media (min-width: 550px) {
+  .activityBox {
     position: relative;
-    color: black;
-    height: 100%;
-    .imageBox {
-      max-width: 300px;
-      position: relative;
-      margin: .5em auto;
-      overflow: hidden;
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
-        background-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, white),
-        color-stop(1, transparent)
-        );
-        background-image: -o-linear-gradient(bottom, white 0%, transparent 100%);
-        background-image: -moz-linear-gradient(bottom, white 0%, transparent 100%);
-        background-image: -webkit-linear-gradient(bottom, white 0%, transparent 100%);
-        background-image: -ms-linear-gradient(bottom, white 0%, transparent 100%);
-        background-image: linear-gradient(to bottom, white 0%, transparent 100%);
-      }
-      .title {
-        padding: 0;
-        font-size: 1em;
-        font-weight: bold;
-        position: absolute;
-        top: 44px;
-        left: 10px;
-        z-index: 2;
-      }
-      .title:hover {
-        color: transparentize(black, .2);
-        text-shadow: 0px 0px 13px rgba(225, 225, 225, 1);
-      }
-      .subtitle {
-        position: absolute;
-        top: 18px;
-        left: 10px;
-        z-index: 2;
-      }
-      img {
-        position: relative;
-        vertical-align: bottom;
-      }
-      .detailBorder {
-        position: relative;
-        margin: 0 auto;
-        height: 30px;
-        z-index: 1;
-        background-color: white;
-        -webkit-box-shadow: 0px -20px 21px 4px rgba(255, 255, 255, 1);
-        -moz-box-shadow:    0px -20px 21px 4px rgba(255, 255, 255, 1);
-        box-shadow:         0px -20px 21px 4px rgba(255, 255, 255, 1);
-      }
-      .fa-plus, .fa-plus-circle{
-        position: absolute;
-        top: 23px;
-        left: 85%;
-        z-index: 1;
-      }
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
+    .big {
+      width: 100%;
     }
-    .detail {
+    .activity {
       margin: 0 auto;
       position: relative;
-      top: -20px;
-      background-color: white;
-      margin: 2%;
-      z-index: 2;
-      .shareBox {
-        padding-left: 1.5%;
+      color: black;
+      height: 100%;
+      .imageBox {
+        max-width: 300px;
+        position: relative;
+        margin: .5em auto;
+        overflow: hidden;
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          z-index: 1;
+          background-image: -webkit-gradient(
+          linear,
+          left top,
+          left bottom,
+          color-stop(0, white),
+          color-stop(1, transparent)
+          );
+          background-image: -o-linear-gradient(bottom, white 0%, transparent 100%);
+          background-image: -moz-linear-gradient(bottom, white 0%, transparent 100%);
+          background-image: -webkit-linear-gradient(bottom, white 0%, transparent 100%);
+          background-image: -ms-linear-gradient(bottom, white 0%, transparent 100%);
+          background-image: linear-gradient(to bottom, white 0%, transparent 100%);
+        }
+        .title {
+          margin-right: 10px;
+          font-size: 1em;
+          font-weight: bold;
+          position: absolute;
+          top: 44px;
+          left: 10px;
+          z-index: 2;
+        }
+        .title:hover {
+          color: transparentize(black, .2);
+          text-shadow: 0px 0px 13px rgba(225, 225, 225, 1);
+        }
+        .subtitle {
+          position: absolute;
+          top: 18px;
+          left: 10px;
+          z-index: 2;
+        }
+        img {
+          position: relative;
+          vertical-align: bottom;
+        }
+        .detailBorder {
+          position: relative;
+          margin: 0 auto;
+          height: 30px;
+          z-index: 1;
+          background-color: white;
+          -webkit-box-shadow: 0px -20px 21px 4px rgba(255, 255, 255, 1);
+          -moz-box-shadow:    0px -20px 21px 4px rgba(255, 255, 255, 1);
+          box-shadow:         0px -20px 21px 4px rgba(255, 255, 255, 1);
+        }
+        .fa-plus, .fa-plus-circle{
+          position: absolute;
+          top: 18px;
+          left: 85%;
+          z-index: 1;
+        }
+      }
+      .detail {
+        margin: 0 auto;
+        position: relative;
+        top: -20px;
+        background-color: white;
+        margin: 2%;
+        z-index: 2;
+        .shareBox {
+          padding-left: 1.5%;
+        }
+        .row {
+          margin-top: 1em;
+        }
+        .close {
+          margin-right: 1.5em;
+        }
+        .delete {
+          color: brown;
+        }
+      }
 
-      }
-      .row {
-        margin-top: 1em;
-      }
-      .close {
-        margin-right: 1.5em;
-      }
-      .delete {
-        color: brown;
-      }
-    }
-
- }
+   }
+  }
 }
 
 .dummy {

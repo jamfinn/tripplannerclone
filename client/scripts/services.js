@@ -186,6 +186,14 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
 
   var savedActivity = undefined
 
+    activityservice.getRowArray = function (activities, cols){
+      var intervals = []
+      for (var i = 0; i < activities.length / cols; i++) {
+        intervals.push(i * cols)
+      }
+      return intervals;
+    }
+
     activityservice.getActivities = function () {
       // create a new instance of deferred
       var deferred = $q.defer();

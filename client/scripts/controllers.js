@@ -90,8 +90,12 @@ app.controller('registerController',
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', '$route', '$location', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, PlanService, ActivityService, $routeParams, UserService) {
+app.controller('homeController', ['$scope', '$http', '$route', '$location', '$window', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, $window, PlanService, ActivityService, $routeParams, UserService) {
   console.log('route params: ', $routeParams);
+  $scope.columns = 1;
+  if ($window.innerWidth > 550) {
+    $scope.columns = 3;
+  }
 
   $scope.resetDivs = function () {
     $scope.info = { // a list of all divs for accordian
@@ -121,11 +125,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   //get list of activites, open activity if url includes activity title OR if there is an activity in
   activityservice.getActivities().then(function (docs) {
     $scope.activities = docs;
-    $scope.limitStart = []
-    for (var i = 0; i < ($scope.activities.length / 3); i++) {
-      $scope.limitStart.push(i * 3)
-      console.log($scope.limitStart);
-    }
+    $scope.rowStart = activityservice.getRowArray(docs, $scope.columns);
     if ($routeParams.title) { // check if a particular activity is asked for…
       $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes, actually, strip it to letters only
       console.log('title from the routeParams: ', $routeParams.title);
@@ -150,10 +150,11 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     planservice.getUserPlan($scope.user_id).then(function(data) {
       if (data) {
         $scope.userPlan = data;
-        $scope.planStart = []
-        for (var i = 0; i < ($scope.userPlan.length / 3); i++) {
-          $scope.planStart.push(i * 3)
-        }
+        $scope.planStart = activityservice.getRowArray(data, $scope.columns);
+        // $scope.planStart = []
+        // for (var i = 0; i < ($scope.userPlan.length / $scope.columns); i++) {
+        //   $scope.planStart.push(i * $scope.columns)
+        // }
         console.log('user plan: ', $scope.userPlan);
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) >= 0){
@@ -202,12 +203,13 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
       console.log("user found, add this activity to plan", activity);
       planservice.addToPlan(user, activity).then(function () {
         planservice.getUserPlan(user).then(function (data) {
-          $scope.userPlan = data
           $scope.userPlan = data;
-          $scope.planStart = []
-          for (var i = 0; i < ($scope.userPlan.length / 3); i++) {
-            $scope.planStart.push(i * 3)
-          }
+          $scope.planStart = activityservice.getRowArray(data, $scope.columns);
+          // $scope.planStart = []
+          // for (var i = 0; i < ($scope.userPlan.length / $scope.columns); i++) {
+          //   $scope.planStart.push(i * $scope.columns)
+          // }
+          // put conditional here
           $scope.activities.forEach(function (activity) {
             if ($scope.userPlan.indexOf(activity._id) >= 0){
               activity.inUserPlan = true;
@@ -223,11 +225,12 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     planservice.removeFromPlan(user, activity).then(function () {
       planservice.getUserPlan(user).then(function (data) {
         $scope.userPlan = data
-        $scope.userPlan = data;
-        $scope.planStart = []
-        for (var i = 0; i < ($scope.userPlan.length / 3); i++) {
-          $scope.planStart.push(i * 3)
-        }
+        $scope.planStart = activityservice.getRowArray(data, $scope.columns);
+
+        // $scope.planStart = []
+        // for (var i = 0; i < ($scope.userPlan.length / $scope.columns); i++) {
+        //   $scope.planStart.push(i * $scope.columns)
+        // }
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) === -1){
             activity.inUserPlan = false;
@@ -263,10 +266,15 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
 }]);
 
 app.controller('planController',
-  ['$scope', '$location', '$http', '$routeParams', 'PlanService', 'ActivityService', 'UserService', function ($scope, $location, $http, $routeParams, PlanService, ActivityService, UserService) {
+  ['$scope', '$location', '$http', '$routeParams', '$window', 'PlanService', 'ActivityService', 'UserService', function ($scope, $location, $http, $routeParams, $window, PlanService, ActivityService, UserService) {
 
     console.log($routeParams.id);
     $scope.user = $routeParams.id;
+
+    $scope.columns = 1;
+    if ($window.innerWidth > 550) {
+      $scope.columns = 3;
+    }
 
     activityservice.getActivities().then(function (docs) {
       $scope.activities = docs
@@ -284,10 +292,12 @@ app.controller('planController',
         $scope.user = undefined;
       } else {
         $scope.userPlan = doc;
-        $scope.planStart = []
-        for (var i = 0; i < ($scope.userPlan.length / 3); i++) {
-          $scope.planStart.push(i * 3)
-        }
+        $scope.planStart = activityservice.getRowArray(doc, $scope.columns);
+
+        // $scope.planStart = []
+        // for (var i = 0; i < ($scope.userPlan.length / 3); i++) {
+        //   $scope.planStart.push(i * 3)
+        // }
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) >= 0){
             activity.inUserPlan = true;

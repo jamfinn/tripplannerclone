@@ -21,7 +21,7 @@
 //   overflow:hidden;
 // }
 
- .filter.ng-hide {
+.filter.ng-hide {
   transition: all .4s linear;
   max-height: 0;
   overflow:hidden;
@@ -33,16 +33,26 @@
   overflow:hidden;
 }
 
- .detail.ng-hide {
+.detail.ng-hide {
   transition: all .4s ease-out;
   max-height: 0;
   overflow:hidden;
 }
 
 .detail {
-  transition: all .4s linear;
-  max-height: 2000px;
+  transition: all .5s ease-out;
+  max-height: 1000px;
   overflow:hidden;
+}
+
+.detailBorder.ng-hide {
+  transition: all .4s linear;
+  opacity: 0;
+}
+
+.detailBorder {
+  // transition: all .1s linear;
+  opacity: 1;
 }
 
 // .hero.ng-enter, .hero.ng-leave {

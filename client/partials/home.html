@@ -44,7 +44,7 @@
         <div class="big row" ng-repeat="start in planStart">
 
           <div class="activity">
-            <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
+            <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: columns: start">
               <div class="imageBox ">
                 <div class="overlay"></div>
                 <img ng-src={{activity.image}} alt="{{activity.title}}">
@@ -54,9 +54,9 @@
               </div>
             </div>
 
-            <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
+            <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities | myActivities: userPlan | limitTo: columns: start">
               <div class="row">
-                <div class="shareBox six columns">
+                <div class="shareBox">
                   <a ng-href="{{activity.facebookShare}}"><i class="fa fa-facebook-square"></i></a>
                   <a ng-href="{{activity.twitterShare}}"><i class="fa fa-twitter-square"></i></a>
                   <a ng-href="{{activity.pinterestShare}}"><i class="fa fa-pinterest-square"></i></a>
@@ -127,23 +127,23 @@
 
       <div class="activityBox">
 
-        <div class="big row" ng-repeat="begin in limitStart">
+        <div class="big row" ng-repeat="start in rowStart">
 
           <div class="activity">
 
-            <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | activityType: type | limitTo: 3: begin">
+            <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | activityType: type | limitTo: columns: start">
               <div class="imageBox ">
                 <div class="overlay"></div>
                 <img ng-src={{activity.image}} alt="{{activity.title}}">
                 <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
                 <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
-                <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} {{begin}}</h5>
+                <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
                 <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
                 <div class="detailBorder" ng-show="activity.open"></div>
               </div>
             </div>
 
-            <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities | activityType: type | limitTo: 3: begin">
+            <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities | activityType: type | limitTo: columns: start">
               <div class="row">
                 <div class="shareBox six columns">
                   <a ng-href="{{activity.facebookShare}}"><i class="fa fa-facebook-square"></i></a>
