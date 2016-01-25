@@ -387,7 +387,9 @@ th {
   .column,
   .columns {
     margin-left: 2%; }
-  margin-left: 0;
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
   .one.column,
   .one.columns {
     width: 4.66666666667%; }
@@ -418,6 +420,8 @@ th {
     width: 30.6666666667%; }
   .two-thirds.column {
     width: 65.3333333333%; }
+  .one-half.column {
+    width: 48%; }
   /* Offsets */
   .offset-by-one.column,
   .offset-by-one.columns {
@@ -1040,7 +1044,7 @@ article.seven {
         position: relative;
         top: -20px;
         background-color: white;
-        margin: 2%;
+        margin-right: 4%;
         z-index: 2; }
         .activityBox .activity .detail .shareBox {
           padding-left: 1.5%; }
