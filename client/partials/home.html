@@ -41,7 +41,7 @@
           </div>
         </div>
 
-        <div class="big row" ng-repeat="start in limitStart">
+        <div class="big row" ng-repeat="start in planStart">
 
           <div class="activity">
             <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
@@ -127,44 +127,63 @@
 
       <div class="activityBox">
 
-        <div class="row" ng-repeat="start in limitStart">
+        <div class="big row" ng-repeat="start in limitStart">
+
           <div class="activity" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | activityType: type | limitTo: 3: start">
 
-            <div class="details" ng-show="activity.open || showActivity.title === activity.title" >
-              <div class="imageBox">
+            <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();">
+              <div class="imageBox ">
                 <div class="overlay"></div>
                 <img ng-src={{activity.image}} alt="{{activity.title}}">
-                <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
-                <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
-                <h5 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-                <h4 ng-click="activity.open=!activity.open; showActivity=undefined; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+                <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+                <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
+                <div class="detailBorder" ng-show="activity.open"></div>
               </div>
-              <i class="fa fa-times close" ng-click="activity.open=false; showActivity=undefined; $event.stopPropagation();"></i>
+            </div>
 
-              <div class="shareBox">
-                <a ng-href="{{activity.facebookShare}}"><i class="fa fa-facebook-square"></i></a>
-                <a ng-href="{{activity.twitterShare}}"><i class="fa fa-twitter-square"></i></a>
-                <a ng-href="{{activity.pinterestShare}}"><i class="fa fa-pinterest-square"></i></a>
+            <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities">
+              <div class="row">
+                <div class="shareBox six columns">
+                  <a ng-href="{{activity.facebookShare}}"><i class="fa fa-facebook-square"></i></a>
+                  <a ng-href="{{activity.twitterShare}}"><i class="fa fa-twitter-square"></i></a>
+                  <a ng-href="{{activity.pinterestShare}}"><i class="fa fa-pinterest-square"></i></a>
+                </div>
+                <i class="fa fa-times close u-pull-right" ng-click="activity.open=false; $event.stopPropagation();"></i>
+
               </div>
-              <h5>hours</h5>
-              <p>
-                {{activity.hours}}
-              </p>
-              <h5>location</h5>
-              <p>
-                {{activity.location}}
-              </p>
-              <h5>description</h5>
-              <p>
-                {{activity.description}}
-              </p>
-              <h5>good for</h5>
-              <p>
-                {{activity.age}}
-              </p>
-              <p>
-                {{activity.access}}
-              </p>
+
+              <div class="one-third column">
+
+
+                <h5>hours</h5>
+                <p>
+                  {{activity.hours}}
+                </p>
+                <h5>location</h5>
+                <p>
+                  {{activity.location}}
+                </p>
+              </div>
+
+              <div class="one-third column">
+                <h5>description</h5>
+                <p>
+                  {{activity.description}}
+                </p>
+              </div>
+
+              <div class="one-third column">
+                <h5>good for</h5>
+                <p>
+                  {{activity.age}}
+                </p>
+                <p>
+                  {{activity.access}}
+                </p>
+                <br>
+                <small class="delete" ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();"><i class="fa fa-times"></i> REMOVE FROM PLAN</small>
+              </div>
+
             </div>
           </div>
         </div>

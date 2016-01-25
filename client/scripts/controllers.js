@@ -113,8 +113,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
   $scope.user_id = authservice.getUserStatus()
   console.log('user is logged in', $scope.user_id);
 
-
-
   // see if any saved activities and set $scope.showActivity
   console.log ('is there a saved activity this time through?', activityservice.getSavedActivity());
   $scope.showActivity = activityservice.getSavedActivity()
@@ -126,6 +124,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     $scope.limitStart = []
     for (var i = 0; i < ($scope.activities.length / 3); i++) {
       $scope.limitStart.push(i * 3)
+      console.log($scope.limitStart);
     }
     if ($routeParams.title) { // check if a particular activity is asked for…
       $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes, actually, strip it to letters only
@@ -141,6 +140,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     }
   })
 
+
   //get userPlan (array of activities) and userPlan id
   if ($scope.user_id) {
     userservice.getUser($scope.user_id).then(function (data) {
@@ -150,6 +150,10 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', 'Pla
     planservice.getUserPlan($scope.user_id).then(function(data) {
       if (data) {
         $scope.userPlan = data;
+        $scope.planStart = []
+        for (var i = 0; i < ($scope.userPlan.length / 3); i++) {
+          $scope.planStart.push(i * 3)
+        }
         console.log('user plan: ', $scope.userPlan);
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) >= 0){
