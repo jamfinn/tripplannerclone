@@ -151,10 +151,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       if (data) {
         $scope.userPlan = data;
         $scope.planStart = activityservice.getRowArray(data, $scope.columns);
-        // $scope.planStart = []
-        // for (var i = 0; i < ($scope.userPlan.length / $scope.columns); i++) {
-        //   $scope.planStart.push(i * $scope.columns)
-        // }
         console.log('user plan: ', $scope.userPlan);
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) >= 0){
@@ -205,11 +201,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
         planservice.getUserPlan(user).then(function (data) {
           $scope.userPlan = data;
           $scope.planStart = activityservice.getRowArray(data, $scope.columns);
-          // $scope.planStart = []
-          // for (var i = 0; i < ($scope.userPlan.length / $scope.columns); i++) {
-          //   $scope.planStart.push(i * $scope.columns)
-          // }
-          // put conditional here
           $scope.activities.forEach(function (activity) {
             if ($scope.userPlan.indexOf(activity._id) >= 0){
               activity.inUserPlan = true;
@@ -226,11 +217,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       planservice.getUserPlan(user).then(function (data) {
         $scope.userPlan = data
         $scope.planStart = activityservice.getRowArray(data, $scope.columns);
-
-        // $scope.planStart = []
-        // for (var i = 0; i < ($scope.userPlan.length / $scope.columns); i++) {
-        //   $scope.planStart.push(i * $scope.columns)
-        // }
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) === -1){
             activity.inUserPlan = false;
@@ -293,11 +279,6 @@ app.controller('planController',
       } else {
         $scope.userPlan = doc;
         $scope.planStart = activityservice.getRowArray(doc, $scope.columns);
-
-        // $scope.planStart = []
-        // for (var i = 0; i < ($scope.userPlan.length / 3); i++) {
-        //   $scope.planStart.push(i * 3)
-        // }
         $scope.activities.forEach(function (activity) {
           if ($scope.userPlan.indexOf(activity._id) >= 0){
             activity.inUserPlan = true;
