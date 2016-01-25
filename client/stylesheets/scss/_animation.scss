@@ -35,14 +35,14 @@
 
 .detail.ng-hide {
   transition: all .4s ease-out;
-  max-height: 0;
-  overflow:hidden;
+  height: 0;
+  // overflow:hidden;
 }
 
 .detail {
   transition: all .5s ease-out;
-  max-height: 1000px;
-  overflow:hidden;
+  height: 100%;
+  // overflow:hidden;
 }
 
 .detailBorder.ng-hide {

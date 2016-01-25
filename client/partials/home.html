@@ -90,6 +90,7 @@
                 <p>
                   {{activity.age}}
                 </p>
+                <h5>access</h5>
                 <p>
                   {{activity.access}}
                 </p>
@@ -117,7 +118,7 @@
     </div>
     <div class="accordian" ng-show="info.two || showActivity">
 
-      <p ng-click="filters.open=!filters.open;" ng-init="filters.open=false">What do you want to do? <i ng-hide="filters.open" class="fa fa-caret-right"></i><i ng-show="filters.open" class="fa fa-caret-down"></i></p>
+      <p ng-click="filters.open=!filters.open; reset()" ng-init="filters.open=false">What do you want to do? <i ng-hide="filters.open" class="fa fa-caret-right"></i><i ng-show="filters.open" class="fa fa-caret-down"></i></p>
       <div ng-show="filters.open" class="filter">
         <p>Activity type</p>
         <select ng-model="type" ng-init="type='all'">
@@ -179,6 +180,7 @@
                 <p>
                   {{activity.age}}
                 </p>
+                <h5>access</h5>
                 <p>
                   {{activity.access}}
                 </p>

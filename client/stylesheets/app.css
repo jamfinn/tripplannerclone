@@ -1115,13 +1115,11 @@ footer {
 
 .detail.ng-hide {
   transition: all 0.4s ease-out;
-  max-height: 0;
-  overflow: hidden; }
+  height: 0; }
 
 .detail {
   transition: all 0.5s ease-out;
-  max-height: 1000px;
-  overflow: hidden; }
+  height: 100%; }
 
 .detailBorder.ng-hide {
   transition: all 0.4s linear;
