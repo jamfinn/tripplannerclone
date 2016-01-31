@@ -477,6 +477,9 @@ th {
 .greentxt {
   color: #447171; }
 
+.ltgreen {
+  color: rgba(68, 113, 113, 0.3); }
+
 .pink {
   color: hotpink; }
 
@@ -1034,11 +1037,13 @@ article.seven {
           -webkit-box-shadow: 0px -20px 21px 4px white;
           -moz-box-shadow: 0px -20px 21px 4px white;
           box-shadow: 0px -20px 21px 4px white; }
-        .activityBox .activity .imageBox .fa-plus, .activityBox .activity .imageBox .fa-plus-circle {
+        .activityBox .activity .imageBox .fa-plus-circle {
           position: absolute;
           top: 18px;
           left: 85%;
           z-index: 1; }
+        .activityBox .activity .imageBox .fa-plus-circle:hover {
+          color: #447171; }
       .activityBox .activity .detail {
         margin: 0 auto;
         position: relative;

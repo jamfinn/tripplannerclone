@@ -48,6 +48,7 @@
               <div class="imageBox ">
                 <div class="overlay"></div>
                 <img ng-src={{activity.image}} alt="{{activity.title}}">
+                <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" ng-class="['fa', 'fa-plus-circle', 'greentxt']"></i>
                 <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
                 <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
                 <div class="detailBorder" ng-show="activity.open"></div>
@@ -136,8 +137,7 @@
               <div class="imageBox ">
                 <div class="overlay"></div>
                 <img ng-src={{activity.image}} alt="{{activity.title}}">
-                <i ng-hide="activity.inUserPlan" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus"></i>
-                <i ng-show="activity.inUserPlan" class="fa fa-plus-circle greentxt"></i>
+                <i ng-class="['fa', 'fa-plus-circle', {greentxt: activity.inUserPlan, ltgreen: !activity.inUserPlan}]" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus-circle"></i>
                 <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
                 <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
                 <div class="detailBorder" ng-show="activity.open"></div>
