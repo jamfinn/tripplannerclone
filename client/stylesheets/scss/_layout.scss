@@ -10,8 +10,9 @@ html {
     background-size: cover;
 }
 
-.container {
+.view {
   max-width: 960px;
+  margin: 0 auto;
 }
 
 header {
@@ -69,7 +70,7 @@ header {
   }
   .title {
     position: absolute;
-    top: 40px;
+    top: 20px;
     left: 20px;
     color: white;
   }
