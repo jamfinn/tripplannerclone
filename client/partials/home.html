@@ -123,7 +123,10 @@
       <div ng-show="filters.open" class="filter">
         <p>Activity type</p>
         <select ng-model="type" ng-init="type='all'">
-          <option ng-value="type" ng-repeat="type in ['all', 'museum', 'shopping', 'active', 'tour', 'class', 'nearby']">{{type}}</option>
+          <option ng-value="type" ng-repeat="type in ['all', 'explore/active', 'viewpoint', 'shop', 'learn', 'nearby']">{{type}}</option>
+        </select>
+        <select ng-show="type === 'explore/active'" ng-model="subtype" ng-init="subtype='all'">
+          <option ng-value="type" ng-repeat="type in ['all', 'mule ride', 'hike', 'bicycle', 'river', 'backpack']">{{subtype}}</option>
         </select>
       </div>
 
