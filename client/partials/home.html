@@ -126,7 +126,7 @@
           <option ng-value="type" ng-repeat="type in ['all', 'explore/active', 'viewpoint', 'shop', 'learn', 'nearby']">{{type}}</option>
         </select>
         <select ng-show="type === 'explore/active'" ng-model="subtype" ng-init="subtype='all'">
-          <option ng-value="type" ng-repeat="type in ['all', 'mule ride', 'hike', 'bicycle', 'river', 'backpack']">{{subtype}}</option>
+          <option ng-value="subtype" ng-repeat="subtype in ['all', 'mule ride', 'hike', 'bicycle', 'river', 'backpack']">{{subtype}}</option>
         </select>
       </div>
 
