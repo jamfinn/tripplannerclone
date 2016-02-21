@@ -16,12 +16,14 @@ var Activity = new Schema({
   shopping: Boolean,
   learn: Boolean,
   nearby: Boolean,
+  active: Boolean,
   hike: Boolean,
   backpack: Boolean,
   mule: Boolean,
   air: Boolean,
   raft: Boolean,
-  bike: Boolean
+  bike: Boolean,
+  yes: String
 }, { collection: 'activities'});
 
 module.exports = mongoose.model('activities', Activity); // compile Activity schema to a model called activities
