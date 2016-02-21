@@ -9,6 +9,7 @@ var Activity = new Schema({
   hours: String,
   location: String,
   description: String,
+  link: String,
   image: String,
   access: String,
   museum: Boolean,

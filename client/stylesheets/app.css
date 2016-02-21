@@ -892,7 +892,8 @@ article.seven {
   .accordian .fa-caret-right, .accordian .fa-caret-down {
     margin-left: .3em;
     font-size: 1.4em;
-    color: #71aaaa; }
+    color: #71aaaa;
+    vertical-align: sub; }
   .accordian h2.plan {
     display: inline-block;
     margin-right: .3em; }
