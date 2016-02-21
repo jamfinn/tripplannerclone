@@ -1,32 +1,40 @@
 <h2>Add an Activity</h2>
 <form ng-submit="addActivity(activity)">
+  <label for="rim">Rim</label>
+  <input id="rim" type="text" ng-model="activity.rim">
 <label for="title">Title</label>
 <input id="title" type="text" ng-model="activity.title">
-<label for="description">Description</label>
-<textarea name="" id="description" cols="30" rows="10" ng-model="activity.description"></textarea>
-<label for="age">Age</label>
-<input id="age" type="text" ng-model="activity.age">
-<label for="duration">Duration</label>
-<input id="duration" type="text" ng-model="activity.duration">
-<label for="fitness">Fitness</label>
-<input id="fitness" type="text" ng-model="activity.fitness">
+<label for="hours">Hours</label>
+<input id="hours" type="text" ng-model="activity.hours">
 <label for="location">Location</label>
 <input id="location" type="text" ng-model="activity.location">
+<label for="description">Description</label>
+<textarea name="" id="description" cols="30" rows="10" ng-model="activity.description"></textarea>
+<label for="image">Image</label>
+<input id="image" type="text" ng-model="activity.image">
 <label for="access">Access</label>
 <input id="access" type="text" ng-model="activity.access">
 <label for="museum">Museum</label>
 <input id="museum" type="text" ng-model="activity.museum">
+<label for="viewpoint">Viewpoint</label>
+<input id="viewpoint" type="text" ng-model="activity.viewpoint">
 <label for="shopping">Shopping</label>
 <input id="shopping" type="text" ng-model="activity.shopping">
-<label for="cost">Cost</label>
-<input id="cost" type="text" ng-model="activity.cost">
-<label for="hours">Hours</label>
-<input id="hours" type="text" ng-model="activity.hours">
-<label for="reserve">Reserve</label>
-<input id="reserve" type="text" ng-model="activity.reserve">
-<label for="image">Image</label>
-<input id="image" type="text" ng-model="activity.image">
-<label for="rim">Rim</label>
-<input id="rim" type="text" ng-model="activity.rim">
+<label for="learn">Learn</label>
+<input id="learn" type="text" ng-model="activity.learn">
+<label for="nearby">Nearby</label>
+<input id="nearby" type="text" ng-model="activity.nearby">
+<label for="hike">Hike</label>
+<input id="hike" type="text" ng-model="activity.hike">
+<label for="backpack">Backpack</label>
+<input id="backpack" type="text" ng-model="activity.backpack">
+<label for="mule">Mule</label>
+<input id="mule" type="text" ng-model="activity.mule">
+<label for="air">Air</label>
+<input id="air" type="text" ng-model="activity.air">
+<label for="raft">Raft</label>
+<input id="raft" type="text" ng-model="activity.raft">
+<label for="bike">Bike</label>
+<input id="bike" type="text" ng-model="activity.bike">
 <input type="submit" value="Add activity">
 </form>

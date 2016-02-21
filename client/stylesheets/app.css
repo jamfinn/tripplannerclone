@@ -1115,7 +1115,7 @@ footer {
 
 .accordian {
   transition: all 1s ease-in;
-  max-height: 2000px;
+  max-height: 2500px;
   overflow: hidden; }
 
 .filter.ng-hide {

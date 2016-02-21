@@ -3,20 +3,25 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var Activity = new Schema({
-  title: String,
-  description: String,
-  duration: String,
-  image: String,
   rim: String,
-  location: String,
-  museum: Boolean,
-  shopping: Boolean,
-  age: String,
-  access: String,
-  cost: String,
+  title: String,
+  type: String, // activity or lodging
   hours: String,
-  fitness: String,
-  reserve: String
+  location: String,
+  description: String,
+  image: String,
+  access: String,
+  museum: Boolean,
+  viewpoint: Boolean,
+  shopping: Boolean,
+  learn: Boolean,
+  nearby: Boolean,
+  hike: Boolean,
+  backpack: Boolean,
+  mule: Boolean,
+  air: Boolean,
+  raft: Boolean,
+  bike: Boolean
 }, { collection: 'activities'});
 
 module.exports = mongoose.model('activities', Activity); // compile Activity schema to a model called activities
