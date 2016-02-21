@@ -244,6 +244,9 @@ article.seven {
        top: -20px;
        background-color: white;
        z-index: 2;
+       a {
+         color: steelblue;
+       }
        .shareBox {
          padding: 0;
        }

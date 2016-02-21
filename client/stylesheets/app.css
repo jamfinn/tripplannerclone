@@ -979,6 +979,8 @@ article.seven {
       top: -20px;
       background-color: white;
       z-index: 2; }
+      .activityBox .activity .detail a {
+        color: steelblue; }
       .activityBox .activity .detail .shareBox {
         padding: 0; }
       .activityBox .activity .detail .row {
