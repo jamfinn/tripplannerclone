@@ -137,7 +137,7 @@
 
           <div class="activity">
 
-            <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | activityType: type | limitTo: columns: start">
+            <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | activityType: type | activityType: subtype | limitTo: columns: start">
               <div class="imageBox ">
                 <div class="overlay"></div>
                 <img ng-src={{activity.image}} alt="{{activity.title}}">
