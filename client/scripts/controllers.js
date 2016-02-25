@@ -187,6 +187,15 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     }
   }
 
+  $scope.resetType = function () {
+    console.log('hello!');
+    if ($scope.type != 'active') {
+      $scope.subtype = 'all'
+    }
+    console.log('types', $scope.type, $scope.subtype)
+  }
+
+
   $scope.addToPlan = function (user, activity) {
     if (user === null) {
       // capture the activity that the user was trying to add

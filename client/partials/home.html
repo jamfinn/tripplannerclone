@@ -123,8 +123,8 @@
       <h3 ng-click="filters.open=!filters.open; reset()" ng-init="filters.open=false">What do you want to do? <i ng-hide="filters.open" class="fa fa-caret-right"></i><i ng-show="filters.open" class="fa fa-caret-down"></i></h3>
       <div ng-show="filters.open" class="filter">
         <p>Activity type</p>
-        <select ng-model="type" ng-init="type='all'">
-          <option ng-value="type" ng-repeat="type in ['all', 'active', 'viewpoint', 'shop', 'learn', 'nearby']">{{type}}</option>
+        <select ng-model="type" ng-init="type='all'" ng-click="resetType()">
+          <option  ng-value="type" ng-repeat="type in ['all', 'active', 'viewpoint', 'shop', 'learn', 'nearby']">{{type}}</option>
         </select>
         <select ng-show="type === 'active'" ng-model="subtype" ng-init="subtype='all'">
           <option ng-value="subtype" ng-repeat="subtype in ['all', 'mule ride', 'hike', 'bike', 'raft', 'air tour', 'backpack']">{{subtype}}</option>
