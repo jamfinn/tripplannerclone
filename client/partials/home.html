@@ -17,7 +17,7 @@
 
 <nav class="nav">
 
-  <article class="info one green" ng-show="user_id">
+  <article id="plan" class="info one green" ng-show="user_id" id="one">
     <div ng-click="reset(); toggleDiv('one')">
       <h2>{{name | capitalize }}'s Plan ({{userPlan.length}})
       <div class="shareBox" ng-hide="userPlan.length === 0 || !info.one">
@@ -115,7 +115,7 @@
     </div>
   </article>
 
-  <article class="info two">
+  <article class="info two" id="two">
     <div ng-click="reset(); toggleDiv('two'); showActivity = undefined">
       <h2 ng-hide="userPlan.length">Plan your Trip<i ng-hide="info.two" class="fa fa-chevron-right"></i><i ng-show="info.two" class="fa fa-chevron-down"></i></h2>
       <h2 ng-show="userPlan.length">Add Activities<i ng-hide="info.two" class="fa fa-chevron-right"></i><i ng-show="info.two" class="fa fa-chevron-down"></i></h2>
@@ -205,7 +205,7 @@
     </div>
   </article>
 
-  <article class="info three">
+  <article class="info three" id="three">
     <h2 ng-click="toggleDiv('three')">About the Park  <i ng-hide="info.three" class="fa fa-chevron-right"></i><i ng-show="info.three" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="info.three">
       <p>
@@ -288,7 +288,7 @@
     </div>
   </article>
 
-  <article class="info four">
+  <article class="info four" id="four">
     <h2 ng-click="toggleDiv('four')">Getting to the Park  <i ng-hide="info.four" class="fa fa-chevron-right"></i><i ng-show="info.four" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="info.four">
       <h3>Airports and Drive Times</h3>
@@ -374,8 +374,8 @@
     </div>
   </article>
 
-  <article class="info five">
-    <h2 ng-click="toggleDiv('five')">Where to Stay  <i ng-hide="info.five" class="fa fa-chevron-right"></i><i ng-show="info.five" class="fa fa-chevron-down"></i></h2>
+  <article class="info five" id="five">
+    <h2 ng-click="toggleDiv('five'); window.location='#five'">Where to Stay  <i ng-hide="info.five" class="fa fa-chevron-right"></i><i ng-show="info.five" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="info.five">
       <h3>South Rim Lodging</h3>
       <p>
@@ -416,7 +416,7 @@
     </div>
   </article>
 
-  <article class="info six">
+  <article class="info six" id="six">
     <h2 ng-click="toggleDiv('six')">Seasonal Information  <i ng-hide="info.six" class="fa fa-chevron-right"></i><i ng-show="info.six" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="info.six">
       <p>
@@ -431,7 +431,7 @@
     </div>
   </article>
 
-  <article class="info seven">
+  <article class="info seven" id="seven">
     <h2 ng-click="toggleDiv('seven')">More Resources <i ng-hide="info.seven" class="fa fa-chevron-right"></i><i ng-show="info.seven" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="info.seven">
       <h3><a href="https://www.grandcanyon.org/about-grand-canyon-association/about-grand-canyon-association" target="_blank">About the Grand Canyon Association</a></h3>
