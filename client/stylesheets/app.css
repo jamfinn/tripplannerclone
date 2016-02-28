@@ -1088,8 +1088,10 @@ article.seven {
         .activityBox .activity .detail .delete {
           color: brown; } }
 
-.dummy h4 {
-  font-size: 1em; }
+.dummy {
+  float: left; }
+  .dummy h4 {
+    font-size: 1em; }
 
 footer {
   height: 150px; }

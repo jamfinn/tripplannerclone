@@ -49,7 +49,7 @@
                 <div class="overlay"></div>
                 <img ng-src={{activity.image}} alt="{{activity.title}}">
                 <i ng-click="removeFromPlan(user_id, activity._id); $event.stopPropagation();" ng-class="['fa', 'fa-plus-circle', 'greentxt']"></i>
-                <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+                <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}}</h5>
                 <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
                 <div class="detailBorder" ng-show="activity.open"></div>
               </div>
@@ -83,7 +83,7 @@
                 <h5>description</h5>
                 <p>
                   {{activity.description}}
-                  <a href="{{activity.link}}">{{activity.link}}</a>
+                  <a href="{{activity.link}}" target="_blank">{{activity.link}}</a>
                 </p>
               </div>
 
@@ -142,7 +142,7 @@
                 <div class="overlay"></div>
                 <img ng-src={{activity.image}} alt="{{activity.title}}">
                 <i ng-class="['fa', 'fa-plus-circle', {greentxt: activity.inUserPlan, ltgreen: !activity.inUserPlan}]" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus-circle"></i>
-                <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
+                <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}}</h5>
                 <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
                 <div class="detailBorder" ng-show="activity.open"></div>
               </div>
@@ -176,7 +176,7 @@
                 <h5>description</h5>
                 <p>
                   {{activity.description}}
-                  <a href="activity.link">{{activity.link}}</a>
+                  <a href="activity.link" target="_blank">{{activity.link}}</a>
                 </p>
 
               </div>
@@ -236,12 +236,12 @@
         Typically, days with free entrance are holidays like
         Martin Luther King Jr. Day, Presidents Day Weekend, Veterans
         Day, and several others. For more information, visit:
-        <a href="www.nps.gov/findapark/feefreeparks.htm">www.nps.gov/findapark/feefreeparks.htm</a>
+        <a href="http://www.nps.gov/findapark/feefreeparks.htm" target="_blank">www.nps.gov/findapark/feefreeparks.htm</a>
       </p>
       <p>
         For more information on Annual, Active Military, Senior and
         Access passes and fees:
-        <a href="www.nps.gov/grca/planyourvisit/fees.htm">www.nps.gov/grca/planyourvisit/fees.htm</a>
+        <a href="http://www.nps.gov/grca/planyourvisit/fees.htm" target="_blank">www.nps.gov/grca/planyourvisit/fees.htm</a>
       </p>
       <p>
         Other fees such as reservation, camping, lodging, tours,
@@ -269,7 +269,7 @@
       <p>
         Many of the facilities at Grand Canyon are historic and were built before current accessibility standards were set.
         The terrain is rugged with narrow, rocky trails and steep cliffs. Visitors using
-        wheelchairs or who have visual impairments may need assistance. For more information, please visit <a href="http://www.nps.gov/grca/planyourvisit/accessibility.htm">www.nps.gov/grca/planyourvisit/accessibility.htm</a>
+        wheelchairs or who have visual impairments may need assistance. For more information, please visit <a href="http://www.nps.gov/grca/planyourvisit/accessibility.htm" target="_blank">www.nps.gov/grca/planyourvisit/accessibility.htm</a>
       </p>
       <h3>Pets</h3>
       <p>
@@ -279,7 +279,7 @@
       </p>
       <p>
         There is a kennel for dogs and cats at the South Rim, open 7:30 a.m.-5:00 p.m. daily.
-        <a href="www.nps.gov/grca/planyourvisit/pets.htm">www.nps.gov/grca/planyourvisit/pets.htm</a>
+        <a href="http://www.nps.gov/grca/planyourvisit/pets.htm" target="_blank">www.nps.gov/grca/planyourvisit/pets.htm</a>
       </p>
     </div>
   </article>
@@ -337,7 +337,7 @@
         <strong>
           Directions:
         </strong>
-        <a href="www.nps.gov/grca/planyourvisit/directions_s_rim.htm">www.nps.gov/grca/planyourvisit/directions_s_rim.htm</a>
+        <a href="http://www.nps.gov/grca/planyourvisit/directions_s_rim.htm" target="_blank">www.nps.gov/grca/planyourvisit/directions_s_rim.htm</a>
       </p>
       <h3>Free Shuttle Bus Service</h3>
       <h4>From Outside the Canyon</h4>
@@ -365,7 +365,7 @@
         For maps of shuttle bus routes and more information about
         specific routes, availability, or how to effectively combine hiking
         with shuttle bus stops, visit:
-        <a href="www.nps.gov/grca/planyourvisit/shuttle-buses.htm">www.nps.gov/grca/planyourvisit/shuttle-buses.htm</a>
+        <a href="http://www.nps.gov/grca/planyourvisit/shuttle-buses.htm" target="_blank">www.nps.gov/grca/planyourvisit/shuttle-buses.htm</a>
       </p>
     </div>
   </article>
@@ -383,7 +383,7 @@
         Reservations for Phantom Ranch, in the canyon, can be made here too.
       </p>
       <p>
-        Visit <a href="http://www.grandcanyonlodges.com">GrandCanyonLodges.com</a>
+        Visit <a href="http://www.grandcanyonlodges.com" target="_blank">GrandCanyonLodges.com</a>
       </p>
       <h3>North Rim Lodging</h3>
       <p>
@@ -392,14 +392,14 @@
       </p>
 
       <p>
-        Visit <a href="http://www.grandcanyonforever.com">GrandCanyonForever.com</a>
+        Visit <a href="http://www.grandcanyonforever.com" target="_blank">GrandCanyonForever.com</a>
       </p>
 
       <h3>Camping</h3>
       <p>
         The South Rim hosts two campsites and one RV park, while the North Rim has one
         campground. For more information and to make reservations, visit the National
-        Park Service website <a href="http://www.nps.gov/grca/planyourvisit/camping.htm">http://www.nps.gov/grca/planyourvisit/camping.htm</a>
+        Park Service website <a href="http://www.nps.gov/grca/planyourvisit/camping.htm" target="_blank">http://www.nps.gov/grca/planyourvisit/camping.htm</a>
       </p>
 
       <h3>Outside the Park</h3>
@@ -422,7 +422,7 @@
       </p>
 
       <p>
-        For detailed weather information, visit <a href="http://www.nps.gov/grca/planyourvisit/weather-condition.htm">http://www.nps.gov/grca/planyourvisit/weather-condition.htm</a>
+        For detailed weather information, visit <a href="http://www.nps.gov/grca/planyourvisit/weather-condition.htm" target="_blank">http://www.nps.gov/grca/planyourvisit/weather-condition.htm</a>
       </p>
     </div>
   </article>
@@ -430,9 +430,9 @@
   <article class="info seven">
     <h2 ng-click="toggleDiv('seven')">More Resources <i ng-hide="info.seven" class="fa fa-chevron-right"></i><i ng-show="info.seven" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="info.seven">
-      <h3><a href="https://www.grandcanyon.org/about-grand-canyon-association/about-grand-canyon-association">About the Grand Canyon Association</a></h3>
-      <h3><a href="http://www.grandcanyon.org/shop/online-store/%20trip-planning-package">Grand Canyon Association Online Store</a></h3>
-      <h3><a href="http://www.nps.gov/grca/index.htm">National Park Service</a></h3>
+      <h3><a href="https://www.grandcanyon.org/about-grand-canyon-association/about-grand-canyon-association" target="_blank">About the Grand Canyon Association</a></h3>
+      <h3><a href="http://www.grandcanyon.org/shop/online-store/%20trip-planning-package" target="_blank">Grand Canyon Association Online Store</a></h3>
+      <h3><a href="http://www.nps.gov/grca/planyourvisit/index.htm" target="_blank">National Park Service</a></h3>
     </div>
   </article>
 
@@ -444,7 +444,7 @@
       <div class="one column"><img class="shield" ng-src="../assets/images/footer-national_forest_service.png" alt=""></div>
       <div class="eleven columns">
         <small>
-          The Grand Canyon Association is the official nonprofit partner of Grand Canyon National Park. For more information about the Grand Canyon National Park, visit http://www.nps.gov/grca
+          <a href="https://www.grandcanyon.org/" target="_blank">The Grand Canyon Association</a> is the official nonprofit partner of Grand Canyon National Park. For more information about the Grand Canyon National Park, visit <a href="http://www.nps.gov/grca">http://www.nps.gov/grca</a>
         </small>
       </div>
     </div>
