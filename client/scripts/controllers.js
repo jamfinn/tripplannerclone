@@ -90,7 +90,7 @@ app.controller('registerController',
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', '$route', '$location', '$window', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, $window, PlanService, ActivityService, $routeParams, UserService) {
+app.controller('homeController', ['$scope', '$http', '$route', '$location', '$window', '$anchorScroll', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, $window, $anchorScroll, PlanService, ActivityService, $routeParams, UserService) {
   console.log('route params: ', $routeParams);
   $scope.columns = 1;
   if ($window.innerWidth > 550) {
@@ -184,6 +184,10 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     && !$scope.info.five && !$scope.info.six
     && !$scope.info.seven && !$scope.info.eight) {
       $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
+    } else {
+      console.log('scrolling to!', div);
+      // $anchorScroll(div)
+      // $location.hash(div)
     }
   }
 
