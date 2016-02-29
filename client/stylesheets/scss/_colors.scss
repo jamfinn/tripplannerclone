@@ -31,7 +31,7 @@ $google: #dd4b39;
 }
 
 .greentxt {
-  color: $green;
+  color: lighten($green, 20%);
 }
 
 .ltgreen {

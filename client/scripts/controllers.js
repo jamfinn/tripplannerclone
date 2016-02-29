@@ -186,8 +186,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
     } else {
       console.log('scrolling to!', div);
-      $anchorScroll("#" + div)
       // $location.hash(div)
+      // $anchorScroll()
     }
   }
 
