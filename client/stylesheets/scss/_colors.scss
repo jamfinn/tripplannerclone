@@ -34,13 +34,13 @@ $google: #dd4b39;
   color: lighten($green, 20%);
 }
 
-// .ltgreen {
-//   color: transparentize($green, .7);
-// }
-
 .ltgreen {
-  color: white;
+  color: lighten(transparentize($green, .7), 20%);
 }
+
+// .ltgreen {
+//   color: tan;
+// }
 
 .pink {
   color: hotpink;
