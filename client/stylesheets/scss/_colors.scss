@@ -34,8 +34,12 @@ $google: #dd4b39;
   color: lighten($green, 20%);
 }
 
+// .ltgreen {
+//   color: transparentize($green, .7);
+// }
+
 .ltgreen {
-  color: transparentize($green, .7);
+  color: white;
 }
 
 .pink {
