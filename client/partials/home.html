@@ -142,7 +142,7 @@
             <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | activityType: type | activityType: subtype | limitTo: columns: start">
               <div class="imageBox ">
                 <div class="overlay"></div>
-                <img ng-src={{activity.image}} alt="{{activity.title}}">
+                <img ng-={{activity.image}} alt="{{activity.title}}">
                 <i ng-class="['fa', 'fa-plus-circle', {greentxt: activity.inUserPlan, ltgreen: !activity.inUserPlan}]" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus-circle"></i>
                 <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}}</h5>
                 <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
@@ -233,7 +233,7 @@
         Admission is for seven days and includes entrance to both
         South Rim and North Rim.
       </p>
-      <img src="../assets/images/GC-about.jpg" alt="Grand Canyon Overlook">
+      <img ng-src="../assets/images/GC-about.jpg" alt="Grand Canyon Overlook">
       <h3>Free Entrance Days</h3>
       <p>
         The National Park Service offers free entrance days several days a year.
@@ -291,6 +291,7 @@
   <article class="info four" >
     <h2 ng-click="toggleDiv('four')" id="four">Getting to the Park  <i ng-hide="info.four" class="fa fa-chevron-right"></i><i ng-show="info.four" class="fa fa-chevron-down"></i></h2>
     <div class="accordian" ng-show="info.four">
+      <img ng-src="../assets/images/GC-Area-Map.png" alt="map of area around Grand Canyon National Park">
       <h3>Airports and Drive Times</h3>
       <p>
         There are several ways to arrive at Grand Canyon National Park.

@@ -897,6 +897,8 @@ article.seven {
   .accordian h2.plan {
     display: inline-block;
     margin-right: .3em; }
+  .accordian img {
+    width: 100%; }
 
 .fa-facebook-square {
   color: #3b5998; }
