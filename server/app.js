@@ -81,9 +81,9 @@ function(accessToken, refreshToken, profile, done) {
     console.log('facebook user profile name and email: ', profile.name);
     var user = new User({
       oauthID: profile.id,
-      fname: profile.givenName,
-      lname: profile.familyName,
-      username: profile.email
+      fname: profile.name.givenName,
+      lname: profile.name.familyName,
+      username: profile.emails[0].value
     });
     user.save(function(err) {
       if(err) {
@@ -134,7 +134,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/auth/facebook',
-passport.authenticate('facebook', { scope: [ 'email', 'public_profile' ] }),
+passport.authenticate('facebook', { scope: [ 'email'] }),
 function(req, res){
 });
 app.get('/auth/facebook/callback',
