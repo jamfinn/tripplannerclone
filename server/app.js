@@ -132,7 +132,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/auth/facebook',
-passport.authenticate('facebook'),
+passport.authenticate('facebook', { scope: [ 'email' ] }),
 function(req, res){
 });
 app.get('/auth/facebook/callback',
