@@ -69,6 +69,7 @@ passport.use(new FacebookStrategy({
 clientID: config.facebook.clientID,
 clientSecret: config.facebook.clientSecret,
 callbackURL: config.facebook.callbackURL
+profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
 },
 function(accessToken, refreshToken, profile, done) {
   console.log('in FacebookStrategy and here is the profile: ', profile);
@@ -101,6 +102,7 @@ passport.use(new TwitterStrategy({
  consumerKey: config.twitter.consumerKey,
  consumerSecret: config.twitter.consumerSecret,
  callbackURL: config.twitter.callbackURL
+
 },
 function(accessToken, refreshToken, profile, done) {
  process.nextTick(function () {
@@ -138,7 +140,8 @@ function(req, res){
 app.get('/auth/facebook/callback',
 passport.authenticate('facebook',
   { successRedirect: '/',
-  failureRedirect: '/login' })
+  failureRedirect: '/login',
+scope: [ 'email', 'public_profile' ] })
 );
 // function(req, res) {
 //   console.log('facebook callback url');
