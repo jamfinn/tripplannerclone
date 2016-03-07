@@ -69,21 +69,23 @@ passport.use(new FacebookStrategy({
 clientID: config.facebook.clientID,
 clientSecret: config.facebook.clientSecret,
 callbackURL: config.facebook.callbackURL,
-profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
+profileFields: ['id', 'email', 'name']
 },
 function(accessToken, refreshToken, profile, done) {
   console.log('in FacebookStrategy and here is the profile: ', profile);
+  sessionStorage.setItem('user', profile.id)
   User.findOne({ oauthID: profile.id }, function(err, user) {
-  if(err) { console.log(err); }
-  if (!err && user != null) {
-    done(null, user);
-  } else {
-    console.log('facebook user profile name and email: ', profile.name);
-    var user = new User({
-      oauthID: profile.id,
-      fname: profile.name.givenName,
-      lname: profile.name.familyName,
-      username: profile.emails[0].value
+    console.log('oauth user found: ', user);
+    if(err) { console.log(err); }
+    if (!err && user != null) {
+      done(null, user);
+    } else {
+      console.log('facebook user profile name and email: ', profile.name);
+      var user = new User({
+        oauthID: profile.id,
+        fname: profile.name.givenName,
+        lname: profile.name.familyName,
+        username: profile.emails[0].value
     });
     user.save(function(err) {
       if(err) {
@@ -93,6 +95,7 @@ function(accessToken, refreshToken, profile, done) {
         done(null, user);
       };
     });
+
   };
   });
 }
