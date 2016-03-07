@@ -75,12 +75,12 @@ function(accessToken, refreshToken, profile, done) {
   console.log('in FacebookStrategy and here is the profile: ', profile);
   // sessionStorage.setItem('user', profile.id)
   User.findOne({ oauthID: profile.id }, function(err, user) {
-    console.log('oauth user found: ', user);
     if(err) { console.log(err); }
     if (!err && user != null) {
+      console.log('oauth user found: ', user);
       done(null, user);
     } else {
-      console.log('facebook user profile name and email: ', profile.name);
+      console.log('no user found, here is profile: ', profile);
       var user = new User({
         oauthID: profile.id,
         fname: profile.name.givenName,
@@ -91,7 +91,7 @@ function(accessToken, refreshToken, profile, done) {
       if(err) {
         console.log(err);
       } else {
-        console.log("saving user ...");
+        console.log("saving user ...", user);
         done(null, user);
       };
     });
