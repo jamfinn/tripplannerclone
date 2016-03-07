@@ -77,12 +77,12 @@ function(accessToken, refreshToken, profile, done) {
   if (!err && user != null) {
     done(null, user);
   } else {
-    console.log('facebook user profile name and email: ', profile);
+    console.log('facebook user profile name and email: ', profile.name, user-id);
     var user = new User({
       oauthID: profile.id,
       fname: profile.givenName,
       lname: profile.familyName,
-      username: profile.emails[0].value
+      username: profile.email
     });
     user.save(function(err) {
       if(err) {
@@ -132,13 +132,13 @@ app.get('/', function(req, res) {
 });
 
 app.get('/auth/facebook',
-passport.authenticate('facebook', { scope: [ 'email' ] }),
+passport.authenticate('facebook', { scope: [ 'email', 'first_name', 'last_name' ] }),
 function(req, res){
 });
 app.get('/auth/facebook/callback',
 passport.authenticate('facebook',
   { successRedirect: '/',
-  failureRedirect: '/#/login' })
+  failureRedirect: '/login' })
 );
 // function(req, res) {
 //   console.log('facebook callback url');
