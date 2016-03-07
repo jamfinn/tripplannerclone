@@ -77,7 +77,7 @@ function(accessToken, refreshToken, profile, done) {
   if (!err && user != null) {
     done(null, user);
   } else {
-    console.log('facebook user profile name and email: ', profile.name, user-id);
+    console.log('facebook user profile name and email: ', profile.name);
     var user = new User({
       oauthID: profile.id,
       fname: profile.givenName,
