@@ -69,8 +69,9 @@ function(accessToken, refreshToken, profile, done) {
     console.log('facebook user profile', profile);
     var user = new User({
       oauthID: profile.id,
-      name: profile.displayName,
-      created: Date.now()
+      fname: profile.givenName,
+      lname: profile.familyName,
+      username: profile.emails[0].value
     });
     user.save(function(err) {
       if(err) {
@@ -124,10 +125,14 @@ passport.authenticate('facebook'),
 function(req, res){
 });
 app.get('/auth/facebook/callback',
-passport.authenticate('facebook', { failureRedirect: '/login' }),
-function(req, res) {
- res.redirect('/');
-});
+passport.authenticate('facebook',
+  { successRedirect: '/',
+  failureRedirect: '/login' })
+);
+// function(req, res) {
+//   console.log('facebook callback url');
+//  res.redirect('/');
+// });
 app.get('/auth/twitter',
 passport.authenticate('twitter'),
 function(req, res){
