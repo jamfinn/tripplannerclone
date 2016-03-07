@@ -71,7 +71,7 @@ clientSecret: config.facebook.clientSecret,
 callbackURL: config.facebook.callbackURL
 },
 function(accessToken, refreshToken, profile, done) {
-  console.log('in FacebookStrategy and here is the profile NAME and EMAIL: ', profile.name, profile.emails);
+  console.log('in FacebookStrategy and here is the profile: ', profile);
   User.findOne({ oauthID: profile.id }, function(err, user) {
   if(err) { console.log(err); }
   if (!err && user != null) {
@@ -80,8 +80,8 @@ function(accessToken, refreshToken, profile, done) {
     console.log('facebook user profile name and email: ', profile.name, profile.emails);
     var user = new User({
       oauthID: profile.id,
-      fname: profile.name.givenName,
-      lname: profile.name.familyName,
+      fname: profile.givenName,
+      lname: profile.familyName,
       username: profile.emails[0].value
     });
     user.save(function(err) {
