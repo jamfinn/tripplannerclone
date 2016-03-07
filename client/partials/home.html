@@ -142,7 +142,7 @@
             <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | activityType: type | activityType: subtype | limitTo: columns: start">
               <div class="imageBox ">
                 <div class="overlay"></div>
-                <img ng-={{activity.image}} alt="{{activity.title}}">
+                <img ng-src={{activity.image}} alt="{{activity.title}}">
                 <i ng-class="['fa', 'fa-plus-circle', {greentxt: activity.inUserPlan, ltgreen: !activity.inUserPlan}]" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus-circle"></i>
                 <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}}</h5>
                 <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
