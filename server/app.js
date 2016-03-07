@@ -71,17 +71,17 @@ clientSecret: config.facebook.clientSecret,
 callbackURL: config.facebook.callbackURL
 },
 function(accessToken, refreshToken, profile, done) {
-  console.log('in FacebookStrategy and here is the profile: ', profile);
+  console.log('in FacebookStrategy and here is the profile NAME and EMAIL: ', profile.name, profile.emails);
   User.findOne({ oauthID: profile.id }, function(err, user) {
   if(err) { console.log(err); }
   if (!err && user != null) {
     done(null, user);
   } else {
-    console.log('facebook user profile', profile);
+    console.log('facebook user profile name and email: ', profile.name, profile.emails);
     var user = new User({
       oauthID: profile.id,
-      fname: profile.givenName,
-      lname: profile.familyName,
+      fname: profile.name.givenName,
+      lname: profile.name.familyName,
       username: profile.emails[0].value
     });
     user.save(function(err) {
@@ -138,7 +138,7 @@ function(req, res){
 app.get('/auth/facebook/callback',
 passport.authenticate('facebook',
   { successRedirect: '/',
-  failureRedirect: '/login' })
+  failureRedirect: '/#/login' })
 );
 // function(req, res) {
 //   console.log('facebook callback url');
