@@ -73,7 +73,7 @@ profileFields: ['id', 'email', 'name']
 },
 function(accessToken, refreshToken, profile, done) {
   console.log('in FacebookStrategy and here is the profile: ', profile);
-  sessionStorage.setItem('user', profile.id)
+  // sessionStorage.setItem('user', profile.id)
   User.findOne({ oauthID: profile.id }, function(err, user) {
     console.log('oauth user found: ', user);
     if(err) { console.log(err); }
