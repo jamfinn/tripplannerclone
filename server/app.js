@@ -52,18 +52,18 @@ console.log('cat is dancing');
 // configure passport
 // passport.use(new localStrategy(User.authenticate()));//try User.createStrategy()
 passport.use(User.createStrategy());//try User.createStrategy()
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
-//
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 passport.use(new FacebookStrategy({
 clientID: config.facebook.clientID,
