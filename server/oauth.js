@@ -3,7 +3,7 @@ var ids = {
 facebook: {
  clientID: process.env.fbID,
  clientSecret: process.env.fbSecret,
- callbackURL: 'https://triplannr.herokuapp.com/auth/facebook/callback/#!'
+ callbackURL: 'https://triplannr.herokuapp.com/auth/facebook/callback'
 },
 
 twitter: {

@@ -141,7 +141,7 @@ app.get('/auth/facebook',
 passport.authenticate('facebook', { scope: [ 'email'] }),
 function(req, res){
 });
-app.get('/auth/facebook/callback/#!',
+app.get('/auth/facebook/callback',
 passport.authenticate('facebook',
   {
     failureRedirect: '/login',
@@ -161,7 +161,7 @@ function(req, res){
 app.get('/auth/twitter/callback',
 passport.authenticate('twitter', { failureRedirect: '/login' }),
 function(req, res) {
- res.redirect('/');
+ res.redirect('/' + req.user._id);
 });
 app.get('/auth/google',
 passport.authenticate('google'),
