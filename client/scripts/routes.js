@@ -46,6 +46,11 @@ app.config(function ($routeProvider) {
       controller: 'activitiesController',
       access: {restricted: false}
     })
+    .when('/:id', {
+      templateUrl: './partials/home.html',
+      controller: 'homeController',
+      access: {restricted: true}
+    })
     .otherwise({
       redirectTo: '/'
     });
