@@ -2,13 +2,13 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
   authservice = {}
 
-    authservice.isLoggedIn = function() {
-      if(sessionStorage.getItem('user')) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    // authservice.isLoggedIn = function() {
+    //   if(sessionStorage.getItem('user')) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
 
     authservice.getUserStatus = function() {
       return sessionStorage.getItem('user');

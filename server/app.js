@@ -92,7 +92,6 @@ function(accessToken, refreshToken, profile, done) {
         console.log(err);
       } else {
         console.log("saving user ...", user);
-        res.send(user._id)
         done(null, user);
       };
     });
@@ -143,10 +142,11 @@ function(req, res){
 });
 app.get('/auth/facebook/callback',
 passport.authenticate('facebook',
-  { successRedirect: '/',
+  {
   failureRedirect: '/login',
 scope: [ 'email', 'public_profile' ] }, function (req, res) {
-  console.log('IS THIS THE USER?', res);
+  console.log('IS THIS THE USER?', res._id);
+  res.redirect('/' + res._id)
 })
 );
 // function(req, res) {
