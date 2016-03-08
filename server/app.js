@@ -144,15 +144,15 @@ app.get('/auth/facebook/callback',
 passport.authenticate('facebook',
   {
     failureRedirect: '/login',
-    scope: [ 'email', 'public_profile' ] },
-  function (req, res) {
-  console.log('IS THIS THE USER?', res._id);
-  res.redirect('/');
-});
-// function(req, res) {
-//   console.log('facebook callback url');
-//  res.redirect('/');
+    scope: [ 'email', 'public_profile' ] }),
+//   function (req, res) {
+//   console.log('IS THIS THE USER?', res._id);
+//   res.redirect('/');
 // });
+function(req, res) {
+  console.log('facebook callback url', res._id);
+ res.redirect('/' + res._id);
+});
 app.get('/auth/twitter',
 passport.authenticate('twitter'),
 function(req, res){
