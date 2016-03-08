@@ -6,6 +6,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     expressSession = require('express-session'),
+    sessionstorage = require('sessionstorage'),
     mongoose = require('mongoose'),
     hash = require('bcrypt-nodejs'),
     path = require('path'),
@@ -73,7 +74,7 @@ profileFields: ['id', 'email', 'name']
 },
 function(accessToken, refreshToken, profile, done) {
   console.log('in FacebookStrategy and here is the profile: ', profile);
-  // sessionStorage.setItem('user', profile.id)
+  sessionstorage.setItem('user', profile.id)
   User.findOne({ oauthID: profile.id }, function(err, user) {
     if(err) { console.log(err); }
     if (!err && user != null) {
