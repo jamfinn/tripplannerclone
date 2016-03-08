@@ -150,7 +150,7 @@ passport.authenticate('facebook',
 //   res.redirect('/');
 // });
 function(req, res) {
-  console.log('HERE IS THE RESPONSE', res._id);
+  console.log('HERE IS THE RESPONSE', req);
  res.redirect('/');
 });
 app.get('/auth/twitter',
