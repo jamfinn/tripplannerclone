@@ -142,11 +142,11 @@ function(req, res){
 });
 app.get('/auth/facebook/callback',
 passport.authenticate('facebook',
-  {
-  failureRedirect: '/login',
-scope: [ 'email', 'public_profile' ] }, function (req, res) {
+  { failureRedirect: '/login',
+    scope: [ 'email', 'public_profile' ] },
+  function (req, res) {
   console.log('IS THIS THE USER?', res._id);
-  res.render('/' + res._id)
+  res.redirect('/')
 })
 );
 // function(req, res) {
