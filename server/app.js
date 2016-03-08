@@ -151,7 +151,7 @@ passport.authenticate('facebook',
 // });
 function(req, res) {
   console.log('HERE IS THE RESPONSE', req.user._id);
- res.redirect('/', {user_id: req.user._id});
+ res.redirect('/');
 });
 app.get('/auth/twitter',
 passport.authenticate('twitter'),
