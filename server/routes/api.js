@@ -30,7 +30,9 @@ router.post('/register', function(req, res, next) {
         if (err) {
           return next(err);
         }
-        res.status(200).json({status: 'Login successful!', user_id: account._id})
+        console.log('HANDROLLED register route user id: ', req.user._id);
+        res.cookie('user', req.user._id);
+        res.status(200);
       });
     });
   })
@@ -47,13 +49,14 @@ router.post('/login', function(req, res, next) {
       if (err) {
         return res.status(500).json({err: 'Could not log in user'})
       }
-      res.status(200).json({status: 'Login successful!', user_id: user._id})
+      res.cookie('user', req.user._id);
+      res.status(200);
     });
   })(req, res, next);
 });
 
 router.get('/logout', function(req, res) {
-  res.clearCookie('userid');
+  res.clearCookie('user');
   req.logout();
   res.status(200).json({status: 'Bye!'})
 });

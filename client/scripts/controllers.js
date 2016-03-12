@@ -51,10 +51,11 @@ app.controller('registerController',
         // handle success
         .then(function () {
           $scope.disabled = false;
+          var user = authservice.getUserStatus();
+          console.log('in register controller, this is registered user id: ', user);
           $scope.registerForm = {};
           var savedActivity = activityservice.getSavedActivity();
           activityservice.saveClickedActivity(undefined) // dispose of clicked activity
-          var user = authservice.getUserStatus();
 
           if (savedActivity) {
             planservice.addToPlan(user, savedActivity._id).then(function(){ // add saved activity to plan
@@ -101,7 +102,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
   $scope.resetDivs()
 
   // see if a user is logged in
-  $scope.user_id = authservice.getUserStatus()
+  $scope.user_id = authservice.getUserStatus();
 
   // see if any saved activities and set $scope.showActivity
   $scope.showActivity = activityservice.getSavedActivity()
@@ -125,7 +126,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     }
   })
 
-  //get userPlan (array of activities) and userPlan id
+  // get userPlan (array of activities) and userPlan id
   if ($scope.user_id) {
     userservice.getUser($scope.user_id).then(function (data) {
       $scope.name = data.fname;

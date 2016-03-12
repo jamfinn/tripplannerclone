@@ -2,15 +2,8 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
 
   authservice = {}
 
-    // authservice.isLoggedIn = function() {
-    //   if(sessionStorage.getItem('user')) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
-
     authservice.getUserStatus = function() {
+    // returns userid if logged in, undefined if not
       var id = $cookies.get('user');
       console.log('user', $cookies.get('user'));
       if (id != undefined) {
@@ -29,9 +22,8 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       $http.post('/user/login', {username: username, password: password})
       // handle success // test for success
       .success(function (data, status) { // note to mherman: angular docs say .success method has been deprecated and to use .then https://docs.angularjs.org/api/ng/service/$http
-        if(status === 200 && data.user_id){
+        if(status === 200){
           // user = true;
-          sessionStorage.setItem('user', data.user_id);
           deferred.resolve();
         } else {
           user = false;
@@ -61,7 +53,6 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
         console.log('logged out!');
         user = false;
         user_id = null;
-        sessionStorage.clear()
         deferred.resolve();
       })
       // handle error
@@ -76,6 +67,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
     };
 
     authservice.register = function(userInfo) {
+      console.log('in register service!');
 
       // create a new instance of deferred
       var deferred = $q.defer();
@@ -83,12 +75,13 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       // send a post request to the server
       $http.post('/user/register', userInfo)
         // handle success
-        .success(function (data, status) {
-          if(status === 200 && data.user_id){
+        .success(function (status) {
+          console.log('successful registration!');
+          if(status === 200){
             // user = true
-            sessionStorage.setItem('user', data.user_id);
             deferred.resolve();
           } else {
+            console.log('registration rejected...');
             deferred.reject();
           }
         })
