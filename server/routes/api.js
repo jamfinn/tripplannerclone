@@ -24,6 +24,7 @@ router.post('/register', function(req, res, next) {
       console.log('error in passport register', err);
       return res.status(500).json({err: err})
     }
+    res.cookie('user', account._id);
     passport.authenticate('local')(req, res, function () {
     //   console.log('in authenticate');
       req.session.save(function (err) {
@@ -31,7 +32,6 @@ router.post('/register', function(req, res, next) {
           return next(err);
         }
         console.log('HANDROLLED register route user id: ', req.user._id);
-        res.cookie('user', req.user._id);
         res.status(200);
       });
     });
