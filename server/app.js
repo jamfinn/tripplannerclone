@@ -45,7 +45,7 @@ app.use(expressSession({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
-    cookie: { }
+    cookie: { secure: true }
 
 }));
 app.use(passport.initialize());
@@ -152,7 +152,7 @@ passport.authenticate('facebook',
 //   res.redirect('/');
 // });
 function(req, res) {
-  res.cookie('userid', req.user._id, { maxAge: 60000 });
+  res.cookie('user', req.user._id, { maxAge: 60000 });
   console.log('HERE IS THE RESPONSE', req.user._id);
  res.redirect('/');
 });

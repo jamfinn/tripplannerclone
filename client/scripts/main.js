@@ -1,4 +1,4 @@
-var app = angular.module('tripPlanner', ['ngRoute', 'ngAnimate']);
+var app = angular.module('tripPlanner', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
 app.run(function ($rootScope, $location, $route, AuthService) {
   // $rootScope.$on('$routeChangeStart', function (event, next, current) {

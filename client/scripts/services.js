@@ -1,4 +1,4 @@
-app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
+app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q, $timeout, $http, $cookies) {
 
   authservice = {}
 
@@ -12,6 +12,8 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     authservice.getUserStatus = function() {
       // console.log('userid cookie item ', cookie.getItem('userid'));
+      console.log('userid cookie item ', $cookies.getAll());
+
       return sessionStorage.getItem('user');
     }
 
