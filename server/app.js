@@ -6,7 +6,6 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     expressSession = require('express-session'),
-    sessionstorage = require('sessionstorage'),
     mongoose = require('mongoose'),
     hash = require('bcrypt-nodejs'),
     path = require('path'),
@@ -41,10 +40,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.methodOverride());
+app.set('trust proxy', 1) // trust first proxy
 app.use(expressSession({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { secure: true }
+
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -52,7 +54,7 @@ console.log('cat is dancing');
 
 // configure passport
 // passport.use(new localStrategy(User.authenticate()));//try User.createStrategy()
-passport.use(User.createStrategy());//try User.createStrategy()
+passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -74,7 +76,6 @@ profileFields: ['id', 'email', 'name']
 },
 function(accessToken, refreshToken, profile, done) {
   console.log('in FacebookStrategy and here is the profile: ', profile);
-  sessionstorage.setItem('user', profile.id)
   User.findOne({ oauthID: profile.id }, function(err, user) {
     if(err) { console.log(err); }
     if (!err && user != null) {
