@@ -15,11 +15,12 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       console.log('user', $cookies.get('user'));
       var id = $cookies.get('user');
       if (id != undefined) {
-        console.log(id.slice(2, id.length - 1));
+        console.log(id.slice(3, id.length - 1));
+        id = id.slice(3, id.length - 1)
+        console.log('parsed id', id);
       }
 
 
-      // console.log('parsed id', id);
 
 
       return sessionStorage.getItem('user');
