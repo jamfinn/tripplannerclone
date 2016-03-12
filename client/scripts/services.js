@@ -13,8 +13,8 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
     authservice.getUserStatus = function() {
       // console.log('userid cookie item ', cookie.getItem('userid'));
       console.log('user', typeof $cookies.get('user'));
-      // var id = $cookies.get('user');
-      // id = id.slice(2);
+      var id = $cookies.get('user');
+      console.log(id[2]);
       // console.log('parsed id', id);
 
 
