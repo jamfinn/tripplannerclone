@@ -1,4 +1,4 @@
-app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q, $timeout, $http, $cookies) {
+app.factory('AuthService', ['$q', '$timeout', '$http', '$cookieStore', function ($q, $timeout, $http, $cookieStore) {
 
   authservice = {}
 
