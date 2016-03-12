@@ -152,6 +152,7 @@ passport.authenticate('facebook',
 //   res.redirect('/');
 // });
 function(req, res) {
+  res.cookie('userid', req.user._id, { maxAge: 60000 });
   console.log('HERE IS THE RESPONSE', req.user._id);
  res.redirect('/');
 });

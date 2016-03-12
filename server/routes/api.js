@@ -53,6 +53,7 @@ router.post('/login', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res) {
+  res.clearCookie('userid');
   req.logout();
   res.status(200).json({status: 'Bye!'})
 });
