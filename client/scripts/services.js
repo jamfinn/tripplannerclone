@@ -15,7 +15,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       console.log('user', $cookies.get('user'));
       var id = $cookies.get('user');
       console.log('id: ', id);
-      if (id) {
+      if (id != undefined) {
         console.log(id[j]);
       }
 
