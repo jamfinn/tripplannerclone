@@ -14,7 +14,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       // console.log('userid cookie item ', cookie.getItem('userid'));
       console.log('user', typeof $cookies.get('user'));
       var id = $cookies.get('user');
-      console.log(id[2]);
+      console.log(typeof id);
       // console.log('parsed id', id);
 
 
