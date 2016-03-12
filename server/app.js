@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.methodOverride());
-app.set('trust proxy', 1) // trust first proxy
+// app.set('trust proxy', 1) // trust first proxy
 app.use(expressSession({
     secret: 'keyboard cat',
     resave: false,
@@ -53,8 +53,8 @@ app.use(passport.session());
 console.log('cat is dancing');
 
 // configure passport
-// passport.use(new localStrategy(User.authenticate()));//try User.createStrategy()
-passport.use(User.createStrategy());
+passport.use(new localStrategy(User.authenticate()));//try User.createStrategy()
+// passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
