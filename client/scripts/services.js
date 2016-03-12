@@ -11,6 +11,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', function ($q, $timeout, $
     // }
 
     authservice.getUserStatus = function() {
+      // console.log('userid cookie item ', cookie.getItem('userid'));
       return sessionStorage.getItem('user');
     }
 
