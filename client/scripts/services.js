@@ -12,7 +12,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
 
     authservice.getUserStatus = function() {
       // console.log('userid cookie item ', cookie.getItem('userid'));
-      console.log('user', $cookies.get('user').j);
+      console.log('user', $cookies.get('user'));
       var id = $cookies.get('user');
       console.log('id: ', id);
       console.log(id.j);
