@@ -11,19 +11,13 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
     // }
 
     authservice.getUserStatus = function() {
-      // console.log('userid cookie item ', cookie.getItem('userid'));
-      console.log('user', $cookies.get('user'));
       var id = $cookies.get('user');
+      console.log('user', $cookies.get('user'));
       if (id != undefined) {
-        console.log(id.slice(3, id.length - 1));
         id = id.slice(3, id.length - 1)
         console.log('parsed id', id);
       }
-
-
-
-
-      return sessionStorage.getItem('user');
+      return id;
     }
 
     authservice.login = function (username, password) {
