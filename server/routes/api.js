@@ -32,7 +32,6 @@ router.post('/register', function(req, res, next) {
 
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
-    console.log('first user variable in login: ', user);
     if (err) { return next(err) }
     if (!user) {
       return res.status(401).json({err: info})
@@ -50,7 +49,7 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res) {
   res.clearCookie('user');
   req.logout();
-  res.status(200).json({status: 'Bye!'})
+  res.status(200).json({message: 'Bye!'})
 });
 
 router.get('/:id', function(req, res) {

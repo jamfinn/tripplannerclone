@@ -61,16 +61,11 @@ router.post('/:id', function(req, res) {
       console.log(doc.plan);
       res.send(doc);
     })
-    // Plan.update({user: req.params.id}, doc, function (err, doc) {
-    //   console.log(doc.plan);
-    //   res.send(doc);
-    // })
   });
 });
 
 // test authentication
 function ensureAuthenticated(req, res, next) {
-  console.log('traveling through ensureAuthenticated');
 if (req.isAuthenticated()) { return next(); }
 res.redirect('/login')
 }

@@ -183,7 +183,7 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
 
   activityservice = {}
 
-  var savedActivity = undefined
+  var savedActivity = undefined;
 
     activityservice.getRowArray = function (activities, cols){
       var intervals = []

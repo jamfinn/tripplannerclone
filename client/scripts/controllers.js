@@ -78,7 +78,9 @@ app.controller('registerController',
 }]);
 
 app.controller('homeController', ['$scope', '$http', '$route', '$location', '$window', '$anchorScroll', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, $window, $anchorScroll, PlanService, ActivityService, $routeParams, UserService) {
-  console.log('route params: ', $routeParams); // need to fix this for verkamp's!
+  console.log('these are the route params: ', $routeParams); // need to fix this for verkamp's!
+  console.log('current route params: ', $route.current.params); // need to fix this for verkamp's!
+
   $scope.columns = 1;
   if ($window.innerWidth > 550) {
     $scope.columns = 3;
@@ -107,19 +109,19 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
   $scope.showActivity = activityservice.getSavedActivity()
   activityservice.saveClickedActivity(undefined) // dispose of saved Activity
 
-  //get list of activites, open activity if url includes activity title OR if there is an activity in
+  // get list of activites, if url includes activity, make it a savedActivity 
   activityservice.getActivities().then(function (docs) {
     $scope.activities = docs;
     $scope.rowStart = activityservice.getRowArray(docs, $scope.columns);
-    if ($routeParams.title) { // check if a particular activity is asked for…
-      $routeParams.title = $routeParams.title.replace(/-/g, ' ') // get rid of dashes, actually, strip it to letters only
-      console.log('title from the routeParams: ', $routeParams.title);
+    if ($route.current.params.title) { // check if a particular activity is asked for…
+      var title = $route.current.params.title.replace(/-/g, ' ') // get rid of dashes, actually, strip it to letters and spaces only
+      console.log('title from the routeParams: ', title);
       $scope.activities.forEach(function(activity){
         console.log(activity.title); // make a temp variable here and strip it to letters only too so the match matches
-        if (activity.title === $routeParams.title){ // need to verify that this will match in the end
+        if (activity.title === title){ // need to verify that this will match in the end
           console.log('found a match!');
-          activityservice.saveClickedActivity(activity)
-          $location.path('/')
+          activityservice.saveClickedActivity(activity);
+          $location.path('/');
         }
       })
     }
@@ -168,21 +170,17 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     && !$scope.info.seven && !$scope.info.eight) {
       $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
     }
-    console.log(typeof (num * 100));
     $window.scrollTo($window.pageYOffset + (num * 100), 0)
   }
 
   $scope.resetType = function () {
-    console.log('hello!');
     if ($scope.type != 'active') {
       $scope.subtype = 'all'
     }
-    console.log('types', $scope.type, $scope.subtype)
   }
 
-
   $scope.addToPlan = function (user, activity) {
-    if (user === null) {
+    if (!user) {
       // capture the activity that the user was trying to add
       $scope.activities.forEach(function (element) {
         if (element._id === activity) {
@@ -243,10 +241,10 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
 }]);
 
 app.controller('planController',
-  ['$scope', '$location', '$http', '$routeParams', '$window', 'PlanService', 'ActivityService', 'UserService', function ($scope, $location, $http, $routeParams, $window, PlanService, ActivityService, UserService) {
+  ['$scope', '$location', '$http', '$route', '$routeParams', '$window', 'PlanService', 'ActivityService', 'UserService', function ($scope, $location, $http, $route, $routeParams, $window, PlanService, ActivityService, UserService) {
 
-    console.log($routeParams.id);
-    $scope.user = $routeParams.id;
+    console.log($routeParams);
+    console.log($route.current.params);
 
     // see if a user is logged in
     $scope.user_id = authservice.getUserStatus()

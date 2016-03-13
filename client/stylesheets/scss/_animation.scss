@@ -34,19 +34,19 @@
 }
 
 .detail.ng-hide {
-  transition: all .4s ease-out;
+  transition: all .6s ease-out;
   height: 0;
   // overflow:hidden;
 }
 
 .detail {
-  transition: all .5s ease-out;
+  transition: all 3s ease-out;
   height: 100%;
   // overflow:hidden;
 }
 
 .detailBorder.ng-hide {
-  transition: all .4s linear;
+  transition: all .6s linear;
   opacity: 0;
 }
 
