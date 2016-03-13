@@ -73,10 +73,10 @@ function(accessToken, refreshToken, profile, done) {
     } else {
       console.log('no user found, here is profile: ', profile);
       var user = new User({
-        oauthID: profile.id,
-        fname: profile.name.givenName,
-        lname: profile.name.familyName,
-        username: profile.emails[0].value
+        facebook.oauthID: profile.id,
+        facebook.fname: profile.name.givenName,
+        facebook.lname: profile.name.familyName,
+        facebook.username: profile.emails[0].value
     });
     user.save(function(err) {
       if(err) {

@@ -6,12 +6,12 @@ var mongoose = require('mongoose'),
 
 var User = new Schema({
   //
-  // local: {
-  //   fname: String,
-  //   lname: String,
-  //   email: String,
-  //   password: String
-  // },
+  local: {
+    fname: String,
+    lname: String,
+    email: String,
+    password: String
+  },
   // facebook: {
   //   id: String,
   //   token: String,
@@ -34,11 +34,13 @@ var User = new Schema({
   //   lname: String
   // }
 
-  oauthID: Number,
-  username: String, // this is email
-  password: String,
-  fname: String,
-  lname: String
+  facebook: {
+    oauthID: Number,
+    username: String, // this is email
+    password: String,
+    fname: String,
+    lname: String
+  }
 });
 
 User.plugin(passportLocalMongoose);
