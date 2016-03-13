@@ -241,7 +241,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       });
   }
 
-  if ($route.current.params) {
+  if ($route.current.params.length > 6) {
     $scope.logout();
   }
 

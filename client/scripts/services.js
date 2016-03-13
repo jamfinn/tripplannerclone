@@ -124,7 +124,6 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
       var deferred = $q.defer();
 
       $http.get('/plans/' + user).success(function (doc) {
-        console.log('got a user plan', doc);
         deferred.resolve(doc.plan);
       })
 
