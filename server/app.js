@@ -109,7 +109,7 @@ function(accessToken, refreshToken, profile, done) {
           return done(null, user); // user found, return that user
       } else {
           // if there is no user, create them
-          console.log('no twitter user found, create one');
+          console.log('no twitter user found, create one', profile);
           var user = new User();
 
           // set all of the user data that we need
@@ -120,9 +120,11 @@ function(accessToken, refreshToken, profile, done) {
 
           // save our user into the database
           user.save(function(err) {
-              if (err)
-                  throw err;
-              return done(null, user);
+              if (err) {throw err;}
+              else {
+                console.log('saving user ....', user);
+                done(null, user);
+              }
           });
       }
     });
