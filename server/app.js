@@ -99,6 +99,7 @@ passport.use(new TwitterStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
   process.nextTick(function() {
+    console.log('in process nextTick');
     User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
       if (err) {return done(err);}
 
@@ -108,6 +109,7 @@ function(accessToken, refreshToken, profile, done) {
           return done(null, user); // user found, return that user
       } else {
           // if there is no user, create them
+          console.log('no twitter user found, create one');
           var user = new User();
 
           // set all of the user data that we need
@@ -205,6 +207,7 @@ function(req, res){
 app.get('/auth/twitter/callback',
 passport.authenticate('twitter', { failureRedirect: '/login' }),
 function(req, res) {
+  console.log('in twitter callback!');
   res.cookie('user', req.user._id);
   res.redirect('/');
 });
