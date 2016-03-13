@@ -45,7 +45,7 @@ app.use(expressSession({
     secret: 'dancing cat',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true }
+    cookie: { secure: false }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
