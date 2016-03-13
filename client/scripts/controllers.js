@@ -114,13 +114,10 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     $scope.activities = docs;
     $scope.rowStart = activityservice.getRowArray(docs, $scope.columns);
     if ($route.current.params.title) { // check if a particular activity is asked for…
-      var strippedTitle = $route.current.params.title.replace(/\W+/g, '') // get rid of dashes, actually, strip it to letters only
-      console.log('title from the routeParams: ', strippedTitle);
+      var strippedTitle = $route.current.params.title.replace(/\W+/g, '') // strip it to letters only
       $scope.activities.forEach(function(activity){
-        console.log('title from database: ', activity.title); // make a temp variable here and strip it to letters only too so the match matches
-        var tempTitle = activity.title.replace(/\W+/g, '');
+        var tempTitle = activity.title.replace(/\W+/g, ''); // strip it to letters only
         if (tempTitle === strippedTitle){
-          console.log('found a match!');
           activityservice.saveClickedActivity(activity);
           $location.path('/');
         }
@@ -157,6 +154,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     $scope.activities.forEach(function (activity) {
       activity.open = false;
     })
+    $scope.showActivity._id = undefined;
   }
 
   $scope.toggleDiv = function (div, num) {
@@ -241,7 +239,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       });
   }
 
-  if ($route.current.params.length > 6) {
+  if ($route.current.params.length > 6) { // allow for facebook hash added to end of url...
     $scope.logout();
   }
 
@@ -255,7 +253,6 @@ app.controller('planController',
 
     // see if a user is logged in
     $scope.user_id = authservice.getUserStatus()
-    console.log('user id: ', $scope.user_id);
 
     if ($route.current.params.id) { // could be a ternary
       $scope.plan_id = $route.current.params.id
@@ -278,17 +275,10 @@ app.controller('planController',
 
     planservice.getUserPlan($scope.plan_id).then(function(doc) {
       if (!doc) {
-        console.log('how did I get to not doc?');
-        // $scope.user_id = undefined;
+        console.log('no plan found');
       } else {
-        console.log(doc);
         $scope.userPlan = doc;
         $scope.planStart = activityservice.getRowArray(doc, $scope.columns);
-        // $scope.activities.forEach(function (activity) {
-        //   if ($scope.userPlan.indexOf(activity._id) != -1){
-        //     activity.inUserPlan = true;
-        //   }
-        // })
       }
     })
 
@@ -314,9 +304,6 @@ app.controller('planController',
         .then(function () {
           $scope.user_id = null;
           $scope.userPlan = undefined;
-          // $scope.activities.forEach(function (activity) {
-          //   activity.inUserPlan = false;
-          // })
           $location.path('/');
         });
     }
@@ -327,7 +314,6 @@ app.controller('activitiesController',
   ['$scope', '$location', '$http', function ($scope, $location, $http) {
 
     $scope.addActivity = function (activity) {
-      //send form data to database here? or from /activities route?
       $http.post('/activities', activity);
       $scope.activity = {};
     }

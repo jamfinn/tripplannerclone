@@ -146,11 +146,11 @@
                 <i ng-class="['fa', 'fa-plus-circle', {greentxt: activity.inUserPlan, ltgreen: !activity.inUserPlan}]" ng-click="addToPlan(user_id, activity._id); $event.stopPropagation();" class="fa fa-plus-circle"></i>
                 <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}}</h5>
                 <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
-                <div class="detailBorder" ng-show="activity.open|| activity._id == showActivity._id"></div>
+                <div class="detailBorder" ng-show="activity.open|| activity._id === showActivity._id"></div>
               </div>
             </div>
 
-            <div class="detail u-cf" ng-show="activity.open || activity._id == showActivity._id" ng-repeat="activity in activities | activityType: type | limitTo: columns: start">
+            <div class="detail u-cf" ng-show="activity.open || activity._id === showActivity._id" ng-repeat="activity in activities | activityType: type | limitTo: columns: start">
               <div class="row">
                 <div class="shareBox six columns">
                   <a ng-href="{{activity.facebookShare}}"><i class="fa fa-facebook-square"></i></a>
