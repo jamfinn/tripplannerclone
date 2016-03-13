@@ -143,9 +143,29 @@ passport.use(new GoogleStrategy({
   passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      console.log(profile);
-      return done(null, profile);
+    console.log('in GoogleStrategy and here is the profile: ', profile);
+    User.findOne({ oauthID: profile.id }, function(err, user) {
+      if(err) { console.log(err); }
+      if (!err && user != null) {
+        console.log('oauth user found: ', user);
+        done(null, user);
+      } else {
+        console.log('no user found, here is profile: ', profile);
+        var user = new User({
+          oauthID: profile.id,
+          fname: profile.name.givenName,
+          lname: profile.name.familyName,
+          username: profile.emails[0].value
+      });
+      user.save(function(err) {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log("saving user ...", user);
+          done(null, user);
+        };
+      });
+    };
     });
   }
 ));
