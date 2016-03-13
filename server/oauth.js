@@ -13,8 +13,9 @@ twitter: {
 },
 
 google: {
- returnURL: 'https://triplannr.herokuapp.com/auth/google/callback',
- realm: 'https://triplannr.herokuapp.com'
+  clientID: process.env.googleID,
+  clientSecret: process.env.googleSecret,
+  callbackURL: 'https://triplannr.herokuapp.com/auth/google/callback'
 }
 
 }

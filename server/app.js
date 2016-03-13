@@ -16,7 +16,7 @@ var express = require('express'),
     localStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     TwitterStrategy = require('passport-twitter').Strategy,
-    GoogleStrategy = require('passport-google').Strategy;
+    GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 
 // mongoose
@@ -95,7 +95,6 @@ passport.use(new TwitterStrategy({
  consumerKey: config.twitter.consumerKey,
  consumerSecret: config.twitter.consumerSecret,
  callbackURL: config.twitter.callbackURL
-
 },
 function(accessToken, refreshToken, profile, done) {
   process.nextTick(function() {
@@ -108,32 +107,28 @@ function(accessToken, refreshToken, profile, done) {
         console.log('twitter user found: ', user);
           return done(null, user); // user found, return that user
       } else {
-          // if there is no user, create them
-          console.log('no twitter user found, create one', profile);
-          var name = profile.displayName.split(' ');
-          var fname = name[0];
-          var lname = name[name.length - 1];
-          var user = new User({
-            twitter: {
-              id: profile.id,
-              token: accessToken
-            },
-            username: profile.username,
-            fname: fname,
-            lname: lname
-          });
+        // if there is no user, create them
+        console.log('no twitter user found, create one', profile);
+        var name = profile.displayName.split(' ');
+        var fname = name[0];
+        var lname = name[name.length - 1];
+        var user = new User({
+          twitter: {
+            id: profile.id
+          },
+          username: profile.username,
+          fname: fname,
+          lname: lname
+        });
 
-          // set all of the user data that we need
-
-
-          // save our user into the database
-          user.save(function(err) {
-              if (err) {throw err;}
-              else {
-                console.log('saving user ....', user);
-                done(null, user);
-              }
-          });
+        // save our user into the database
+        user.save(function(err) {
+            if (err) {throw err;}
+            else {
+              console.log('saving user ....', user);
+              done(null, user);
+            }
+        });
       }
     });
 
@@ -141,50 +136,18 @@ function(accessToken, refreshToken, profile, done) {
 
 }));
 
-
-  // console.log('in twitterStrategy and here is the profile: ', profile);
-  // User.findOne({ oauthID: profile.id }, function(err, user) {
-  //   if(err) { console.log(err); }
-  //   if (!err && user != null) {
-  //     console.log('oauth user found: ', user);
-  //     done(null, user);
-  //   } else {
-  //     console.log('no user found, here is profile: ', profile);
-  //     var user = new User({
-  //       oauthID: profile.id,
-  //       fname: profile.name.givenName,
-  //       lname: profile.name.familyName,
-  //       username: profile.emails[0].value
-  //   });
-  //   user.save(function(err) {
-  //     if(err) {
-  //       console.log(err);
-  //     } else {
-  //       console.log("saving user ...", user);
-  //       done(null, user);
-  //     };
-  //   });
-  // };
-  // });
-  // }
-  // ));
-
-//  process.nextTick(function () {
-//    return done(null, profile);
-//  });
-// }
-// ));
-
 passport.use(new GoogleStrategy({
- returnURL: config.google.returnURL,
- realm: config.google.realm
-},
-function(identifier, profile, done) {
- process.nextTick(function () {
-   profile.identifier = identifier;
-   return done(null, profile);
- });
-}
+  clientID: config.google.clientID,
+  clientSecret: config.google.clientSecret,
+  callbackURL: config.google.callbackURL,
+  passReqToCallback: true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      console.log(profile);
+      return done(null, profile);
+    });
+  }
 ));
 
 // routes
@@ -223,13 +186,17 @@ function(req, res) {
 });
 
 app.get('/auth/google',
-passport.authenticate('google'),
-function(req, res){
-});
+  passport.authenticate('google', { scope: [
+    'https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/plus.profile.emails.read'
+  ] }
+));
 app.get('/auth/google/callback',
 passport.authenticate('google', { failureRedirect: '/login' }),
 function(req, res) {
- res.redirect('/');
+  console.log('in google callback!');
+  res.cookie('user', req.user._id);
+  res.redirect('/');
 });
 
 // test authentication

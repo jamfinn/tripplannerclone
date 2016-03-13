@@ -21,10 +21,6 @@ var User = new Schema({
   // },
   twitter: {
     id: String,
-    token: String,
-    // username: String,
-    // fname: String,
-    // lname: String
   },
   // google: {
   //   id: String,
