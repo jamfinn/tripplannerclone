@@ -19,13 +19,13 @@ var User = new Schema({
   //   fname: String,
   //   lname: String
   // },
-  // twitter: {
-  //   id: String,
-  //   token: String,
-  //   email: String,
-  //   fname: String,
-  //   lname: String
-  // },
+  twitter: {
+    id: String,
+    token: String,
+    username: String,
+    fname: String,
+    lname: String
+  },
   // google: {
   //   id: String,
   //   token: String,

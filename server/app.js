@@ -98,32 +98,64 @@ passport.use(new TwitterStrategy({
 
 },
 function(accessToken, refreshToken, profile, done) {
-  console.log('in twitterStrategy and here is the profile: ', profile);
-  User.findOne({ oauthID: profile.id }, function(err, user) {
-    if(err) { console.log(err); }
-    if (!err && user != null) {
-      console.log('oauth user found: ', user);
-      done(null, user);
-    } else {
-      console.log('no user found, here is profile: ', profile);
-      var user = new User({
-        oauthID: profile.id,
-        fname: profile.name.givenName,
-        lname: profile.name.familyName,
-        username: profile.emails[0].value
-    });
-    user.save(function(err) {
-      if(err) {
-        console.log(err);
+  process.nextTick(function() {
+    User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
+      if (err) {return done(err);}
+
+      // if the user is found then log them in
+      if (user) {
+        console.log('twitter user found: ', user);
+          return done(null, user); // user found, return that user
       } else {
-        console.log("saving user ...", user);
-        done(null, user);
-      };
+          // if there is no user, create them
+          var user = new User();
+
+          // set all of the user data that we need
+          user.twitter.id          = profile.id;
+          user.twitter.token       = accessToken;
+          user.twitter.username    = profile.username;
+          user.twitter.fname       = profile.displayName;
+
+          // save our user into the database
+          user.save(function(err) {
+              if (err)
+                  throw err;
+              return done(null, user);
+          });
+      }
     });
-  };
+
   });
-  }
-  ));
+
+}));
+
+
+  // console.log('in twitterStrategy and here is the profile: ', profile);
+  // User.findOne({ oauthID: profile.id }, function(err, user) {
+  //   if(err) { console.log(err); }
+  //   if (!err && user != null) {
+  //     console.log('oauth user found: ', user);
+  //     done(null, user);
+  //   } else {
+  //     console.log('no user found, here is profile: ', profile);
+  //     var user = new User({
+  //       oauthID: profile.id,
+  //       fname: profile.name.givenName,
+  //       lname: profile.name.familyName,
+  //       username: profile.emails[0].value
+  //   });
+  //   user.save(function(err) {
+  //     if(err) {
+  //       console.log(err);
+  //     } else {
+  //       console.log("saving user ...", user);
+  //       done(null, user);
+  //     };
+  //   });
+  // };
+  // });
+  // }
+  // ));
 
 //  process.nextTick(function () {
 //    return done(null, profile);
