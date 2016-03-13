@@ -154,7 +154,9 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     $scope.activities.forEach(function (activity) {
       activity.open = false;
     })
-    $scope.showActivity._id = undefined;
+    if ($scope.showActivity) {
+      $scope.showActivity._id = undefined;
+    }
   }
 
   $scope.toggleDiv = function (div, num) {
