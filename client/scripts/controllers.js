@@ -174,10 +174,12 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     $window.scrollTo($window.pageYOffset + (num * 100), 0)
   }
 
-  $scope.resetType = function () {
-    // if ($scope.type != 'active') {
+  $scope.resetSubtype = function () {
       $scope.subtype = 'all'
-    // }
+  }
+
+  $scope.resetType = function () {
+      $scope.type = 'all'
   }
 
   $scope.addToPlan = function (user, activity) {
