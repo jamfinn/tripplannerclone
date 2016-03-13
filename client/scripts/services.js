@@ -22,7 +22,7 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       $http.post('/user/login', {username: username, password: password})
       // handle success // test for success
       .success(function (data, status) { // note to mherman: angular docs say .success method has been deprecated and to use .then https://docs.angularjs.org/api/ng/service/$http
-        if(status === 200){
+        if(status === 200 && data.message){
           // user = true;
           deferred.resolve();
         } else {
@@ -75,9 +75,9 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       // send a post request to the server
       $http.post('/user/register', userInfo)
         // handle success
-        .success(function (status) {
-          console.log('successful registration!');
-          if(status === 200){
+        .success(function (data, status) {
+          // console.log('successful registration!', status);
+          if(status === 200 && data.message){
             // user = true
             deferred.resolve();
           } else {

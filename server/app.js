@@ -147,10 +147,6 @@ passport.authenticate('facebook',
   {
     failureRedirect: '/login',
     scope: [ 'email', 'public_profile' ] }),
-//   function (req, res) {
-//   console.log('IS THIS THE USER?', res._id);
-//   res.redirect('/');
-// });
 function(req, res) {
   res.cookie('user', req.user._id);
   console.log('HERE IS THE RESPONSE', req.user._id);
