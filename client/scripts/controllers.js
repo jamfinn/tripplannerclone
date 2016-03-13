@@ -86,6 +86,10 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     $scope.columns = 3;
   }
 
+  if ($route.current.params) {
+    $scope.logout();
+  }
+
   $scope.resetDivs = function () {
     $scope.info = { // a list of all divs for accordian
       hero: true,
@@ -119,7 +123,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       $scope.activities.forEach(function(activity){
         console.log('title from database: ', activity.title); // make a temp variable here and strip it to letters only too so the match matches
         var tempTitle = activity.title.replace(/\W+/g, '');
-        if (tempTitle === strippedTitle){ 
+        if (tempTitle === strippedTitle){
           console.log('found a match!');
           activityservice.saveClickedActivity(activity);
           $location.path('/');
