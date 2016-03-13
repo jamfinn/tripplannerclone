@@ -7,8 +7,8 @@ facebook: {
 },
 
 twitter: {
- consumerKey: process.env.twitterID,
- consumerSecret: process.env.twitterSecret,
+ consumerKey: process.env.twitterToken,
+ consumerSecret: process.env.twitterTokenSecret,
  callbackURL: "https://triplannr.herokuapp.com/auth/twitter/callback"
 },
 
