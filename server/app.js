@@ -73,10 +73,10 @@ function(accessToken, refreshToken, profile, done) {
     } else {
       console.log('no user found, here is profile: ', profile);
       var user = new User({
-        facebook.oauthID: profile.id,
-        facebook.fname: profile.name.givenName,
-        facebook.lname: profile.name.familyName,
-        facebook.username: profile.emails[0].value
+        oauthID: profile.id,
+        fname: profile.name.givenName,
+        lname: profile.name.familyName,
+        username: profile.emails[0].value
     });
     user.save(function(err) {
       if(err) {
@@ -113,10 +113,10 @@ function(accessToken, refreshToken, profile, done) {
           var user = new User();
 
           // set all of the user data that we need
-          user.twitter.id          = profile.id;
-          user.twitter.token       = accessToken;
-          user.twitter.username    = profile.username;
-          user.twitter.fname       = profile.displayName;
+          twitter.id          = profile.id;
+          twitter.token       = accessToken;
+          username    = profile.username;
+          fname       = profile.displayName;
 
           // save our user into the database
           user.save(function(err) {
