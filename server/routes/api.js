@@ -24,15 +24,14 @@ router.post('/register', function(req, res, next) {
       console.log('error in passport register', err);
       return res.status(500).json({err: err})
     }
-    res.cookie('user', account._id);
     passport.authenticate('local')(req, res, function () {
-    //   console.log('in authenticate');
       req.session.save(function (err) {
         if (err) {
           return next(err);
         }
-        console.log('HANDROLLED register route user id: ', req.user._id);
-        res.status(200);
+        console.log('HANDROLLED register route user id: ', typeof account._id);
+        res.cookie('user', JSON.stringify(req.user._id)).status(200);
+        // res.status(200);
       });
     });
   })
@@ -49,8 +48,8 @@ router.post('/login', function(req, res, next) {
       if (err) {
         return res.status(500).json({err: 'Could not log in user'})
       }
-      res.cookie('user', req.user._id);
-      res.status(200);
+      res.cookie('user', req.user._id).status(200);
+      // res.status(200);
     });
   })(req, res, next);
 });
