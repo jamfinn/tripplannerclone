@@ -52,7 +52,6 @@ app.controller('registerController',
         .then(function () {
           $scope.disabled = false;
           var user = authservice.getUserStatus();
-          console.log('in register controller, this is registered user id: ', user);
           $scope.registerForm = {};
           var savedActivity = activityservice.getSavedActivity();
           activityservice.saveClickedActivity(undefined) // dispose of clicked activity
