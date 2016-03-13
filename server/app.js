@@ -113,8 +113,8 @@ function(accessToken, refreshToken, profile, done) {
           var user = new User();
 
           // set all of the user data that we need
-          twitter.id          = profile.id;
-          twitter.token       = accessToken;
+          user.twitter.id          = profile.id;
+          user.twitter.token       = accessToken;
           username    = profile.username;
           fname       = profile.displayName;
 
