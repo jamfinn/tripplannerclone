@@ -110,13 +110,15 @@ function(accessToken, refreshToken, profile, done) {
       } else {
           // if there is no user, create them
           console.log('no twitter user found, create one', profile);
+          var name = profile.displayName.split(' ')
+          name = name[0]
           var user = new User({
             twitter: {
               id: profile.id,
               token: accessToken
             },
             username: profile.username,
-            fname: profile.displayName
+            fname: name
           });
 
           // set all of the user data that we need
