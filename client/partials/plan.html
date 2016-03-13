@@ -13,7 +13,7 @@
   <a href="/#/register"><button ng-hide="user_id">Sign up and make a plan!</button></a>
 </div>
 
-<article ng-show="user" class="info green accordian">
+<article ng-show="plan_id" class="info green accordian">
 
   <h2 class="plan">{{name | capitalize:true}}'s Plan</h2>
     <div class="shareBox" ng-hide="userPlan.length === 0">

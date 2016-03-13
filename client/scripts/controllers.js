@@ -86,10 +86,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     $scope.columns = 3;
   }
 
-  if ($route.current.params) {
-    $scope.logout();
-  }
-
   $scope.resetDivs = function () {
     $scope.info = { // a list of all divs for accordian
       hero: true,
@@ -236,11 +232,17 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
         $scope.user_id = null;
         $scope.userPlan = undefined;
         $scope.resetDivs();
-        $scope.activities.forEach(function (activity) {
-          activity.inUserPlan = false;
-        })
+        if ($scope.activities) {
+          $scope.activities.forEach(function (activity) {
+            activity.inUserPlan = false;
+          })
+        }
         $location.path('/');
       });
+  }
+
+  if ($route.current.params) {
+    $scope.logout();
   }
 
 }]);
@@ -249,11 +251,17 @@ app.controller('planController',
   ['$scope', '$location', '$http', '$route', '$routeParams', '$window', 'PlanService', 'ActivityService', 'UserService', function ($scope, $location, $http, $route, $routeParams, $window, PlanService, ActivityService, UserService) {
 
     console.log($routeParams);
-    console.log($route.current.params);
+    console.log($route.current.params.id);
 
     // see if a user is logged in
     $scope.user_id = authservice.getUserStatus()
     console.log('user id: ', $scope.user_id);
+
+    if ($route.current.params.id) { // could be a ternary
+      $scope.plan_id = $route.current.params.id
+    } else if ($scope.user_id) {
+      $scope.plan_id = $scope.user_id
+    }
 
     $scope.columns = 1;
     if ($window.innerWidth > 550) {
@@ -268,21 +276,23 @@ app.controller('planController',
       }
     })
 
-    planservice.getUserPlan($scope.user).then(function(doc) {
+    planservice.getUserPlan($scope.plan_id).then(function(doc) {
       if (!doc) {
-        $scope.user = undefined;
+        console.log('how did I get to not doc?');
+        // $scope.user_id = undefined;
       } else {
+        console.log(doc);
         $scope.userPlan = doc;
         $scope.planStart = activityservice.getRowArray(doc, $scope.columns);
-        $scope.activities.forEach(function (activity) {
-          if ($scope.userPlan.indexOf(activity._id) >= 0){
-            activity.inUserPlan = true;
-          }
-        })
+        // $scope.activities.forEach(function (activity) {
+        //   if ($scope.userPlan.indexOf(activity._id) != -1){
+        //     activity.inUserPlan = true;
+        //   }
+        // })
       }
     })
 
-    userservice.getUser($scope.user).then(function (data) {
+    userservice.getUser($scope.plan_id).then(function (data) {
       if (data) {
         $scope.name = data.fname
       }
@@ -304,9 +314,9 @@ app.controller('planController',
         .then(function () {
           $scope.user_id = null;
           $scope.userPlan = undefined;
-          $scope.activities.forEach(function (activity) {
-            activity.inUserPlan = false;
-          })
+          // $scope.activities.forEach(function (activity) {
+          //   activity.inUserPlan = false;
+          // })
           $location.path('/');
         });
     }

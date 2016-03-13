@@ -42,7 +42,7 @@ router.post('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-  console.log('get plan!', req.params.id);
+  console.log('get this plan!', req.params.id);
   Plan.findOne({user: req.params.id}, function(err, doc){
     if (err) throw err;
     console.log('does this user have a plan?', doc)
