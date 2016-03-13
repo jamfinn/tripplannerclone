@@ -42,31 +42,20 @@ app.use(cookieParser());
 // app.use(express.methodOverride());
 // app.set('trust proxy', 1) // trust first proxy
 app.use(expressSession({
-    secret: 'keyboard cat',
+    secret: 'dancing cat',
     resave: false,
     saveUninitialized: false,
     cookie: { secure: true }
-
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-console.log('cat is dancing');
+console.log('kick up your heels!');
 
 // configure passport
-passport.use(new localStrategy(User.authenticate()));//try User.createStrategy()
+passport.use(new localStrategy(User.authenticate()));
 // passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
-//
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
 
 passport.use(new FacebookStrategy({
 clientID: config.facebook.clientID,
@@ -97,7 +86,6 @@ function(accessToken, refreshToken, profile, done) {
         done(null, user);
       };
     });
-
   };
   });
 }
@@ -110,11 +98,38 @@ passport.use(new TwitterStrategy({
 
 },
 function(accessToken, refreshToken, profile, done) {
- process.nextTick(function () {
-   return done(null, profile);
- });
-}
-));
+  console.log('in twitterStrategy and here is the profile: ', profile);
+  User.findOne({ oauthID: profile.id }, function(err, user) {
+    if(err) { console.log(err); }
+    if (!err && user != null) {
+      console.log('oauth user found: ', user);
+      done(null, user);
+    } else {
+      console.log('no user found, here is profile: ', profile);
+      var user = new User({
+        oauthID: profile.id,
+        fname: profile.name.givenName,
+        lname: profile.name.familyName,
+        username: profile.emails[0].value
+    });
+    user.save(function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("saving user ...", user);
+        done(null, user);
+      };
+    });
+  };
+  });
+  }
+  ));
+
+//  process.nextTick(function () {
+//    return done(null, profile);
+//  });
+// }
+// ));
 
 passport.use(new GoogleStrategy({
  returnURL: config.google.returnURL,
@@ -149,8 +164,7 @@ passport.authenticate('facebook',
     scope: [ 'email', 'public_profile' ] }),
 function(req, res) {
   res.cookie('user', req.user._id);
-  console.log('HERE IS THE RESPONSE', req.user._id);
- res.redirect('/');
+  res.redirect('/');
 });
 app.get('/auth/twitter',
 passport.authenticate('twitter'),
@@ -159,8 +173,10 @@ function(req, res){
 app.get('/auth/twitter/callback',
 passport.authenticate('twitter', { failureRedirect: '/login' }),
 function(req, res) {
- res.redirect('/' + req.user._id);
+  res.cookie('user', req.user._id);
+  res.redirect('/');
 });
+
 app.get('/auth/google',
 passport.authenticate('google'),
 function(req, res){
