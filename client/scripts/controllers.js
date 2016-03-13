@@ -78,8 +78,8 @@ app.controller('registerController',
 }]);
 
 app.controller('homeController', ['$scope', '$http', '$route', '$location', '$window', '$anchorScroll', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, $window, $anchorScroll, PlanService, ActivityService, $routeParams, UserService) {
-  console.log('these are the route params: ', $routeParams); // need to fix this for verkamp's!
-  console.log('current route params: ', $route.current.params); // need to fix this for verkamp's!
+  console.log('these are the route params: ', $routeParams);
+  console.log('current route params: ', $route.current.params);
 
   $scope.columns = 1;
   if ($window.innerWidth > 550) {
@@ -239,7 +239,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       });
   }
 
-  if ($route.current.params.length > 6) { // allow for facebook hash added to end of url...
+  if ($route.current.params.title) {
     $scope.logout();
   }
 
