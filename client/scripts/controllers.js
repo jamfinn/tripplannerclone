@@ -150,7 +150,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     console.log('no one is logged in');
   }
 
-  $scope.reset = function () { // resets all activities to closed
+  $scope.reset = function () { // close all activities
     $scope.activities.forEach(function (activity) {
       activity.open = false;
     })
@@ -175,9 +175,9 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
   }
 
   $scope.resetType = function () {
-    if ($scope.type != 'active') {
+    // if ($scope.type != 'active') {
       $scope.subtype = 'all'
-    }
+    // }
   }
 
   $scope.addToPlan = function (user, activity) {
