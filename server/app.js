@@ -10,8 +10,6 @@ var express = require('express'),
     hash = require('bcrypt-nodejs'),
     path = require('path'),
     passport = require('passport'),
-    // auth = require('./authentication.js');
-
     config = require('./oauth.js'),
     localStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
@@ -53,7 +51,6 @@ console.log('kick up your heels!');
 
 // configure passport
 passport.use(new localStrategy(User.authenticate()));
-// passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -64,14 +61,11 @@ callbackURL: config.facebook.callbackURL,
 profileFields: ['id', 'email', 'name']
 },
 function(accessToken, refreshToken, profile, done) {
-  console.log('in FacebookStrategy and here is the profile: ', profile);
   User.findOne({ oauthID: profile.id }, function(err, user) {
     if(err) { console.log(err); }
     if (!err && user != null) {
-      console.log('oauth user found: ', user);
       done(null, user);
     } else {
-      console.log('no user found, here is profile: ', profile);
       var user = new User({
         oauthID: profile.id,
         fname: profile.name.givenName,
@@ -82,7 +76,6 @@ function(accessToken, refreshToken, profile, done) {
       if(err) {
         console.log(err);
       } else {
-        console.log("saving user ...", user);
         done(null, user);
       };
     });
@@ -98,17 +91,14 @@ passport.use(new TwitterStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
   process.nextTick(function() {
-    console.log('in process nextTick');
     User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
       if (err) {return done(err);}
 
       // if the user is found then log them in
       if (user) {
-        console.log('twitter user found: ', user);
           return done(null, user); // user found, return that user
       } else {
         // if there is no user, create them
-        console.log('no twitter user found, create one', profile);
         var name = profile.displayName.split(' ');
         var fname = name[0];
         var lname = name[name.length - 1];
@@ -125,7 +115,6 @@ function(accessToken, refreshToken, profile, done) {
         user.save(function(err) {
             if (err) {throw err;}
             else {
-              console.log('saving user ....', user);
               done(null, user);
             }
         });
@@ -143,14 +132,11 @@ passport.use(new GoogleStrategy({
   passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
-    console.log('in GoogleStrategy and here is the profile: ', profile);
     User.findOne({ oauthID: profile.id }, function(err, user) {
       if(err) { console.log(err); }
       if (!err && user != null) {
-        console.log('oauth user found: ', user);
         done(null, user);
       } else {
-        console.log('no user found, here is profile: ', profile);
         var user = new User({
           oauthID: profile.id,
           fname: profile.name.givenName,
@@ -161,7 +147,6 @@ passport.use(new GoogleStrategy({
         if(err) {
           console.log(err);
         } else {
-          console.log("saving user ...", user);
           done(null, user);
         };
       });

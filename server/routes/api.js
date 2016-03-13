@@ -4,11 +4,8 @@ var express = require('express'),
     User = require('../models/user.js');
 
 router.get('/', function (req, res) {
-  console.log('req.body', req.body);
   User.findOne({username: req.body.username}, function (err, doc) {
-    console.log('doc', doc);
     if (err) {
-      // console.log(err);
       return res.status(500).json({err: err})
     }
     return res.status(200).json(doc)
@@ -16,10 +13,8 @@ router.get('/', function (req, res) {
 })
 
 router.post('/register', function(req, res, next) {
-  console.log('hello from /register route', req.body);
   var user = req.body
   User.register(new User({username: user.username, fname: user.fname, lname: user.lname}), user.password, function(err, account) {
-    console.log('account parameter from User.register ', account);
     if (err) {
       return res.status(500).json({err: err})
     }
@@ -58,16 +53,16 @@ router.get('/logout', function(req, res) {
   res.status(200).json({status: 'Bye!'})
 });
 
-router.get('/:id', function(req, res) {
-  console.log("from get/:id: ", req.params.id);
-  User.findOne({_id: req.params.id}, function (err, doc) {
-    console.log('doc', doc);
-    if (err) {
-      // console.log(err);
-      return res.status(500).json({err: err})
-    }
-    return res.status(200).json(doc)
-  })
-});
+// router.get('/:id', function(req, res) {
+//   console.log("from get/:id: ", req.params.id);
+//   User.findOne({_id: req.params.id}, function (err, doc) {
+//     console.log('doc', doc);
+//     if (err) {
+//       // console.log(err);
+//       return res.status(500).json({err: err})
+//     }
+//     return res.status(200).json(doc)
+//   })
+// });
 
 module.exports = router;
