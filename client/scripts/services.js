@@ -139,12 +139,10 @@ app.factory('PlanService', ['$q', '$timeout', '$http', function ($q, $timeout, $
 
     planservice.addToPlan = function(user, activity) {
 
-      console.log('in add to plan! user, activity', user, activity);
       // create a new instance of deferred
       var deferred = $q.defer();
 
       $http.post('/plans', {user: user, activity: activity}).success(function (doc) {
-        console.log('reponse from post/plans is plan_id/user_id: ', doc);
         deferred.resolve();
       })
 
@@ -211,12 +209,10 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
     }
 
     activityservice.saveClickedActivity = function (activity) {
-      console.log('saving activity', activity);
         savedActivity = activity
     }
 
     activityservice.getSavedActivity = function () {
-      console.log('getting saved activity', savedActivity);
       return savedActivity;
     }
 
@@ -230,9 +226,7 @@ app.factory('UserService', ['$q', '$timeout', '$http', function ($q, $timeout, $
     userservice.getUser = function (user) {
       // create a new instance of deferred
       var deferred = $q.defer();
-      console.log('user in getFname', user);
       $http.get('/user/' + user).success(function (docs) {
-        console.log(docs);
         deferred.resolve(docs);
       })
 

@@ -109,16 +109,17 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
   $scope.showActivity = activityservice.getSavedActivity()
   activityservice.saveClickedActivity(undefined) // dispose of saved Activity
 
-  // get list of activites, if url includes activity, make it a savedActivity 
+  // get list of activites, if url includes activity, make it a savedActivity
   activityservice.getActivities().then(function (docs) {
     $scope.activities = docs;
     $scope.rowStart = activityservice.getRowArray(docs, $scope.columns);
     if ($route.current.params.title) { // check if a particular activity is asked for…
-      var title = $route.current.params.title.replace(/-/g, ' ') // get rid of dashes, actually, strip it to letters and spaces only
-      console.log('title from the routeParams: ', title);
+      var strippedTitle = $route.current.params.title.replace(/\W+/g, '') // get rid of dashes, actually, strip it to letters only
+      console.log('title from the routeParams: ', strippedTitle);
       $scope.activities.forEach(function(activity){
-        console.log(activity.title); // make a temp variable here and strip it to letters only too so the match matches
-        if (activity.title === title){ // need to verify that this will match in the end
+        console.log('title from database: ', activity.title); // make a temp variable here and strip it to letters only too so the match matches
+        var tempTitle = activity.title.replace(/\W+/g, '');
+        if (tempTitle === strippedTitle){ 
           console.log('found a match!');
           activityservice.saveClickedActivity(activity);
           $location.path('/');
