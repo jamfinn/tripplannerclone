@@ -148,6 +148,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
 
   $scope.reset = function () { // close all activities
     $scope.activities.forEach(function (activity) {
+      console.log('closing activities!');
       activity.open = false;
     })
     if ($scope.showActivity) {
