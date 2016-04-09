@@ -534,7 +534,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500; }
 
 h1 {
-  font-size: 3.6rem;
+  font-size: 3.0rem;
   line-height: 1; }
 
 h2 {
@@ -792,13 +792,10 @@ html {
 
 header {
   position: relative;
-  max-height: 75px;
-  color: #7470a9;
-  padding: 1vmax 2vmax;
+  height: 75px;
+  padding: 10px 20px;
   display: block;
-  width: 100%;
-  background-color: white;
-  color: black; }
+  background-color: white; }
   header .logo {
     height: 50px; }
   header a {
@@ -807,8 +804,8 @@ header {
     color: #7470a9; }
   header .status {
     position: absolute;
-    bottom: .5vmax;
-    right: 2vmax; }
+    bottom: 10px;
+    right: 20px; }
     header .status p {
       color: #7470a9;
       display: inline-block;
@@ -828,13 +825,13 @@ header {
   width: 100%;
   /* for IE 6 */
   height: 250px;
-  overflow: hidden;
-  background-color: #1b1e20; }
+  overflow-x: hidden; }
   .hero img {
-    width: 100%; }
+    width: 100%;
+    min-width: 960px; }
   .hero .title {
     position: absolute;
-    top: 20px;
+    top: 35px;
     left: 20px;
     color: white; }
   .hero button {

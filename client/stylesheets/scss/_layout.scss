@@ -17,8 +17,10 @@ html {
 
 header {
   position: relative;
-  max-height: 75px;
-  color: $purple;
+  height: 75px;
+  padding: 10px 20px;
+  display: block;
+  background-color: $white;
   .logo {
     height: 50px;
   }
@@ -30,8 +32,8 @@ header {
   }
   .status {
     position: absolute;
-    bottom: .5vmax;
-    right: 2vmax;
+    bottom: 10px;
+    right: 20px;
     p {
       color: $purple;
       display: inline-block;
@@ -41,7 +43,6 @@ header {
       }
       a:hover {
         color: lighten(black, 20%);
-        // text-shadow: 0px 0px 13px rgba(116,	112, 169, .7);
       }
     }
     p:hover {
@@ -52,25 +53,20 @@ header {
       margin-right: .5em;
     }
   }
-  padding: 1vmax 2vmax;
-  display: block;
-  width: 100%;
-  background-color: white;
-  color: black;
 }
 
 .hero {
   position: relative;
   width: 100%; /* for IE 6 */
   height: 250px;
-  overflow: hidden;
-  background-color: darken($gray, 60%);
+  overflow-x: hidden;
   img {
-   width: 100%;
+    width: 100%;
+   min-width: 960px;
   }
   .title {
     position: absolute;
-    top: 20px;
+    top: 35px;
     left: 20px;
     color: white;
   }
