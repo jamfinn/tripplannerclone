@@ -176,40 +176,40 @@ app.factory('ActivityService', ['$q', '$timeout', '$http', function ($q, $timeou
 
   var savedActivity = undefined;
 
-    activityservice.getRowArray = function (activities, cols){
-      var intervals = []
-      for (var i = 0; i < activities.length / cols; i++) {
-        intervals.push(i * cols)
-      }
-      return intervals;
+  activityservice.getRowArray = function (activities, cols){
+    var intervals = []
+    for (var i = 0; i < activities.length / cols; i++) {
+      intervals.push(i * cols)
     }
+    return intervals;
+  }
 
-    activityservice.getActivities = function () {
-      // create a new instance of deferred
-      var deferred = $q.defer();
+  activityservice.getActivities = function () {
+    // create a new instance of deferred
+    var deferred = $q.defer();
 
-      $http.get('/activities/').success(function (docs) {
-        deferred.resolve(docs);
-      })
+    $http.get('/activities/').success(function (docs) {
+      deferred.resolve(docs);
+    })
 
-      // handle error
-      .error(function (data) {
-        deferred.reject();
-      });
+    // handle error
+    .error(function (data) {
+      deferred.reject();
+    });
 
-      // return promise object
-      return deferred.promise;
-    }
+    // return promise object
+    return deferred.promise;
+  }
 
-    activityservice.saveClickedActivity = function (activity) {
-        savedActivity = activity
-    }
+  activityservice.saveClickedActivity = function (activity) {
+      savedActivity = activity
+  }
 
-    activityservice.getSavedActivity = function () {
-      return savedActivity;
-    }
+  activityservice.getSavedActivity = function () {
+    return savedActivity;
+  }
 
-    return activityservice;
+  return activityservice;
 }]);
 
 app.factory('UserService', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {

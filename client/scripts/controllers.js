@@ -156,7 +156,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
   }
 
   $scope.toggleDiv = function (div) {
-    console.log(div);
     var temp = $scope.info[div]
     for (item in $scope.info) { // close all divs (make this a reset service?)
       $scope.info[item] = false
@@ -168,17 +167,7 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     && !$scope.info.seven && !$scope.info.eight) {
       $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
     }
-    console.log($window.pageYOffset);
     $window.scrollTo(0, 0)
-    // $window.scrollTo(0, 500)
-    // $scope.gotoElement = function (eID){
-      // set the location.hash to the id of
-      // the element you wish to scroll to.
-      // $location.hash('bottom');
-
-      // call $anchorScroll()
-      // activityservice.scrollTo(div);
-    // };
   }
 
   $scope.resetSubtype = function () {
