@@ -1,21 +1,8 @@
-$red: #FF1744;
 $gray: rgb(177,	183, 188);
 $grayText: #505f6b;
 $purple: rgb(116,	112,	169);
 $white: white;
-$carpool: $purple;
-$yellow: #FFD600;
-$schoolBus: $yellow;
-$indigo: #651FFF;
-$driveDrop: $indigo;
-$blue: #00B8D4;
 $green: rgb(68,	113, 113);
-$bike: $green;
-$orange: #FF6D00;
-$skateScoot: $orange;
-$transparentGray: rgba(99,99,99,.5);
-$colorOne: #311417;
-$colorTwo: #34403E;
 
 $twitter: #00aced;
 $facebook: #4267B2;
@@ -38,18 +25,6 @@ $google: #dd4b39;
   color: lighten(transparentize($green, .7), 20%);
 }
 
-// .ltgreen {
-//   color: tan;
-// }
-
-.pink {
-  color: hotpink;
-}
-
-.blue {
-  color: $blue;
-}
-
 .twitter {
   background: $twitter;
 }
@@ -62,22 +37,6 @@ $google: #dd4b39;
   background: $facebook;
 }
 
-.red {
-  color: $red;
-}
-
 .purple {
   color: $purple;
-}
-
-.yellow {
-  color: $yellow;
-}
-
-.indigo {
-  color: $indigo;
-}
-
-.orange {
-  color: $orange;
 }

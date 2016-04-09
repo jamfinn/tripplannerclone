@@ -480,12 +480,6 @@ th {
 .ltgreen {
   color: rgba(113, 170, 170, 0.3); }
 
-.pink {
-  color: hotpink; }
-
-.blue {
-  color: #00B8D4; }
-
 .twitter {
   background: #00aced; }
 
@@ -495,20 +489,8 @@ th {
 .facebook {
   background: #4267B2; }
 
-.red {
-  color: #FF1744; }
-
 .purple {
   color: #7470a9; }
-
-.yellow {
-  color: #FFD600; }
-
-.indigo {
-  color: #651FFF; }
-
-.orange {
-  color: #FF6D00; }
 
 html {
   font-size: 62.5%; }
@@ -749,10 +731,6 @@ th:last-child,
 td:last-child {
   padding-right: 0; }
 
-.fa-plus:hover {
-  color: #71aaaa;
-  text-shadow: 0px 0px 13px rgba(225, 225, 225, 0.5); }
-
 .u-full-width {
   width: 100%;
   box-sizing: border-box; }
@@ -983,6 +961,9 @@ article.seven {
         top: 18px;
         left: 85%;
         z-index: 1; }
+      .activityBox .activity .imageBox .fa-plus:hover {
+        color: #71aaaa;
+        text-shadow: 0px 0px 13px rgba(225, 225, 225, 0.5); }
     .activityBox .activity .detail {
       padding: 15px;
       margin: 0 auto;
@@ -1119,6 +1100,8 @@ footer {
   text-align: center;
   margin: 0 auto;
   width: 300px; }
+  .auth .one-half.column:nth-child(even) {
+    margin-left: 4%; }
   .auth p {
     margin-bottom: .5em; }
   .auth a {
@@ -1129,6 +1112,7 @@ footer {
   .auth h3 {
     margin: 0 auto 0.3em auto; }
   .auth input {
+    margin-bottom: .5em;
     width: 100%; }
 
 .right {
