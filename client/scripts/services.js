@@ -5,10 +5,8 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
     authservice.getUserStatus = function() {
     // returns userid if logged in, undefined if not
       var id = $cookies.get('user');
-      console.log('user', $cookies.get('user'));
       if (id != undefined) {
         id = id.slice(3, id.length - 1)
-        console.log('parsed id', id);
       }
       return id;
     }
@@ -50,7 +48,6 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       $http.get('/user/logout')
       // handle success
       .success(function (data) {
-        console.log('logged out!');
         user = false;
         user_id = null;
         deferred.resolve();
@@ -67,7 +64,6 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
     };
 
     authservice.register = function(userInfo) {
-      console.log('in register service!');
 
       // create a new instance of deferred
       var deferred = $q.defer();
@@ -76,12 +72,10 @@ app.factory('AuthService', ['$q', '$timeout', '$http', '$cookies', function ($q,
       $http.post('/user/register', userInfo)
         // handle success
         .success(function (data, status) {
-          // console.log('successful registration!', status);
           if(status === 200 && data.message){
             // user = true
             deferred.resolve();
           } else {
-            console.log('registration rejected...');
             deferred.reject();
           }
         })

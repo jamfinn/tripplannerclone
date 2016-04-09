@@ -78,8 +78,6 @@ app.controller('registerController',
 }]);
 
 app.controller('homeController', ['$scope', '$http', '$route', '$location', '$window', '$anchorScroll', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, $window, $anchorScroll, PlanService, ActivityService, $routeParams, UserService) {
-  console.log('these are the route params: ', $routeParams);
-  console.log('current route params: ', $route.current.params);
 
   $scope.columns = 1;
   if ($window.innerWidth > 550) {
@@ -146,8 +144,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       }
       $scope.toggleDiv('one')
     })
-  } else {
-    console.log('no one is logged in');
   }
 
   $scope.reset = function () { // close all activities
@@ -159,7 +155,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     }
   }
 
-  $scope.toggleDiv = function (div, num) {
+  $scope.toggleDiv = function (div) {
+    console.log(div);
     var temp = $scope.info[div]
     for (item in $scope.info) { // close all divs (make this a reset service?)
       $scope.info[item] = false
@@ -171,7 +168,17 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     && !$scope.info.seven && !$scope.info.eight) {
       $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
     }
-    $window.scrollTo($window.pageYOffset + (num * 100), 0)
+    console.log($window.pageYOffset);
+    $window.scrollTo(0, 0)
+    // $window.scrollTo(0, 500)
+    // $scope.gotoElement = function (eID){
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      // $location.hash('bottom');
+
+      // call $anchorScroll()
+      // activityservice.scrollTo(div);
+    // };
   }
 
   $scope.resetSubtype = function () {
@@ -252,9 +259,6 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
 app.controller('planController',
   ['$scope', '$location', '$http', '$route', '$routeParams', '$window', 'PlanService', 'ActivityService', 'UserService', function ($scope, $location, $http, $route, $routeParams, $window, PlanService, ActivityService, UserService) {
 
-    console.log($routeParams);
-    console.log($route.current.params.id);
-
     // see if a user is logged in
     $scope.user_id = authservice.getUserStatus()
 
@@ -279,7 +283,6 @@ app.controller('planController',
 
     planservice.getUserPlan($scope.plan_id).then(function(doc) {
       if (!doc) {
-        console.log('no plan found');
       } else {
         $scope.userPlan = doc;
         $scope.planStart = activityservice.getRowArray(doc, $scope.columns);
