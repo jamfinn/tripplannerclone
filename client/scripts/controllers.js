@@ -77,7 +77,7 @@ app.controller('registerController',
 
 }]);
 
-app.controller('homeController', ['$scope', '$http', '$route', '$location', '$window', '$anchorScroll', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, $window, $anchorScroll, PlanService, ActivityService, $routeParams, UserService) {
+app.controller('homeController', ['$scope', '$http', '$route', '$location', '$window', 'PlanService', 'ActivityService', 'UserService', '$routeParams', function ($scope, $http, $route, $location, $window, PlanService, ActivityService, $routeParams, UserService) {
 
   $scope.columns = 1;
   if ($window.innerWidth > 550) {
@@ -96,9 +96,9 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       seven: false,
       eight: false
     }
-  }
+  };
 
-  $scope.resetDivs()
+  $scope.resetDivs();
 
   // see if a user is logged in
   $scope.user_id = authservice.getUserStatus();
@@ -156,27 +156,22 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
   }
 
   $scope.toggleDiv = function (div) {
-    var temp = $scope.info[div]
-    for (item in $scope.info) { // close all divs (make this a reset service?)
-      $scope.info[item] = false
+    var temp = $scope.info[div];
+    $scope.resetDivs(); // returns hero = true
+    $scope.info[div] = !temp; // clicked div is now the opposite of what it was before
+    if ($scope.info[div] === true) {
+      $scope.info.hero = false
     }
-    $scope.info[div] = !temp; // div is now the opposite of what it was before
-    if (!$scope.info.one && !$scope.info.two
-    && !$scope.info.three && !$scope.info.four
-    && !$scope.info.five && !$scope.info.six
-    && !$scope.info.seven && !$scope.info.eight) {
-      $scope.info.hero = true; // change this so hero is always open and nav slides over hero (animate it?)
-    }
-    $window.scrollTo(0, 0)
+    $window.scrollTo(0, 0);
   }
 
   $scope.resetSubtype = function () {
       $scope.subtype = 'all'
-  }
+  };
 
   $scope.resetType = function () {
       $scope.type = 'all'
-  }
+  };
 
   $scope.addToPlan = function (user, activity) {
     if (!user) {
