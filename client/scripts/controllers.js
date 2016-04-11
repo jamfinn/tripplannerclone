@@ -153,8 +153,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     if ($scope.showActivity) {
       $scope.showActivity._id = undefined;
     }
-    $scope.type = all;
-    $scope.subtype = all;
+    $scope.type = 'all';
+    $scope.subtype = 'all';
   }
 
   $scope.toggleDiv = function (div) {
