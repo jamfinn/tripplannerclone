@@ -247,6 +247,13 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
 app.controller('planController',
   ['$scope', '$location', '$http', '$route', '$routeParams', '$window', 'PlanService', 'ActivityService', 'UserService', function ($scope, $location, $http, $route, $routeParams, $window, PlanService, ActivityService, UserService) {
 
+    $scope.columns = 1;
+    if ($window.innerWidth > 550) {
+      $scope.columns = 3;
+    }
+
+    $scope.year = new Date().getFullYear()
+
     // see if a user is logged in
     $scope.user_id = authservice.getUserStatus()
 
@@ -256,16 +263,8 @@ app.controller('planController',
       $scope.plan_id = $scope.user_id
     }
 
-    $scope.columns = 1;
-    if ($window.innerWidth > 550) {
-      $scope.columns = 3;
-    }
-
-    $scope.year = new Date().getFullYear()
-
     activityservice.getActivities().then(function (docs) {
       $scope.activities = docs
-      $scope.planStart = activityservice.getRowArray(docs, $scope.columns);
     })
 
     planservice.getUserPlan($scope.plan_id).then(function(doc) {
@@ -273,12 +272,13 @@ app.controller('planController',
       } else {
         $scope.userPlan = doc;
         $scope.planStart = activityservice.getRowArray(doc, $scope.columns);
+        console.log($scope.planStart);
       }
     })
 
-    userservice.getUser($scope.plan_id).then(function (data) {
-      if (data) {
-        $scope.name = data.fname
+    userservice.getUser($scope.plan_id).then(function (user) {
+      if (user) {
+        $scope.name = user.fname
       }
     })
 

@@ -12,7 +12,7 @@
     <div class="big row" ng-repeat="start in planStart">
 
       <div class="activity">
-        <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
+        <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: columns: start">
           <div sim-activity activity="activity" user="user_id" plan-page="true"></div>
         </div>
         <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
