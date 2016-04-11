@@ -15,12 +15,8 @@
 
       <div class="activityBox">
 
-        <div class="dummy activity" ng-show="userPlan.length === 0" ng-click="toggleDiv('two')">
-          <div class="imageBox">
-            <div class="overlay"></div>
-            <img ng-src="../assets/images/gc-img-1.png" alt="Grand Canyon">
-            <h4 class="subtitle">Add activities to your plan!</h4>
-          </div>
+        <div class="dummy activity" ng-show="userPlan.length === 0" ng-click="toggleDiv('two')" ng-init="activity.open=false">
+          <div sim-dummy-activity image="'gc-img-1.png'" image-text="'Grand Canyon'" text="'Add activities to your plan!'"></div>
         </div>
 
         <div class="big row" ng-repeat="start in planStart">
@@ -77,7 +73,7 @@
             <div class="detail u-cf" ng-show="activity.open || activity._id === showActivity._id" ng-repeat="activity in activities | activityType: type | limitTo: columns: start">
               <div sim-activity-detail activity="activity" user="user_id" plan-action="removeFromPlan(user_id, activity._id)"></div>
             </div>
-            
+
           </div>
         </div>
 

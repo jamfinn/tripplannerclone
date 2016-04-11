@@ -49,6 +49,18 @@ app.directive('simShareBox', [function() {
   }
 }])
 
+app.directive('simDummyActivity', [function() {
+  return {
+    restrict: 'EA',
+    scope: {
+      image: '=',
+      imageText: '=',
+      text: '='
+    },
+    templateUrl: './partials/directives/dummy-activity.html'
+  }
+}])
+
 app.directive('simActivity', [function() {
   return {
     restrict: 'EA',
