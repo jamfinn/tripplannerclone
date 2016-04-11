@@ -146,13 +146,15 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     })
   }
 
-  $scope.reset = function () { // close all activities
+  $scope.reset = function () { // close all activities, reset showActivity, reset filters
     $scope.activities.forEach(function (activity) {
       activity.open = false;
     })
     if ($scope.showActivity) {
       $scope.showActivity._id = undefined;
     }
+    $scope.type = all;
+    $scope.subtype = all;
   }
 
   $scope.toggleDiv = function (div) {
