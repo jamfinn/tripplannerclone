@@ -261,12 +261,7 @@ app.controller('planController',
 
     activityservice.getActivities().then(function (docs) {
       $scope.activities = docs
-      $scope.planStart = activityservice.getRowArray(data, $scope.columns);
-      //
-      // $scope.limitStart = []
-      // for (var i = 0; i < ($scope.activities.length / 3); i++) {
-      //   $scope.limitStart.push(i * 3)
-      // }
+      $scope.planStart = activityservice.getRowArray(docs, $scope.columns);
     })
 
     planservice.getUserPlan($scope.plan_id).then(function(doc) {
