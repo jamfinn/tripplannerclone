@@ -272,7 +272,6 @@ app.controller('planController',
       } else {
         $scope.userPlan = doc;
         $scope.planStart = activityservice.getRowArray(doc, $scope.columns);
-        console.log($scope.planStart);
       }
     })
 
