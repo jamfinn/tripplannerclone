@@ -11,27 +11,18 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-    console.log('from /plans post', req.body);
     // findOne plan with user_id of user
     Plan.findOne({user: req.body.user}, function(err, doc){
       if (err) throw err;
-      console.log('found a plan by user id:', doc);
       // if no plan for that user, add
       if (!doc) {
-        console.log('no plan found for this user');
         var plan = [req.body.activity]
-        console.log('new user plan', plan);
         new Plan({user: req.body.user, plan: plan}).save(function(err, doc) {
         res.send(doc);
         })
       } // if not already in plan
       else if (doc.plan.indexOf(req.body.activity) === -1) {
-        console.log('type of req.body.activity: ', typeof req.body.activity);
         doc.plan.push(req.body.activity)
-        console.log('plan to be added: ', doc);
-        // doc.save(function (){
-        //   res.send(doc)
-        // })
         Plan.update({user: req.body.user}, {plan: doc.plan}, function (){
           res.send(doc)
         })
@@ -42,23 +33,19 @@ router.post('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-  console.log('get this plan!', req.params.id);
   Plan.findOne({user: req.params.id}, function(err, doc){
     if (err) throw err;
-    console.log('does this user have a plan?', doc)
     res.send(doc);
   });
 });
 
 router.post('/:id', function(req, res) {
-  console.log('delete plan!', req.body);
   //findOne plan with the user_id of user, return Plan.plan array
   Plan.findOne({user: req.params.id}, function(err, doc){
     if (err) throw err;
     var index = doc.plan.indexOf(req.body.activity)
     doc.plan.splice(index, 1)
     Plan.update({user: req.params.id}, {plan: doc.plan}, function (err, doc) {
-      console.log(doc.plan);
       res.send(doc);
     })
   });
