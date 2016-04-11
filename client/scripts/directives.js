@@ -76,3 +76,25 @@ app.directive('simActivityDetail', [function() {
     templateUrl: './partials/directives/activity-detail.html'
   }
 }])
+
+app.directive('simFooter', [function() {
+  return {
+    restrict: 'EA',
+    scope: {
+      orgLink: '=',
+      organization: '=',
+      park: '=',
+      parkLink: '=',
+      year: '=',
+      nav1Link: '=',
+      nav1Text: '=',
+      nav2Link: '=',
+      nav2Text: '=',
+      nav3Link: '=',
+      nav3Text: '=',
+      nav4Link: '=',
+      nav4Text: '='
+    },
+    templateUrl: './partials/directives/footer.html'
+  }
+}])

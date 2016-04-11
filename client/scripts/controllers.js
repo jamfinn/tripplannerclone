@@ -84,6 +84,8 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
     $scope.columns = 3;
   }
 
+  $scope.year = new Date().getFullYear()
+
   $scope.resetDivs = function () {
     $scope.info = { // a list of all divs for accordian
       hero: true,
@@ -258,6 +260,8 @@ app.controller('planController',
     if ($window.innerWidth > 550) {
       $scope.columns = 3;
     }
+
+    $scope.year = new Date().getFullYear()
 
     activityservice.getActivities().then(function (docs) {
       $scope.activities = docs
