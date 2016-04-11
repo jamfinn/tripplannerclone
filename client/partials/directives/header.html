@@ -1,0 +1,6 @@
+<img class="logo" ng-src="../assets/images/{{logo}}" alt="{{altText}}">
+<div class="status">
+  <a ng-href="/#/plan/{{user}}"><h3 ng-show="plan.length">{{plan.length}} <i class="fa fa-calendar"></i></h3></a>
+  <p ng-show="user" ng-click="logout()">logout</p>
+  <p ng-show="!user"><a href="/#/register">Sign Up</a> | <a href="/#/login">Login</a></p>
+</div>

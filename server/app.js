@@ -185,7 +185,6 @@ function(req, res){
 app.get('/auth/twitter/callback',
 passport.authenticate('twitter', { failureRedirect: '/login' }),
 function(req, res) {
-  console.log('in twitter callback!');
   res.cookie('user', req.user._id);
   res.redirect('/');
 });
@@ -199,7 +198,6 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
 passport.authenticate('google', { failureRedirect: '/login' }),
 function(req, res) {
-  console.log('in google callback!');
   res.cookie('user', req.user._id);
   res.redirect('/');
 });
