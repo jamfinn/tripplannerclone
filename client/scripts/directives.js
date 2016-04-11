@@ -49,18 +49,6 @@ app.directive('simShareBox', [function() {
   }
 }])
 
-app.directive('simDummyActivity', [function() {
-  return {
-    restrict: 'EA',
-    scope: {
-      image: '=',
-      imageText: '=',
-      text: '='
-    },
-    templateUrl: './partials/directives/dummy-activity.html'
-  }
-}])
-
 app.directive('simActivity', [function() {
   return {
     restrict: 'EA',
@@ -68,7 +56,9 @@ app.directive('simActivity', [function() {
       user: '=',
       activity: '=',
       showActivity: '=',
-      planAction: '&'
+      planAction: '&',
+      planPage: '=',
+      dummy: '='
     },
     templateUrl: './partials/directives/activity.html'
   }
@@ -80,7 +70,8 @@ app.directive('simActivityDetail', [function() {
     scope: {
       user: '=',
       activity: '=',
-      planAction: '&'
+      planAction: '&',
+      planPage: '='
     },
     templateUrl: './partials/directives/activity-detail.html'
   }

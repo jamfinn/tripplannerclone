@@ -5,12 +5,9 @@
     <a ng-href="{{activity.pinterestShare}}"><i class="fa fa-pinterest-square"></i></a>
   </div>
   <i class="fa fa-times close u-pull-right" ng-click="activity.open=false; $event.stopPropagation();"></i>
-
 </div>
 
 <div class="one-third column">
-
-
   <h5>hours</h5>
   <p>
     {{activity.hours}}
@@ -29,7 +26,6 @@
   <p>
     <a href="{{activity.link}}" target="_blank">{{activity.link}}</a>
   </p>
-
 </div>
 
 <div class="one-third column">
@@ -41,8 +37,5 @@
   <p>
     {{activity.access}}
   </p>
-</div>
-
-<div class="one-third column" ng-show="activity.inUserPlan">
-  <h5 class="delete u-pull-right" ng-click="planAction({user_id: user})"><i class="fa fa-times"></i> REMOVE FROM PLAN</h5>
+  <h5 class="delete u-pull-right" ng-show="activity.inUserPlan && !planPage" ng-click="planAction({user_id: user})"><i class="fa fa-times"></i> REMOVE FROM PLAN</h5>
 </div>

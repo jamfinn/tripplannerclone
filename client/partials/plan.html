@@ -2,86 +2,29 @@
 
 <div sim-hero class="hero accordian" ng-show="info.hero" hero-image="'GC-hero.jpg'" hero-text="'Grand Canyon'" title="'Plan your trip and get the most out of your Grand Canyon visit'" cta="'Sign up and make a plan!'"  user="user_id"></div>
 
-<!-- <div class="hero accordian">
-  <img ng-src="../assets/images/GC-hero.jpg" alt="Grand Canyon">
-  <h1 class="title">
-    Plan your trip and get the most out of your Grand Canyon visit
-  </h1>
-  <a href="/#/register"><button ng-hide="user_id">Sign up and make a plan!</button></a>
-</div>-->
-
 <article ng-show="plan_id" class="info green accordian">
 
   <h2 class="plan">{{name | capitalize:true}}'s Plan</h2>
-    <div class="shareBox" ng-hide="userPlan.length === 0">
-      <a ng-href="https://www.facebook.com/dialog/feed?app_id=184683071273&link=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F{{plan_id}}&picture=https%3A%2F%2Ftriplannr.herokuapp.com%2Fassets%2Fimages%2FGC-about.jpg&name=My%20plan%20for%20a%20Grand%20Canyon%20visit&caption=%20&description=Check%20out%20my%20plan%20for%20a%20visit%20to%20the%20Grand%20Canyon.&redirect_uri=http%3A%2F%2Fwww.facebook.com%2F&display=popup"><i class="fa fa-facebook-square"></i></a>
-      <a ng-href="http://twitter.com/intent/tweet?text=Here%27s%20what%20I%27m%20doing%20on%20my%20trip%20to%20the%20Grand%20Canyon%3A%20https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F{{plan_id}}"><i class="fa fa-twitter-square"></i></a>
-      <a ng-href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%{{plan_id}}&media=https%3A%2F%2Ftriplannr.herokuapp.com%2Fassets%2Fimages%2FGC-about.jpg&description=My%20trip%20to%20the%20Grand%20Canyon%3A"><i class="fa fa-pinterest-square"></i></a>
-      <a ng-href="mailto:?subject=For%20my%20visit%20to%20the%20Grand%20Canyon&body=Here%20is%20a%20link%20to%20my%20plan%3A%0D%0Ahttps%3A%2F%2Ftriplannr.herokuapp.com%2F%23%2Fplan%2F{{plan_id}}"><i class="fa fa-envelope-square"></i></i></a>
-    </div>
+  <div sim-share-box class="shareBox" ng-hide="userPlan.length === 0 || !info.one" user="user_id"></div>
 
-    <div class="activityBox">
+  <div class="activityBox">
 
-      <div class="big row" ng-repeat="start in planStart">
+    <div class="big row" ng-repeat="start in planStart">
 
-        <div class="activity">
-          <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
-            <div class="imageBox ">
-              <div class="overlay"></div>
-              <img ng-src={{activity.image}} alt="{{activity.title}}">
-              <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}} rim</h5>
-              <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
-              <div class="detailBorder" ng-show="activity.open"></div>
-            </div>
-          </div>
-
-          <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
-            <div class="row">
-              <div class="shareBox six columns">
-                <a ng-href="{{activity.facebookShare}}"><i class="fa fa-facebook-square"></i></a>
-                <a ng-href="{{activity.twitterShare}}"><i class="fa fa-twitter-square"></i></a>
-                <a ng-href="{{activity.pinterestShare}}"><i class="fa fa-pinterest-square"></i></a>
-              </div>
-              <i class="fa fa-times close u-pull-right" ng-click="activity.open=false; $event.stopPropagation();"></i>
-
-            </div>
-
-            <div class="one-third column">
-
-
-              <h5>hours</h5>
-              <p>
-                {{activity.hours}}
-              </p>
-              <h5>location</h5>
-              <p>
-                {{activity.location}}
-              </p>
-            </div>
-
-            <div class="one-third column">
-              <h5>description</h5>
-              <p>
-                {{activity.description}}
-              </p>
-            </div>
-
-            <div class="one-third column">
-              <h5>good for</h5>
-              <p>
-                {{activity.age}}
-              </p>
-              <h5>access</h5>
-              <p>
-                {{activity.access}}
-              </p>
-            </div>
-
-          </div>
-
+      <div class="activity">
+        <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
+          <div sim-activity activity="activity" user="user_id" plan-page="true"></div>
+        </div>
+        <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities | myActivities: userPlan | limitTo: 3: start">
+          <div sim-activity-detail activity="activity" planPage="true" ></div>
+        </div>
       </div>
 
+    </div>
+
   </div>
+
+
 </article>
 
 <div class="link gray">
