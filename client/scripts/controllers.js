@@ -238,6 +238,15 @@ app.controller('homeController', ['$scope', '$http', '$route', '$location', '$wi
       });
   }
 
+  $scope.toPDF = function () {
+    if ($scope.user_id) {
+      window.location = "assets/GCAplanner.pdf"
+    }
+    else (
+      $location.path('/login')
+    )
+  }
+
   if ($route.current.params.title) {
     $scope.logout();
   }
