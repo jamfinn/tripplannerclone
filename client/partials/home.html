@@ -16,7 +16,7 @@
       <div class="activityBox">
 
         <div class="dummy activity" ng-show="userPlan.length === 0" ng-click="toggleDiv('two')" ng-init="activity.open=false">
-          <div sim-activity activity="{image:'../assets/images/gc-img-1.png', title:'Grand Canyon', rim: 'Add activities to your plan!' }" dummy="true"></div>
+          <div sim-activity activity="{image:'../assets/images/gc-img-1.png', title:'Grand Canyon', rim: 'Add activities to your plan!' }" plan="true"></div>
         </div>
 
         <div class="big row" ng-repeat="start in planStart">
@@ -24,7 +24,7 @@
           <div class="activity">
 
             <div class="image one-third column" ng-click="reset(); activity.open=true; $event.stopPropagation();" ng-repeat="activity in activities | myActivities: userPlan | limitTo: columns: start">
-              <div sim-activity activity="activity" user="user_id" plan-action="removeFromPlan(user_id, activity._id)"></div>
+              <div sim-activity activity="activity" user="user_id" plan-action="removeFromPlan(user_id, activity._id)" plan="true"></div>
             </div>
 
             <div class="detail u-cf" ng-show="activity.open" ng-repeat="activity in activities | myActivities: userPlan | limitTo: columns: start">
