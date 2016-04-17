@@ -13,7 +13,6 @@ var express = require('express'),
     config = require('./oauth.js'),
     localStrategy = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
-    TwitterStrategy = require('passport-twitter').Strategy,
     GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 
@@ -84,47 +83,6 @@ function(accessToken, refreshToken, profile, done) {
 }
 ));
 
-passport.use(new TwitterStrategy({
- consumerKey: config.twitter.consumerKey,
- consumerSecret: config.twitter.consumerSecret,
- callbackURL: config.twitter.callbackURL
-},
-function(accessToken, refreshToken, profile, done) {
-  process.nextTick(function() {
-    User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
-      if (err) {return done(err);}
-
-      // if the user is found then log them in
-      if (user) {
-          return done(null, user); // user found, return that user
-      } else {
-        // if there is no user, create them
-        var name = profile.displayName.split(' ');
-        var fname = name[0];
-        var lname = name[name.length - 1];
-        var user = new User({
-          twitter: {
-            id: profile.id
-          },
-          username: profile.username,
-          fname: fname,
-          lname: lname
-        });
-
-        // save our user into the database
-        user.save(function(err) {
-            if (err) {throw err;}
-            else {
-              done(null, user);
-            }
-        });
-      }
-    });
-
-  });
-
-}));
-
 passport.use(new GoogleStrategy({
   clientID: config.google.clientID,
   clientSecret: config.google.clientSecret,
@@ -174,16 +132,6 @@ passport.authenticate('facebook',
   {
     failureRedirect: '/login',
     scope: [ 'email', 'public_profile' ] }),
-function(req, res) {
-  res.cookie('user', req.user._id);
-  res.redirect('/');
-});
-app.get('/auth/twitter',
-passport.authenticate('twitter'),
-function(req, res){
-});
-app.get('/auth/twitter/callback',
-passport.authenticate('twitter', { failureRedirect: '/login' }),
 function(req, res) {
   res.cookie('user', req.user._id);
   res.redirect('/');

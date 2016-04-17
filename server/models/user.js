@@ -6,9 +6,6 @@ var mongoose = require('mongoose'),
 
 var User = new Schema({
 
-  twitter: {
-    id: String,
-  },
   oauthID: Number,
   username: String, // this is email
   password: String,
