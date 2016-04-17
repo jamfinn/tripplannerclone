@@ -1,7 +1,7 @@
 <div class="imageBox">
   <div class="overlay"></div>
   <img ng-src={{activity.image}} alt="{{activity.title}}">
-  <i ng-show="!dummy && !planPage" ng-class="['fa', 'fa-plus-circle', {greentxt: activity.inUserPlan, ltgreen: !activity.inUserPlan}]" ng-click="planAction({user_id: user}); $event.stopPropagation();" class="fa fa-plus-circle"></i>
+  <i ng-show="!plan" ng-class="['fa', 'fa-plus-circle', {greentxt: activity.inUserPlan, ltgreen: !activity.inUserPlan}]" ng-click="planAction({user_id: user}); $event.stopPropagation();" class="fa fa-plus-circle"></i>
   <h5 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="subtitle">{{activity.rim}}</h5>
   <h4 ng-click="activity.open=!activity.open; $event.stopPropagation();" class="title">{{activity.title}}</h4>
   <div class="detailBorder" ng-show="!dummy && (activity.open || activity._id === showActivity._id)"></div>

@@ -57,8 +57,7 @@ app.directive('simActivity', [function() {
       activity: '=',
       showActivity: '=',
       planAction: '&',
-      planPage: '=',
-      dummy: '='
+      plan: '='
     },
     templateUrl: './partials/directives/activity.html'
   }
